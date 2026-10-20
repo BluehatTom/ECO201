@@ -1,248 +1,262 @@
-<!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="theme-color" content="#C41230"><meta name="description" content="Run a differentiated business and watch new entrants erode short-run economic profits."><title>Coffee Shop Competition | ECO 201 Interactive Lab</title><style>:root{color-scheme:light;--red:#C41230;--red-d:#9B1027;--ink:#18212b;--muted:#53616f;--surface:#fff;--paper:#faf9f6;--tint:#f3f5f7;--line:#d9dfe4;--good:#135c3b;--bad:#a11c2d;--blue:#174d75;--gold:#91620e;--radius:16px;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);line-height:1.48}a{color:var(--red-d);text-underline-offset:3px}button,input,select{font:inherit}button,select,input[type=range]{cursor:pointer}button{border-radius:10px;border:1px solid var(--line);background:white;color:var(--ink);padding:.65rem .9rem;font-weight:700}button:hover{background:#f6f1f2}button:disabled{cursor:not-allowed;opacity:.55}button.primary{background:var(--red);color:white;border-color:var(--red)}button.primary:hover{background:var(--red-d)}button.secondary{background:#e7edf3;border-color:#d5e0e8}button.light{background:transparent;color:white;border-color:rgba(255,255,255,.6)}:focus-visible{outline:3px solid #ef9a30!important;outline-offset:3px}input[type=range]{width:100%;accent-color:var(--red);height:26px}select{width:100%;border:1px solid #8899a9;border-radius:9px;padding:.65rem;background:white;color:var(--ink)}.skip{position:absolute;top:-100px;left:12px;background:white;padding:12px;z-index:99}.skip:focus{top:10px}.header{background:#1c2530;color:#fff;border-top:7px solid var(--red)}.header-inner{max-width:1200px;margin:auto;padding:25px 26px 27px;display:flex;align-items:flex-start;justify-content:space-between;gap:20px}.brand{font-size:.79rem;letter-spacing:.17em;text-transform:uppercase;font-weight:850;color:white}.brand span{color:#f6b5bc}.crumb{font-size:.83rem;margin-top:7px;color:#dae1e6}.crumb a{color:#fff}.header h1{font-size:clamp(1.7rem,3.5vw,2.55rem);line-height:1.12;letter-spacing:-.028em;margin:13px 0 8px;max-width:760px}.dek{color:#e3e8ed;max-width:800px;margin:0;font-size:1.03rem}.chapter-tag{border:1px solid #bcc4cc;border-radius:30px;padding:7px 12px;color:#fff;font-weight:800;font-size:.83rem;white-space:nowrap;margin-top:2px}.shell{max-width:1200px;margin:auto;padding:22px 26px 70px}.bar{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:18px}.mode-nav{display:inline-flex;border:1px solid var(--line);background:#fff;border-radius:13px;padding:5px;gap:4px;max-width:100%}.mode-nav button{border:0;padding:10px 15px;border-radius:9px;background:transparent;font-weight:800;white-space:nowrap}.mode-nav button[aria-pressed=true]{background:var(--red);color:#fff;box-shadow:0 2px 6px #0002}.pill-note{color:var(--muted);font-size:.81rem;font-weight:700}.workspace{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(305px,1fr);align-items:start;gap:20px}.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 2px 8px #18212b08;padding:22px}.panel h2{font-size:1.16rem;letter-spacing:-.01em;margin:0 0 7px}.panel h3{font-size:1rem;margin:20px 0 8px}.panel p{margin:7px 0 12px}.hint{color:var(--muted);font-size:.91rem}.eyebrow{font-size:.71rem;letter-spacing:.13em;text-transform:uppercase;font-weight:900;color:var(--red);margin:0 0 9px}.controls{display:grid;gap:16px}.ctrl label{display:flex;justify-content:space-between;gap:15px;font-weight:750;margin-bottom:3px}.ctrl output{font-weight:900;color:var(--red-d);font-variant-numeric:tabular-nums}.ctrl small{display:block;color:var(--muted);line-height:1.36}.choice-label{font-weight:750;display:block;margin:3px 0 7px}.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:16px 0}.metric{border:1px solid var(--line);background:#f9fafb;border-radius:12px;padding:13px 12px;min-width:0}.metric b{display:block;font-size:1.27rem;font-variant-numeric:tabular-nums;letter-spacing:-.018em;overflow-wrap:anywhere}.metric small{display:block;margin-top:4px;color:var(--muted);font-size:.77rem;font-weight:680}.metric.positive b{color:var(--good)}.metric.negative b{color:var(--bad)}.plot{border:1px solid var(--line);border-radius:14px;padding:6px;background:linear-gradient(#fff,#fafbfc)}.plot svg{display:block;width:100%;height:auto}.legend{display:flex;flex-wrap:wrap;gap:10px 16px;margin-top:12px;font-size:.84rem;font-weight:700}.legend i{display:inline-block;width:23px;height:4px;vertical-align:middle;margin-right:6px;border-radius:9px}.insight{background:#f4f7fa;border-left:4px solid var(--blue);padding:12px 14px;border-radius:0 10px 10px 0;margin-top:14px}.insight strong{display:block;margin-bottom:3px}.insight p{margin:0;font-size:.91rem}.exercise{border:1px solid #d7dfe6;background:#f8fafc;border-radius:13px;padding:16px;margin-top:10px}.exercise h3{margin:0 0 8px}.exercise legend{font-weight:800;padding:0 0 8px}.exercise fieldset{border:0;margin:0;padding:0}.answer{display:flex;gap:9px;align-items:flex-start;padding:7px 0}.answer input{margin-top:5px;accent-color:var(--red)}.feedback{border-radius:9px;padding:10px 12px;margin-top:10px;font-weight:600;font-size:.9rem;background:#edf1f5;color:#1d374d}.feedback.good{background:#e6f4ec;color:#114e30}.feedback.bad{background:#fcebef;color:#8f142b}.feedback:empty{padding:0;margin:0;border:0;background:transparent}.actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:13px}.status{font-size:.84rem;font-weight:750;color:var(--muted)}.callout{border-radius:13px;background:#fff5f5;border:1px solid #e8c3cb;padding:13px 15px;margin-top:14px;font-size:.91rem}.formula{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;background:#f2f4f6;border:1px solid #e1e5e8;border-radius:7px;padding:8px 10px;font-size:.88rem;overflow-wrap:anywhere;margin:9px 0}.steps{padding-left:21px;margin:10px 0}.steps li{margin-bottom:8px}.mode-panel[hidden]{display:none!important}.foot{border-top:1px solid var(--line);margin-top:24px;padding-top:20px;color:var(--muted);font-size:.85rem}.foot p{margin:6px 0}.small-table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:.9rem}.small-table th,.small-table td{border-bottom:1px solid var(--line);padding:8px;text-align:left}.small-table th{color:#465462}.key{color:var(--red-d);font-weight:850}.badge-mini{display:inline-block;background:#f4e8eb;color:#812133;border-radius:30px;font-size:.7rem;font-weight:900;letter-spacing:.04em;padding:4px 9px}.muted{color:var(--muted)}.two-up{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.matrix{width:100%;border-collapse:separate;border-spacing:6px;font-size:.92rem}.matrix td,.matrix th{text-align:center;padding:13px 8px;border-radius:10px}.matrix th{font-size:.81rem;color:#435363}.matrix td{border:1px solid #cdd7df;background:#f6f8fa}.matrix td.selected{outline:3px solid var(--red);outline-offset:-1px;background:#fff3f4}.matrix td.nash{background:#e9f5ee;border-color:#9bc2aa}.matrix .payA{font-weight:900;color:#173c59}.matrix .payB{font-weight:900;color:#8a2032}.round-history{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:11px 0}.round-history li{border:1px solid var(--line);border-radius:8px;padding:7px 10px;background:#fbfcfd;font-size:.83rem}.share-row{display:grid;grid-template-columns:72px 1fr 56px;gap:10px;align-items:center;font-size:.85rem;margin:8px 0}.share-track{background:#e8edf1;border-radius:6px;overflow:hidden;height:20px}.share-fill{height:100%;background:var(--blue);transition:width .2s}.share-fill.after{background:var(--red)}.share-row strong{text-align:right;font-variant-numeric:tabular-nums}.guide-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:21px 0}.guide{padding:17px;border:1px solid var(--line);border-radius:14px;background:#fff}.guide h2{font-size:1.03rem}.guide p{font-size:.88rem;color:var(--muted);margin-bottom:0}.hub-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.hub-card{display:flex;flex-direction:column;gap:12px;padding:21px;border:1px solid var(--line);border-radius:16px;background:#fff;text-decoration:none;color:var(--ink);transition:transform .1s,border-color .1s;min-height:224px}.hub-card:hover{border-color:var(--red);transform:translateY(-2px)}.hub-card h3{font-size:1.25rem;margin:0;line-height:1.2}.hub-card p{margin:0;color:var(--muted);flex:1}.hub-card .go{color:var(--red-d);font-weight:850}.hub-label{font-size:.73rem;letter-spacing:.09em;text-transform:uppercase;color:#616e7b;font-weight:900}.section-heading{font-size:1.22rem;margin:30px 0 14px}.checklist{padding-left:20px}.checklist li{margin:7px 0}.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}@media(max-width:850px){.workspace{grid-template-columns:1fr}.header-inner{flex-wrap:wrap}.metrics{grid-template-columns:repeat(2,1fr)}.guide-cards{grid-template-columns:1fr}.hub-grid{grid-template-columns:1fr}}@media(max-width:480px){.shell{padding:14px 12px 50px}.header-inner{padding:22px 16px}.panel{padding:15px}.mode-nav{width:100%}.mode-nav button{flex:1;font-size:.84rem;padding:9px 6px}.two-up{grid-template-columns:1fr}.metric b{font-size:1.12rem}.matrix td{padding:9px 3px}.matrix{font-size:.83rem}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}@media print{.header{color:black;background:white}.header .dek,.header .crumb{color:#333}.bar,.controls,.actions{display:none!important}.workspace{display:block}.panel{box-shadow:none;break-inside:avoid;margin:10px 0}body{background:white}.foot{font-size:.75rem}}
-
-/* Accessibility-first chart system: never rely on hue to identify data. */
-.legend{margin-top:14px;display:flex;align-items:stretch;flex-wrap:wrap;gap:8px}
-.legend-item{display:inline-flex;align-items:center;gap:7px;padding:6px 9px;border:1px solid #cbd4dc;border-radius:9px;background:#fff;min-width:0;color:var(--ink)}
-.legend-item strong{font-size:.81rem;line-height:1.17;display:block}
-.legend-item small{color:#44515e;font-size:.72rem;line-height:1.26;display:block;margin-top:2px;font-weight:600}
-.legend-key{width:53px;height:23px;flex:none;overflow:visible}
-.guide-symbol{display:flex;align-items:center;justify-content:center;border:2px dashed #334251;color:#263542;font-weight:900;width:46px;height:23px;font-size:22px}
-.legend-hatch,.legend-fill,.legend-striped{display:inline-block;width:44px;height:18px;border:2px solid #283744;flex:none}
-.legend-hatch{background:repeating-linear-gradient(45deg,#fff 0 5px,#8c2539 5px 8px)}
-.legend-fill{background:#245b82}
-.legend-striped{background:repeating-linear-gradient(45deg,#fff 0 5px,#7f253a 5px 9px)}
-.chart-access{margin-top:12px;padding:11px 13px;background:#f4f7fa;border:1px solid #cbd6df;border-radius:11px}
-.chart-summary{font-weight:650;color:#273947;margin:2px 0 7px!important;font-size:.92rem;line-height:1.48}
-.chart-data{background:#fff;border:1px solid #becbd5;border-radius:9px;overflow:hidden;margin-top:9px}
-.chart-data summary{cursor:pointer;list-style:revert;padding:11px 13px;font-weight:800;color:#233c51;background:#f4f7fb}
-.chart-data summary:hover{background:#e8eef3}
-.chart-data[open] summary{border-bottom:1px solid #cbd6df}
-.chart-data .table-scroll{overflow-x:auto;max-width:100%;padding:6px 9px 9px}
-.chart-data table{font-size:.85rem;min-width:470px}
-.chart-data table caption{caption-side:top;text-align:left;color:#435260;padding:10px 5px;font-size:.85rem;line-height:1.5}
-.chart-data th{background:#f7f9fb;font-weight:800;white-space:normal}
-.chart-data td{font-variant-numeric:tabular-nums}
-.plot{max-width:100%;overflow-x:auto;overscroll-behavior-x:contain}
-.plot svg{min-width:0}
-.plot svg text{font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
-.matrix td.selected{outline:3px solid #273b4d;outline-offset:-3px;background:#fff6e3}
-.matrix td.nash{border:2px dashed #1e6147;background:#f2f7f3}
-.matrix .cell-note{display:block;margin-top:5px;font-size:.73rem;font-weight:850;color:#1a3449}
-.matrix .cell-note.nash-note{color:#154c36}
-.share-row{grid-template-columns:minmax(95px,1fr) minmax(90px,2fr) 52px;gap:8px}
-.share-row .share-name{overflow-wrap:anywhere;font-weight:700;color:#223541}
-.share-row .share-name.merged-name::before{content:'Merged: ';font-weight:950}
-.share-track{height:22px;border-radius:4px;border:1px solid #566775;background:#f8f9fa}
-.share-fill{min-width:0;height:100%;background:#264f70;border-right:2px solid #122c40;transition:width .2s}
-.share-fill.after{background:repeating-linear-gradient(45deg,#fafafa 0 5px,#344b60 5px 10px)}
-.share-fill.merged{background:repeating-linear-gradient(-45deg,transparent 0 5px,rgba(28,28,28,.75) 5px 7px,transparent 7px 11px),repeating-linear-gradient(45deg,#fff 0 5px,#6b1c2e 5px 9px);border-right:3px double #1e2730}
-.diagram-cue{font-size:.86rem;color:#374b5b;margin:6px 0 11px}
-@media(max-width:680px){
- .plot svg{width:715px;min-width:715px;max-width:none}
- .legend-item{flex:1 1 225px}
- .chart-access{padding:10px}
- .share-row{grid-template-columns:minmax(92px,1fr) minmax(75px,1.6fr) 47px}
-}
-@media(forced-colors:active){
- .legend-item,.chart-access,.chart-data,.share-track,.matrix td{border:2px solid CanvasText}
- .plot svg,.legend-key,.legend-hatch,.legend-fill,.legend-striped,.share-fill{forced-color-adjust:none}
- .matrix td.selected{outline:4px solid Highlight}
-}
-@media print{.chart-data:not([open]){display:block!important}.chart-data:not([open]) .table-scroll{display:block!important}.chart-data summary{display:none!important}}
-.workspace,.panel,.controls,.plot,.chart-access,.chart-data,.two-up,.table-scroll{min-width:0}
-@media(max-width:850px){.workspace{grid-template-columns:minmax(0,1fr)}}
-.selected-policy{background:#fff0f3}
-.selected-policy th{border-left:4px solid #283745;padding-left:9px}
-.mode-nav{flex-wrap:wrap}
-.mode-nav button{min-width:0;white-space:normal;flex:1 1 auto}
-@media(forced-colors:active){.plot{forced-color-adjust:none;background:#fff!important;border-color:#111}}
-</style></head><body>
-<a class="skip" href="#main">Skip to the interactive activity</a>
-<header class="header"><div class="header-inner"><div><div class="brand">Miami University <span>·</span> Department of Commerce</div><div class="crumb"><a href="index.html">← Miami Polytechnic Economics Interactive Lab</a> / Chapter 10</div><h1>Coffee Shop Competition</h1><p class="dek">Run a differentiated business and watch new entrants erode short-run economic profits.</p></div><div class="chapter-tag">ECO 201 · CH 10</div></div></header>
-<main id="main" class="shell"><div class="bar"><div class="mode-nav" role="group" aria-label="Learning mode"><button type="button" data-mode="explore" aria-pressed="true">01 · Explore</button><button type="button" data-mode="challenge" aria-pressed="false">02 · Challenge</button><button type="button" data-mode="explain" aria-pressed="false">03 · Explain</button></div><span id="current-mode-label" class="pill-note">Explore mode</span></div>
-<div class="workspace">
- <section class="panel" aria-labelledby="chart-title"><p class="eyebrow">Differentiated products · Many possible entrants</p><h2 id="chart-title">Your independent coffee shop</h2><p class="hint">You control the shop's price, product quality, and advertising. New competitors take customers from your brand, shifting your shop's demand left.</p><div class="plot" id="chart" role="region" aria-label="Economic chart. Use arrow keys to scroll horizontally on smaller screens." tabindex="0"></div>
-  <div class="legend" aria-label="Meaning of graph line patterns, markers, and areas"><span class="legend-item"><svg class="legend-key" viewBox="0 0 53 23" aria-hidden="true"><path d="M 3 11 H 50" stroke="#245b82" stroke-width="3.5" stroke-linecap="round" /><circle cx="27" cy="11" r="5.3" fill="white" stroke="#245b82" stroke-width="2.4"/></svg><span><strong>Demand (D)</strong><small>solid line; circle markers</small></span></span><span class="legend-item"><svg class="legend-key" viewBox="0 0 53 23" aria-hidden="true"><path d="M 3 11 H 50" stroke="#a52235" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="13 6"/><path d="M 27 5 L 33 11 L 27 17 L 21 11 Z" fill="white" stroke="#a52235" stroke-width="2.4"/></svg><span><strong>Marginal revenue (MR)</strong><small>long-dashed line; diamond markers</small></span></span><span class="legend-item"><svg class="legend-key" viewBox="0 0 53 23" aria-hidden="true"><path d="M 3 11 H 50" stroke="#145c43" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="2 7"/><rect x="21.5" y="5.5" width="11" height="11" fill="white" stroke="#145c43" stroke-width="2.4"/></svg><span><strong>Marginal cost (MC)</strong><small>dotted line; square markers</small></span></span><span class="legend-item"><svg class="legend-key" viewBox="0 0 53 23" aria-hidden="true"><path d="M 3 11 H 50" stroke="#855909" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="13 5 3 5"/><path d="M 27 5 L 33 17 L 21 17 Z" fill="white" stroke="#855909" stroke-width="2.4"/></svg><span><strong>Average total cost (ATC)</strong><small>dash-dot line; triangle markers</small></span></span><span class="legend-item"><svg class="legend-key" viewBox="0 0 53 23" aria-hidden="true"><path d="M 3 11 H 50" stroke="#566575" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="5 5 2 5"/><path d="M 22 6 L 32 16 M 32 6 L 22 16" stroke="#566575" stroke-width="3"/></svg><span><strong>Earlier demand</strong><small>alternating-dash line; cross markers</small></span></span><span class="legend-item"><span class="guide-symbol" aria-hidden="true">×</span><span><strong>Profit-maximizing output</strong><small>X marks MR = MC</small></span></span><span class="legend-item"><span class="guide-symbol" aria-hidden="true">○</span><span><strong>Selected outcome</strong><small>open circle and dashed guides</small></span></span></div><div class="chart-access"><p id="chart-summary" class="chart-summary">The graph is also explained through line patterns, shape markers, and the table below.</p><details class="chart-data"><summary>View chart data as a table</summary><div class="table-scroll"><table class="small-table"><caption>Current and previous demand and cost relationships at meaningful quantities.</caption><thead><tr><th scope="col">Point</th><th scope="col">Q</th><th scope="col">Current demand price</th><th scope="col">MR</th><th scope="col">MC</th><th scope="col">ATC</th><th scope="col">Earlier demand price</th></tr></thead><tbody id="chart-data-rows"></tbody></table></div></details></div>
-  <div class="metrics" id="metrics"></div>
-  <div class="two-up"><div class="exercise"><h3>Market environment</h3><p><strong id="firms-label">3 shops</strong> competing for customers</p><p class="hint" id="market-caption">New firms enter when representative firms earn economic profit.</p></div><div class="exercise"><h3>Profit-maximizing benchmark</h3><p>Suggested price: <strong id="opt-price">—</strong></p><p>Typical firm's max. profit: <strong id="typical-profit">—</strong></p></div></div>
-  <div class="insight" aria-live="polite"><strong id="insight-title">Short-run economic profit</strong><p id="insight-text">Profits may attract competing coffee shops.</p></div>
-  <h3>Entry and exit record</h3><table class="small-table"><thead><tr><th scope="col">Year</th><th scope="col">Firms</th><th scope="col">Typical firm's max. profit</th><th scope="col">Adjustment</th></tr></thead><tbody id="record"></tbody></table>
- </section>
- <div class="controls">
-  <section class="panel"><p class="eyebrow">Business decisions</p><h2>Choose price and differentiation</h2><div class="controls">
-   <div class="ctrl"><label for="price">Coffee price <output id="price-val" for="price">$35</output></label><input id="price" type="range" min="15" max="70" step="0.5" value="35"><small>Higher price increases margin but decreases quantity demanded.</small></div>
-   <div class="ctrl"><label for="quality">Product quality <output id="quality-val" for="quality">Standard</output></label><input id="quality" type="range" min="0" max="3" step="1" value="1"><small>Better quality raises customers' willingness to pay, but also raises costs.</small></div>
-   <div class="ctrl"><label for="ads">Advertising per period <output id="ads-val" for="ads">$20</output></label><input id="ads" type="range" min="0" max="100" step="10" value="20"><small>Advertising expands demand with diminishing returns and is included in fixed costs.</small></div>
-  </div><div class="actions"><button id="optimize" type="button" class="secondary">Set best price</button><button id="year" type="button" class="primary">Advance one year</button><button id="longrun" type="button">Simulate long run</button><button id="reset" type="button">Reset</button></div><p class="feedback" id="market-status" aria-live="polite"></p>
-  </section>
-  <section class="panel mode-panel" data-mode-panel="explore"><p class="eyebrow">Explore</p><h2>Investigate competition</h2><ol class="steps"><li>Find the price that maximizes your shop's current profit.</li><li>Advance the market several years. Watch demand shift as entry occurs.</li><li>Improve quality or boost advertising. Do differentiated products protect profits forever?</li></ol></section>
-  <section class="panel mode-panel" data-mode-panel="challenge" hidden><p class="eyebrow">Challenge</p><h2>Manage a changing market</h2><div class="exercise" id="task"></div><div class="actions"><button class="primary" type="button" id="grade">Check my answer</button><button type="button" hidden id="next">Next challenge →</button><span class="status" id="progress">1 of 3</span></div><p class="feedback" id="task-feedback" aria-live="polite"></p></section>
-  <section class="panel mode-panel" data-mode-panel="explain" hidden><p class="eyebrow">Explain</p><h2>Why does entry erode profit?</h2><ol class="steps"><li>Product differentiation gives the firm a <strong>downward-sloping demand curve</strong>, so it has some pricing power.</li><li>In the short run, it chooses quantity where <strong>MR = MC</strong>, then sets the corresponding demand-curve price.</li><li>Positive economic profits attract entry. Close substitutes cause each existing firm's demand to shift <strong>left</strong>.</li><li>In a stylized long-run equilibrium, typical economic profit approaches zero; firms may still price above marginal cost and operate with excess capacity.</li></ol><div class="formula" id="equation"></div><p class="hint">Illustrative model: entry/exit is one firm per year, driven by a representative profit-maximizing firm. Your chosen price determines your own profit but does not independently determine entry.</p></section>
- </div>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#C41230">
+<meta name="description" content="A step-by-step, accessible ECO 201 coffee-shop economics lab with realistic pricing and buildable D, MR, MC, and ATC curves.">
+<title>Coffee Shop Competition — ECO 201 Interactive Lab</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color-scheme:light;--ink:#202a36;--muted:#4c5b6b;--line:#d4dce3;--red:#C41230;--red-dark:#941124;--paper:#f5f6f7;--off:#f9fafb;--panel:#fff;--navy:#1e2b39;--focus:#e99b28;--good:#125c42;--bad:#9d2632;--d:#245579;--mr:#85364b;--mc:#1d6250;--atc:#895e17}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);line-height:1.45}
+button,input{font:inherit}button{cursor:pointer;border:1px solid #9eacb8;border-radius:9px;padding:10px 13px;background:#fff;color:var(--ink);font-weight:720}
+button:hover{background:#eaf0f4}button:disabled{cursor:not-allowed;opacity:.52}button.primary{background:var(--red);color:#fff;border-color:var(--red)}button.primary:hover{background:var(--red-dark)}
+button[aria-pressed="true"]{background:#253b50;color:white;border-color:#253b50}
+:focus-visible{outline:3px solid var(--focus)!important;outline-offset:3px}
+a{color:#901127;text-underline-offset:3px}
+.skip{position:absolute;top:-100px;left:14px;padding:11px;background:white;z-index:99}.skip:focus{top:7px}
+header{background:var(--navy);color:#fff;border-top:6px solid var(--red)}.head-inner{max-width:1270px;margin:auto;padding:22px 23px 23px;display:flex;gap:16px;justify-content:space-between;align-items:start}
+.kicker{font-weight:850;font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:#e8ebef;margin:0 0 6px}.crumb{margin:0 0 13px;font-size:.82rem;color:#d8e2e9}.crumb a{color:#fff}
+header h1{font-size:clamp(1.6rem,3vw,2.35rem);line-height:1.12;letter-spacing:-.025em;margin:0 0 7px}header p.desc{margin:0;max-width:800px;color:#e2e8ed;font-size:.99rem}
+.tag{white-space:nowrap;border:1px solid #abb7c1;border-radius:40px;padding:8px 13px;font-size:.8rem;font-weight:800}
+main{max-width:1270px;margin:auto;padding:20px 22px 65px}
+.modebar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}.modebar .modes{display:inline-flex;gap:5px;padding:5px;border:1px solid var(--line);border-radius:12px;background:white}.modes button{border:0;background:transparent;padding:10px 14px;white-space:nowrap}.modes button[aria-pressed=true]{background:var(--red);color:#fff}
+.modebar .subtle{font-size:.83rem;color:var(--muted);font-weight:700}
+.layout{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(300px,1fr);align-items:start;gap:17px}.panel{min-width:0;padding:20px;border:1px solid var(--line);background:var(--panel);border-radius:15px;box-shadow:0 2px 7px #28374808}
+.panel h2{font-size:1.18rem;letter-spacing:-.01em;margin:0 0 6px}.panel h3{font-size:1.02rem;margin:0 0 7px}.panel p{margin:6px 0 11px}.eyebrow{font-size:.71rem;color:var(--red-dark);font-weight:900;letter-spacing:.12em;text-transform:uppercase;margin:0 0 6px}.hint{color:var(--muted);font-size:.88rem}
+.right{display:grid;gap:16px;min-width:0}
+.mini-step{font-size:.82rem;color:#334456;background:#f0f3f6;border:1px solid #d6dfe6;padding:9px 12px;border-radius:8px;margin:13px 0 11px}
+.builder{display:flex;flex-wrap:wrap;gap:7px;margin:11px 0 8px;align-items:center}.builder button{font-size:.85rem;padding:9px 11px;display:inline-flex;align-items:center;gap:5px}.builder button.add{border:1px solid #788b9c;background:white}.builder button.add[aria-pressed=true]{background:#263c50;border-color:#263c50;color:white}
+.builder .static-pill{font-size:.83rem;font-weight:850;border:1px solid #c4d3dd;background:#e9f0f4;padding:9px 12px;border-radius:8px;white-space:nowrap}.builder .reset-button{font-size:.8rem;padding:9px 10px;color:#33465a}
+.plot-scroll{border:1px solid #d3dae0;background:#fff;border-radius:11px;max-width:100%;overflow-x:auto;overscroll-behavior-x:contain}
+.plot-scroll svg{width:100%;min-width:625px;height:auto;display:block}
+.plot-caption{font-size:.84rem;color:#475769;margin:7px 0 10px!important}
+.key{display:flex;gap:7px;flex-wrap:wrap;margin-top:11px}.key-item{display:inline-flex;align-items:center;gap:5px;border:1px solid #cbd5dd;background:#fff;border-radius:7px;padding:6px 9px;font-size:.79rem;font-weight:750}
+.key svg{width:35px;height:17px;overflow:visible;flex:none}
+.narrative{background:#f0f4f7;border:1px solid #cbd7df;border-radius:10px;padding:10px 12px;margin-top:12px;font-size:.89rem;color:#283b49}
+.narrative strong{display:block;margin-bottom:3px}.narrative p{margin:0}
+.details{margin-top:12px;border:1px solid #cbd5df;border-radius:9px;overflow:hidden;background:#fff}.details>summary{font-weight:800;padding:11px 13px;cursor:pointer;background:#f6f8fa;color:#283847}.details>summary:hover{background:#ebf1f4}.details[open]>summary{border-bottom:1px solid var(--line)}
+.table-wrap{overflow-x:auto;max-width:100%;padding:8px}table{width:100%;border-collapse:collapse;font-size:.85rem;font-variant-numeric:tabular-nums}caption{text-align:left;caption-side:top;color:#4b5a68;padding:6px 3px 9px;line-height:1.45}th,td{text-align:right;padding:8px 9px;border-bottom:1px solid #e2e7ed}th:first-child,td:first-child{text-align:left}th{background:#f5f7f9;color:#304253}tbody tr:last-child td,tbody tr:last-child th{border-bottom:0}
+.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin-top:13px}.metric{border:1px solid #d6dfe5;border-radius:10px;background:var(--off);padding:12px 9px}.metric .number{font-size:clamp(1.03rem,1.7vw,1.36rem);font-weight:850;letter-spacing:-.018em;display:block;font-variant-numeric:tabular-nums}.metric .label{font-size:.73rem;font-weight:690;color:#526173;margin-top:4px;display:block}.good{color:var(--good)}.bad{color:var(--bad)}
+.market-note{background:#fbf9f3;border:1px solid #e0d5b6;border-radius:10px;padding:11px 13px;margin-top:13px}.market-note strong{display:block}.market-note p{font-size:.88rem;margin:4px 0 0}.market-note .small{font-size:.78rem;color:#544a36}
+.control-group{margin-top:14px}.control-group label{font-weight:800;display:block;margin-bottom:8px}.price-head{display:flex;align-items:center;justify-content:space-between;gap:8px}.price-head output{font-size:1.23rem;color:var(--red-dark);font-weight:900;font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;height:25px;accent-color:var(--red);cursor:pointer}.range-ends{display:flex;justify-content:space-between;color:var(--muted);font-size:.78rem}.price-input{display:flex;gap:8px;align-items:center;margin-top:10px}.price-input label{margin:0;font-size:.83rem;font-weight:680}.price-input input{width:99px;max-width:100%;padding:8px;border:1px solid #8699a6;border-radius:7px}
+.buttons{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.buttons button{font-size:.87rem}.buttons button:disabled{background:#eef0f2}
+.entry-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:11px 0 5px}.entry-stage{text-align:center;border:1px solid #ccd6de;border-radius:8px;padding:8px 3px;background:#fafbfc}.entry-stage.current{border:2px solid #293e51;background:#ecf1f5;padding:7px 2px}.entry-stage strong{display:block;font-size:1rem}.entry-stage span{display:block;font-size:.7rem;line-height:1.3;color:#495a68}
+.action-message{min-height:0;border-left:3px solid #335c78;background:#f2f6f8;padding:10px 12px;font-size:.87rem;margin-top:13px;line-height:1.44}
+.profit-contrast{margin-top:10px;border:1px solid #e2e7eb;border-radius:10px;padding:11px 13px;background:#fff}.profit-contrast dl{margin:0;display:grid;grid-template-columns:1fr auto;gap:5px 12px;font-size:.86rem}.profit-contrast dt{color:#4a5b6a}.profit-contrast dd{margin:0;font-weight:800;font-variant-numeric:tabular-nums}
+.mode-panel[hidden]{display:none}.steps{padding-left:22px;margin:10px 0}.steps li{margin-bottom:8px}.choice{padding:12px 13px;border:1px solid #dce3e8;background:#f9fafb;border-radius:9px;margin:12px 0}.choice strong{display:block;margin-bottom:5px}
+.formula{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.83rem;white-space:pre-wrap;overflow-wrap:anywhere;background:#f0f3f6;padding:13px;border-radius:9px;margin-top:13px;color:#223644}
+.feedback{background:#edf3f7;border-radius:9px;padding:10px 12px;font-size:.88rem;font-weight:650;margin-top:11px}.feedback:empty{display:none}.feedback.good{background:#e5f4eb;color:#115734}.feedback.bad{background:#fbecef;color:#8b1930}
+#challenge-status{font-weight:800;color:var(--muted);font-size:.85rem}.small{font-size:.8rem;color:#536474}.divider{height:1px;background:#e0e6eb;margin:15px 0}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+footer{color:#526374;font-size:.8rem;margin:20px 2px 0}
+@media(max-width:1000px){.layout{grid-template-columns:minmax(0,1.55fr) minmax(275px,1fr)}.panel{padding:16px}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:800px){.layout{grid-template-columns:minmax(0,1fr)}main{padding:15px 12px 45px}.head-inner{padding:19px 14px;flex-wrap:wrap}.modebar .modes{width:100%}.modes button{flex:1;padding:10px 7px}.metrics{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:570px){.modes button{font-size:.78rem;padding:8px 3px;min-width:0;white-space:normal}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.builder button{font-size:.82rem}.key-item{flex:1 1 133px}.head-inner .tag{display:none}.modebar .subtle{font-size:.78rem}.panel{padding:14px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+@media(forced-colors:active){.plot-scroll,.key-item,.metric,.narrative,.entry-stage,.builder button{border:2px solid CanvasText}.plot-scroll svg,.key svg{forced-color-adjust:none}button[aria-pressed=true]{border:3px solid Highlight}}
+@media print{header{background:white;color:black}.head-inner .desc,.head-inner .crumb,.kicker{color:black}body{background:white}.panel{box-shadow:none;break-inside:avoid}.builder,.buttons,.modebar,.right .control-group{display:none}.layout{display:block}.right{margin-top:16px}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to coffee shop lab</a>
+<header><div class="head-inner"><div><p class="kicker">Miami University · Department of Commerce</p><p class="crumb"><a href="index.html">ECO 201 Interactive Economics Lab</a> / Chapter 10</p><h1>Coffee Shop Competition</h1><p class="desc">Choose a realistic coffee price, build the economics graph one curve at a time, and see what happens when new cafés enter the neighborhood.</p></div><span class="tag">CHAPTER 10 · ECO 201</span></div></header>
+<main id="main">
+<div class="modebar"><div class="modes" role="group" aria-label="Learning mode"><button type="button" data-mode="explore" aria-pressed="true">01 · Explore</button><button type="button" data-mode="challenge" aria-pressed="false">02 · Challenge</button><button type="button" data-mode="explain" aria-pressed="false">03 · Explain</button></div><span class="subtle">Graph begins with demand only; you choose what appears next.</span></div>
+<div class="layout">
+<section class="panel" aria-labelledby="graph-title">
+<p class="eyebrow">One shop · one market · realistic daily prices</p>
+<h2 id="graph-title">Build the graph</h2>
+<p class="hint">Begin with the shop's demand curve. Use these buttons to add only the relationships you're ready to discuss.</p>
+<div class="mini-step" id="build-tip">Step 1: Demand slopes down because a higher coffee price generally means fewer cups sold.</div>
+<div class="builder" role="group" aria-label="Add or remove economics curves and markers">
+<span class="static-pill" aria-label="Demand is always visible">✓ 1. Demand (D)</span>
+<button type="button" class="add" id="toggle-mr" aria-pressed="false" aria-controls="coffee-plot">+ 2. Add MR</button>
+<button type="button" class="add" id="toggle-mc" aria-pressed="false" aria-controls="coffee-plot">+ 3. Add MC</button>
+<button type="button" class="add" id="toggle-atc" aria-pressed="false" aria-controls="coffee-plot">+ 4. Add ATC</button>
+<button type="button" class="add" id="toggle-best" aria-pressed="false" aria-controls="coffee-plot">+ 5. Mark best output</button>
+<button type="button" id="chart-reset" class="reset-button">Clear added lines</button>
 </div>
-<footer class="foot"><p><strong>ECO 201 · Economics Interactive Lab</strong> | Illustrative models for learning, not real business forecasts. No accounts, analytics, or student data collection.</p><p><a href="https://openstax.org/books/principles-microeconomics-3e/pages/10-1-monopolistic-competition" target="_blank" rel="noopener noreferrer">Read the related OpenStax chapter ↗</a> · <a href="index.html">All learning apps</a></p><div class="actions"><button type="button" id="copy-result">Copy my results</button><button type="button" id="print-result">Print / Save as PDF</button><span id="utility-status" class="status" role="status" aria-live="polite"></span></div></footer></main>
-<script>'use strict';
-const $ = s => document.querySelector(s);
-const $$ = s => Array.from(document.querySelectorAll(s));
-const money = v => (v < 0 ? '-$' + Math.abs(v).toLocaleString('en-US',{maximumFractionDigits:0}) : '$' + v.toLocaleString('en-US',{maximumFractionDigits:0}));
-const one = v => Number(v).toFixed(1);
-const int = v => Math.round(v).toLocaleString('en-US');
-const clamp = (v,l,h) => Math.max(l,Math.min(h,v));
-const setText = (sel, v) => { const el=$(sel); if(el)el.textContent=String(v); };
-const metric = (label, value, status='')=>`<div class="metric ${status}"><b>${value}</b><small>${label}</small></div>`;
-const statusMsg = (el,text,kind='')=>{ el.className='feedback '+kind; el.textContent=text; };
-const a11yMode = (mode)=>{
-  $$('.mode-nav button').forEach(b=>b.setAttribute('aria-pressed', String(b.dataset.mode===mode)));
-  $$('.mode-panel').forEach(p=>p.hidden=p.dataset.modePanel!==mode);
-  setText('#current-mode-label',mode[0].toUpperCase()+mode.slice(1)+' mode');
-  if(typeof window.onModeChange ==='function') window.onModeChange(mode);
-};
-document.addEventListener('DOMContentLoaded',()=>{
-  $$('.mode-nav button').forEach(b=>b.addEventListener('click',()=>a11yMode(b.dataset.mode)));
-  const copy=$('#copy-result');
-  if(copy)copy.addEventListener('click',async()=>{
-    const t= typeof window.resultsText==='function'?window.resultsText():document.title;
-    try{await navigator.clipboard.writeText(t);setText('#utility-status','Results copied to clipboard.');}
-    catch(err){ const node=document.createElement('textarea');node.value=t;node.style.position='fixed';node.style.opacity='0';document.body.appendChild(node);node.select();let ok=false;try{ok=document.execCommand('copy')}catch(e){}node.remove();setText('#utility-status',ok?'Results copied to clipboard.':'Clipboard unavailable. Use Print / Save PDF instead.');}
-  });
-  const p=$('#print-result');if(p)p.addEventListener('click',()=>window.print());
-});
-// Graph vocabulary: line patterns and geometric markers carry the meaning;
-// color is supplementary, never the only identifier.
-const chartPresets = {
-  demand:   {pattern:'',marker:'circle',style:'solid with circles'},
-  revenue:  {pattern:'13 6',marker:'diamond',style:'long-dashed with diamonds'},
-  cost:     {pattern:'2 7',marker:'square',style:'dotted with squares'},
-  average:  {pattern:'13 5 3 5',marker:'triangle',style:'dash-dot with triangles'},
-  historic: {pattern:'5 5 2 5',marker:'cross',style:'alternating-dash with X marks'}
-};
-const svgEscape = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-const markerSvg = (x,y,shape,color,size=5.4)=>{
-  const s=size,core=`fill="white" stroke="${color}" stroke-width="2.7" vector-effect="non-scaling-stroke"`;
-  if(shape==='diamond')return `<path d="M ${x} ${y-s} L ${x+s} ${y} L ${x} ${y+s} L ${x-s} ${y} Z" ${core}/>`;
-  if(shape==='square')return `<rect x="${x-s}" y="${y-s}" width="${2*s}" height="${2*s}" ${core}/>`;
-  if(shape==='triangle')return `<path d="M ${x} ${y-s-1} L ${x+s+1} ${y+s} L ${x-s-1} ${y+s} Z" ${core}/>`;
-  if(shape==='cross')return `<path d="M ${x-s} ${y-s} L ${x+s} ${y+s} M ${x+s} ${y-s} L ${x-s} ${y+s}" fill="none" stroke="${color}" stroke-width="3.4" vector-effect="non-scaling-stroke"/>`;
-  return `<circle cx="${x}" cy="${y}" r="${s}" ${core}/>`;
-};
-const makeChart = cfg => {
-  const W=790,H=430,L=70,R=38,T=34,B=54,pw=W-L-R,ph=H-T-B;
-  const sx=q=>L+pw*q/cfg.maxQ,sy=p=>T+ph*(1-p/cfg.maxP);
-  const strokes=[];
-  const plotPath=(fn,end=cfg.maxQ)=>{
-    let paths=[],drawing=false;
-    for(let i=0;i<=200;i++){
-      const q=i*end/200,p=fn(q);
-      if(!Number.isFinite(p)){drawing=false;continue;}
-      paths.push(`${drawing?'L':'M'}${sx(q).toFixed(2)} ${sy(p).toFixed(2)}`);drawing=true;
-    }
-    return paths.join(' ');
-  };
-  let svg=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="${svgEscape(cfg.aria)}" ${document.getElementById('chart-summary')?'aria-describedby="chart-summary"':''}><title>${svgEscape(cfg.title||'Economic relationships chart')}</title><desc>${svgEscape(cfg.aria)}</desc><defs><clipPath id="plotclip"><rect x="${L}" y="${T}" width="${pw}" height="${ph}"/></clipPath><pattern id="area-hatch" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="9" height="9" fill="#fff0f2"/><line x1="0" y1="0" x2="0" y2="9" stroke="#8c2539" stroke-width="3"/></pattern></defs>`;
-  for(let i=0;i<=5;i++){
-    const q=cfg.maxQ*i/5,p=cfg.maxP*i/5;
-    svg+=`<line x1="${sx(q)}" y1="${T}" x2="${sx(q)}" y2="${T+ph}" stroke="#e6eaee"/><text x="${sx(q)}" y="${H-30}" text-anchor="middle" fill="#303e49" font-size="15">${int(q)}</text>`;
-    svg+=`<line x1="${L}" y1="${sy(p)}" x2="${L+pw}" y2="${sy(p)}" stroke="#e6eaee"/><text x="${L-11}" y="${sy(p)+5}" text-anchor="end" fill="#303e49" font-size="15">${int(p)}</text>`;
-  }
-  svg+=`<path d="M ${L} ${T} V ${T+ph} H ${L+pw}" fill="none" stroke="#263644" stroke-width="2.2"/><text x="${L+pw/2}" y="${H-5}" text-anchor="middle" fill="#1c2b37" font-size="16" font-weight="800">Quantity (Q)</text><text x="17" y="${T+ph/2}" transform="rotate(-90 17 ${T+ph/2})" text-anchor="middle" fill="#1c2b37" font-size="16" font-weight="800">Price / cost ($)</text>`;
-  svg+='<g clip-path="url(#plotclip)">';
-  if(cfg.polygons)for(const po of cfg.polygons){
-    const pts=po.pts.map(([q,p])=>`${sx(q).toFixed(1)},${sy(p).toFixed(1)}`).join(' ');
-    svg+=`<polygon points="${pts}" fill="url(#area-hatch)" stroke="#732b3b" stroke-width="1.8" stroke-dasharray="4 3"/>`;
-  }
-  for(const [idx,c] of cfg.curves.entries()){
-    const st=chartPresets[c.type]||chartPresets[['demand','revenue','cost','average','historic'][idx]]||chartPresets.demand;
-    const pattern=c.pattern===undefined?st.pattern:c.pattern,marker=c.marker||st.marker;
-    svg+=`<path d="${plotPath(c.fn,c.end||cfg.maxQ)}" fill="none" stroke="${c.color||'#293541'}" stroke-width="${c.width||4}" ${pattern?`stroke-dasharray="${pattern}"`:''} stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/>`;
-    const end=c.end||cfg.maxQ;
-    for(const f of [.24,.52,.80]){
-      const q=f*end,p=c.fn(q);
-      if(Number.isFinite(p)&&p>=cfg.maxP*.04&&p<=cfg.maxP*.96)svg+=markerSvg(sx(q),sy(p),marker,c.color||'#293541',5.4);
-    }
-  }
-  if(cfg.vlines)for(const v of cfg.vlines){
-    if(!Number.isFinite(v.q))continue;
-    const stroke=v.color||'#303743';
-    svg+=`<path d="M ${sx(v.q)} ${sy(0)} V ${sy(v.y||0)}" stroke="${stroke}" stroke-width="2.4" stroke-dasharray="${v.pattern||'9 5 2 5'}" fill="none" vector-effect="non-scaling-stroke"/>`;
-  }
-  if(cfg.hlines)for(const v of cfg.hlines){
-    svg+=`<path d="M ${sx(0)} ${sy(v.p)} H ${sx(v.q)}" stroke="${v.color||'#303743'}" stroke-width="2.2" stroke-dasharray="6 5" fill="none" vector-effect="non-scaling-stroke"/>`;
-  }
-  if(cfg.points)for(const v of cfg.points){
-    if(!Number.isFinite(v.q)||!Number.isFinite(v.p))continue;
-    svg+=markerSvg(sx(v.q),sy(v.p),v.shape||'circle',v.color||'#171f28',7.3);
-  }
-  svg+='</g>';
-  // Curve labels are printed on the curves in addition to legend keys and the data table.
-  const positioned=[];
-  for(const c of cfg.curves){
-    if(!c.short)continue;
-    const candidates=[.84,.70,.57,.44,.32,.20];let chosen=null;
-    for(const f of candidates){
-      const q=f*(c.end||cfg.maxQ),p=c.fn(q);
-      if(!Number.isFinite(p)||p<cfg.maxP*.09||p>cfg.maxP*.91)continue;
-      const x=sx(q)+10,y=sy(p)-12;
-      if(positioned.some(t=>Math.abs(t.x-x)<52&&Math.abs(t.y-y)<25))continue;
-      chosen={x,y};break;
-    }
-    if(!chosen)continue;
-    positioned.push(chosen);
-    const w=15+9*c.short.length,x=Math.min(chosen.x,W-w-10),y=chosen.y;
-    svg+=`<rect x="${x-5}" y="${y-16}" width="${w}" height="23" rx="5" fill="#fff" stroke="#c8d1d8" stroke-width="1"/><text x="${x+2}" y="${y}" fill="#152733" font-size="16" font-weight="900">${svgEscape(c.short)}</text>`;
-  }
-  if(cfg.polygons?.length){
-    const po=cfg.polygons[0],qx=po.pts.reduce((s,x)=>s+x[0],0)/po.pts.length,py=po.pts.reduce((s,x)=>s+x[1],0)/po.pts.length;
-    const xa=sx(qx),ya=sy(py);
-    if(Number.isFinite(xa)&&Number.isFinite(ya))svg+=`<rect x="${xa-19}" y="${ya-16}" width="38" height="23" rx="5" fill="#fff" stroke="#732b3b"/><text x="${xa}" y="${ya}" text-anchor="middle" fill="#57212d" font-size="15" font-weight="900">DWL</text>`;
-  }
-  svg+='</svg>';return svg;
-};
+<div class="plot-scroll" id="chart-region" tabindex="0" role="region" aria-label="Economic chart. On smaller screens, use arrow keys to scroll horizontally in this region. A text interpretation and data table follow.">
+<svg id="coffee-plot" viewBox="0 0 760 425" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><text x="30" y="40">Loading economic graph…</text></svg>
+</div>
+<p class="plot-caption">Horizontal axis: cups sold per day (Q). Vertical axis: dollars per cup (P and cost). The open circle marks your price and sales quantity; the square replaces it if your choice matches the best price. <span class="mobile-note">On smaller screens, swipe sideways inside the graph to see all quantities.</span></p>
+<div id="chart-key" class="key" aria-label="Visible curves and marker styles"></div>
+<div class="narrative" id="chart-narrative" role="status" aria-live="polite" aria-atomic="true"><strong>Demand only</strong><p>Choose a price to see how many cups customers buy.</p></div>
+<div class="metrics" aria-label="Results for your selected price">
+<div class="metric"><span class="number" id="metric-cups">—</span><span class="label">Cups sold per day</span></div>
+<div class="metric"><span class="number" id="metric-revenue">—</span><span class="label">Daily revenue</span></div>
+<div class="metric"><span class="number" id="metric-total-cost">—</span><span class="label">Daily economic cost</span></div>
+<div class="metric"><span class="number" id="metric-profit">—</span><span class="label">Daily economic profit</span></div>
+</div>
+<details class="details"><summary>View numerical chart data (accessible table)</summary><div class="table-wrap"><table><caption>The same demand, MR, MC, and ATC values depicted in the graph. Values are in dollars per cup; n/a means ATC is undefined when quantity is zero.</caption><thead><tr><th scope="col">Point</th><th scope="col">Cups (Q)</th><th scope="col">Demand (D)</th><th scope="col">MR</th><th scope="col">MC</th><th scope="col">ATC</th></tr></thead><tbody id="table-data"></tbody></table></div></details>
+<div class="buttons"><button type="button" id="copy-results">Copy my results</button><button type="button" id="print-results">Print / save as PDF</button></div><div id="copy-feedback" role="status" aria-live="polite" class="small"></div>
+<div class="market-note"><strong id="market-heading">The short-run advantage</strong><p id="market-explainer">A distinctive coffee shop can earn economic profit. Other shops notice and may enter.</p></div>
+</section>
+<div class="right">
+<section class="panel" aria-labelledby="manage-title">
+<p class="eyebrow">Explore · Business decision</p><h2 id="manage-title">Run your coffee shop</h2>
+<p class="hint">You sell one specialty coffee drink. Its price is a normal café price—not an artificial $30–$70 price.</p>
+<div class="control-group"><div class="price-head"><label for="coffee-price">Price per cup</label><output id="price-output" for="coffee-price">$6.25</output></div><input id="coffee-price" type="range" min="4.75" max="7.25" step="0.05" value="6.25"><div class="range-ends"><span>$4.75</span><span>$7.25</span></div><div class="price-input"><label for="price-number">Or type a price ($):</label><input id="price-number" aria-label="Coffee price in dollars" type="number" min="4.75" max="7.25" step="0.05" value="6.25" inputmode="decimal"></div></div>
+<div class="buttons"><button type="button" id="optimal-price" class="primary">Choose most profitable price</button></div>
+<div class="divider"></div>
+<h3>Nearby competition</h3><p class="hint">Competitors sell similar—but not identical—coffee. New shops reduce demand at your shop.</p>
+<div class="entry-grid" id="entry-stages" aria-label="Nearby competing cafés by market stage"></div>
+<div class="buttons"><button type="button" id="add-entrant">+ Another café opens</button><button type="button" id="long-run">Go to long run</button><button type="button" id="reset-market">Reset market</button></div>
+<div class="action-message" id="action-message" role="status" aria-live="polite">Two other cafés operate nearby. Your shop currently has strong demand.</div>
+<div class="profit-contrast"><h3>What would a profit-maximizing shop do?</h3><dl><dt>Best price today</dt><dd id="best-price">—</dd><dt>Best daily profit</dt><dd id="best-profit">—</dd><dt>Quantity at best price</dt><dd id="best-quantity">—</dd></dl><p class="small">New rivals enter in this example because a representative shop can earn economic profit, not because one student chose a poor price.</p></div>
+</section>
+<section class="panel mode-panel" data-mode-panel="explore"><p class="eyebrow">01 · Explore</p><h2>Try these in order</h2><ol class="steps"><li>Set the coffee price to $7.00, then $5.50. What happens to cups sold and profit?</li><li>Reveal <strong>MR</strong> and <strong>MC</strong>, then mark the optimal output.</li><li>Add <strong>ATC</strong> to compare the chosen price with average cost.</li><li>Let another café open. Repeat until long-run profit approaches zero.</li></ol></section>
+<section class="panel mode-panel" data-mode-panel="challenge" hidden><p class="eyebrow">02 · Challenge</p><h2>Three decisions</h2><div class="choice"><span id="challenge-status">Challenge 1 of 3</span><strong id="task-title">Find a profitable coffee price</strong><p id="task-prompt">With two neighboring cafés, select a coffee price that earns at least $125 in daily economic profit.</p></div><div class="buttons"><button type="button" id="check-answer" class="primary">Check my decision</button><button type="button" id="next-task" hidden>Next challenge →</button></div><div class="feedback" id="challenge-feedback" role="status" aria-live="polite"></div></section>
+<section class="panel mode-panel" data-mode-panel="explain" hidden><p class="eyebrow">03 · Explain</p><h2>Why does profit disappear?</h2><ol class="steps"><li>A differentiated product gives each shop <strong>downward-sloping demand</strong> and limited pricing power.</li><li><strong>MR = MC</strong> identifies its profit-maximizing quantity; the demand curve gives the corresponding price.</li><li>When economic profit is positive, <strong>entry shifts an existing firm's demand left</strong>. The price and profit that maximize earnings tend to fall.</li><li>At the illustrative long-run equilibrium, <strong>price = ATC</strong> and economic profit is zero, although <strong>price remains above MC</strong>.</li></ol><div class="formula" id="formulas"></div><p class="hint">The model isolates entry. Rival prices, advertising, and quality are held fixed. It is an illustration of the textbook long run, not a forecast of a real coffee shop.</p></section>
+</div>
+</div>
+<footer>Illustrative economic model for ECO 201, Chapter 10. Daily economic cost includes a $225 fixed/opportunity-cost component plus variable costs. Prices, quantities, and profits are hypothetical. Works entirely offline; no data is transmitted.</footer>
+</main>
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id);
+const model={b:.015,d:.0075,c:2.5,F:225,a0:8.15,delta:1.15/3,minFirms:2,maxFirms:5};
+const state={price:6.25,firms:2,showMR:false,showMC:false,showATC:false,showBest:false,mode:'explore',task:0,passed:false};
+const priceFormat=v=>'$'+v.toFixed(2), money=v=>(v<-.005?'−$':'$')+Math.abs(v).toFixed(2);
+const num=v=>v.toFixed(1), clamp=(x,lo,hi)=>Math.max(lo,Math.min(hi,x));
+const intercept=()=>model.a0-model.delta*(state.firms-model.minFirms);
+const demand=(q,a=intercept())=>a-model.b*q;
+const mr=(q,a=intercept())=>a-2*model.b*q;
+const mc=q=>model.c+2*model.d*q;
+const atc=q=>q>0?model.F/q+model.c+model.d*q:null;
+const totalCost=q=>model.F+model.c*q+model.d*q*q;
+const qtyForPrice=(p,a=intercept())=>Math.max(0,(a-p)/model.b);
+function optimum(a=intercept()){
+ const q=Math.max(0,(a-model.c)/(2*(model.b+model.d)));
+ const p=demand(q,a),cost=totalCost(q);
+ return {q,p,profit:p*q-cost,mc:mc(q),atc:atc(q)};
+}
+function chosen(){const q=qtyForPrice(state.price);return{q,p:state.price,cost:totalCost(q),revenue:state.price*q,profit:state.price*q-totalCost(q),atc:atc(q),mc:mc(q)}}
+const svgNS='http://www.w3.org/2000/svg';
+function el(tag,attrs={},text){const e=document.createElementNS(svgNS,tag);for(const [key,val] of Object.entries(attrs))e.setAttribute(key,String(val));if(text!==undefined)e.textContent=String(text);return e;}
+const config={w:760,h:425,left:61,right:28,top:19,bottom:51,qMax:240,pMax:9};
+const sx=q=>config.left+q/config.qMax*(config.w-config.left-config.right);
+const sy=p=>config.h-config.bottom-p/config.pMax*(config.h-config.top-config.bottom);
+function line(parent,x1,y1,x2,y2,attr={}){parent.appendChild(el('line',{x1,y1,x2,y2,...attr}))}
+function text(parent,x,y,label,attrs={}){parent.appendChild(el('text',{x,y,...attrs},label))}
+function marker(parent,x,y,kind,color,size=5){let obj;
+ if(kind==='circle') obj=el('circle',{cx:x,cy:y,r:size,fill:'#fff',stroke:color,'stroke-width':2.5});
+ else if(kind==='diamond')obj=el('path',{d:`M ${x} ${y-size-1} L ${x+size+1} ${y} L ${x} ${y+size+1} L ${x-size-1} ${y} Z`,fill:'#fff',stroke:color,'stroke-width':2.5});
+ else if(kind==='square')obj=el('rect',{x:x-size,y:y-size,width:2*size,height:2*size,fill:'#fff',stroke:color,'stroke-width':2.4});
+ else obj=el('path',{d:`M ${x} ${y-size-1} L ${x+size+1} ${y+size+1} L ${x-size-1} ${y+size+1} Z`,fill:'#fff',stroke:color,'stroke-width':2.4});
+ parent.appendChild(obj);
+}
+function drawCurve(parent,fn,color,dash,kind){
+ const points=[];
+ for(let q=0;q<=config.qMax;q+=1){const y=fn(q);if(y>=0&&y<=config.pMax)points.push([sx(q),sy(y)]);else if(points.length) {if(points.length>1)parent.appendChild(el('path',{d:points.map((p,i)=>(i?'L':'M')+p[0].toFixed(2)+' '+p[1].toFixed(2)).join(' '),fill:'none',stroke:color,'stroke-width':3.2,'stroke-dasharray':dash||'none','stroke-linejoin':'round','stroke-linecap':'round'}));points.length=0;}}
+ if(points.length>1)parent.appendChild(el('path',{d:points.map((p,i)=>(i?'L':'M')+p[0].toFixed(2)+' '+p[1].toFixed(2)).join(' '),fill:'none',stroke:color,'stroke-width':3.2,'stroke-dasharray':dash||'none','stroke-linejoin':'round','stroke-linecap':'round'}));
+ for(const q of [30,70,110,150,190,230]){let y=fn(q);if(y>=0.2&&y<=8.9)marker(parent,sx(q),sy(y),kind,color,4.6)}
+}
+const defs={D:{name:'Demand (D)',color:'#245579',pattern:'',kind:'circle',note:'solid + circles'},MR:{name:'Marginal revenue (MR)',color:'#85364b',pattern:'11 7',kind:'diamond',note:'long dashes + diamonds'},MC:{name:'Marginal cost (MC)',color:'#1d6250',pattern:'2 7',kind:'square',note:'dots + squares'},ATC:{name:'Average total cost (ATC)',color:'#895e17',pattern:'13 5 3 5',kind:'triangle',note:'dash-dot + triangles'}};
+function paint(){const svg=$('coffee-plot');svg.replaceChildren();let a=intercept(),o=optimum(),u=chosen();
+ const grid=el('g');for(let p=0;p<=8;p+=2){line(grid,sx(0),sy(p),sx(240),sy(p),{stroke:'#e2e7eb','stroke-width':1});text(grid,sx(0)-12,sy(p)+4,'$'+p,{'text-anchor':'end',fill:'#344657','font-size':12.7,'font-weight':600});}
+ for(let q=0;q<=240;q+=40){line(grid,sx(q),sy(0),sx(q),sy(9),{stroke:'#edf0f2','stroke-width':1});text(grid,sx(q),sy(0)+22,String(q),{'text-anchor':'middle',fill:'#344657','font-size':12.7,'font-weight':600});}
+ svg.appendChild(grid);
+ const axes=el('g');line(axes,sx(0),sy(9),sx(0),sy(0),{stroke:'#304253','stroke-width':2});line(axes,sx(0),sy(0),sx(240),sy(0),{stroke:'#304253','stroke-width':2});text(axes,12,14,'Dollars / cup',{fill:'#24384a','font-size':13.5,'font-weight':800});text(axes,config.w-30,config.h-11,'Cups / day',{'text-anchor':'end',fill:'#24384a','font-size':13.5,'font-weight':800});svg.appendChild(axes);
+ const curves=el('g',{'data-group':'curves'});drawCurve(curves,q=>demand(q,a),defs.D.color,'',defs.D.kind);
+ if(state.showMR)drawCurve(curves,q=>mr(q,a),defs.MR.color,defs.MR.pattern,defs.MR.kind);
+ if(state.showMC)drawCurve(curves,mc,defs.MC.color,defs.MC.pattern,defs.MC.kind);
+ if(state.showATC)drawCurve(curves,atc,defs.ATC.color,defs.ATC.pattern,defs.ATC.kind);
+ svg.appendChild(curves);
+ const annotations=el('g');
+ const sameAsBest=state.showBest && Math.abs(u.q-o.q)<11 && Math.abs(u.p-o.p)<.16;
+ if(u.q<=config.qMax){let x=sx(u.q),y=sy(u.p);line(annotations,sx(0),y,x,y,{stroke:'#526575','stroke-width':1.7,'stroke-dasharray':'5 5'});line(annotations,x,sy(0),x,y,{stroke:'#526575','stroke-width':1.7,'stroke-dasharray':'5 5'});if(!sameAsBest){annotations.appendChild(el('circle',{cx:x,cy:y,r:9,fill:'#fff',stroke:'#263b4a','stroke-width':2.8}));annotations.appendChild(el('circle',{cx:x,cy:y,r:2.6,fill:'#263b4a'}));text(annotations,Math.min(x+12,config.w-125),y-13,u.q===0?'No sales':'Your price',{'font-size':12.5,'font-weight':800,fill:'#253847','paint-order':'stroke',stroke:'#fff','stroke-width':4});}}
+ if(state.showBest){
+  const x=sx(o.q),y=sy(o.mc);
+  line(annotations,x,sy(0),x,y,{stroke:'#162e43','stroke-width':1.65,'stroke-dasharray':'8 5'});
+  // Cross the MR/MC intersection, not the demand price.
+  line(annotations,x-8,y-8,x+8,y+8,{stroke:'#0c2639','stroke-width':3.5});line(annotations,x-8,y+8,x+8,y-8,{stroke:'#0c2639','stroke-width':3.5});
+  const yPrice=sy(o.p);
+  annotations.appendChild(el('rect',{x:sx(o.q)-4.5,y:yPrice-4.5,width:9,height:9,fill:'#fff',stroke:'#0c2639','stroke-width':2}));
+  text(annotations,Math.min(x+12,config.w-155),Math.max(y-14,28),'MR = MC',{'font-size':12.5,'font-weight':850,fill:'#162e43','paint-order':'stroke',stroke:'#fff','stroke-width':4});
+  text(annotations,Math.min(x+12,config.w-142),Math.max(yPrice-11,22),'Best price',{'font-size':12.2,'font-weight':800,fill:'#162e43','paint-order':'stroke',stroke:'#fff','stroke-width':4});
+ }
+ svg.appendChild(annotations);
+ const key=$('chart-key');key.replaceChildren();for(const id of ['D','MR','MC','ATC']){
+  if(id!=='D'&&!state['show'+id])continue;
+  const d=defs[id],item=document.createElement('span');item.className='key-item';const s=document.createElementNS(svgNS,'svg');s.setAttribute('viewBox','0 0 35 17');s.setAttribute('aria-hidden','true');s.appendChild(el('path',{d:'M 2 9 H 33',stroke:d.color,'stroke-width':2.8,'stroke-dasharray':d.pattern||'none'}));marker(s,17.5,9,d.kind,d.color,3.4);item.appendChild(s);const t=document.createElement('span');t.textContent=d.name+' · '+d.note;item.appendChild(t);key.appendChild(item);
+ }
+ const para=[];
+ if(u.q===0)para.push('At this posted price, no customers buy coffee. The shop still incurs fixed economic costs.');
+ para.push(`At ${priceFormat(state.price)} per cup, customers buy about ${num(u.q)} cups per day. Your daily economic profit is ${money(u.profit)}.`);
+ if(state.showMR)para.push('MR (long-dashed diamonds) falls faster than demand because selling extra cups requires lowering price.');
+ if(state.showMC)para.push(`MC (dotted squares) rises as capacity becomes busier; at your output MC is ${priceFormat(u.mc)}.`);
+ if(state.showATC)para.push(u.q>0?`ATC (dash-dot triangles) at your output is ${priceFormat(u.atc)}. ${u.p>=u.atc?'Price is at least as high as average cost.':'Price is below average total cost.'}`:'ATC is undefined at zero output.');
+ if(state.showBest)para.push(`The X marks MR = MC at about ${num(o.q)} cups. Go up to demand (the square) to read the best price, ${priceFormat(o.p)}.`);
+ $('chart-narrative').replaceChildren();const strong=document.createElement('strong');strong.textContent=state.showBest?'The best-output benchmark is visible':state.showATC?'Comparing price and costs':state.showMC&&state.showMR?'Where MR meets MC':state.showMR?'Marginal revenue added':'Demand and your price';const p=document.createElement('p');p.textContent=para.join(' ');$('chart-narrative').append(strong,p);
+ const rows=$('table-data');rows.replaceChildren();let sample=[['No production',0],['40 cups',40],['80 cups',80],['100 cups',100],['120 cups',120],['160 cups',160],['200 cups',200],['Your chosen Q',u.q],['Profit-max Q',o.q]].sort((x,y)=>x[1]-y[1]);
+ for(const [label,q] of sample){const tr=document.createElement('tr');const rowVals=[label,num(q),priceFormat(demand(q,a)),priceFormat(mr(q,a)),priceFormat(mc(q)),atc(q)==null?'n/a':priceFormat(atc(q))];rowVals.forEach((v,i)=>{const cell=document.createElement(i===0?'th':'td');if(i===0)cell.scope='row';cell.textContent=v;tr.appendChild(cell)});rows.appendChild(tr)}
+}
+function applyPrice(price){state.price=clamp(Math.round(price*20)/20,4.75,7.25);$('coffee-price').value=state.price.toFixed(2);$('price-number').value=state.price.toFixed(2)}
+function statusLine(){const n=state.firms,o=optimum();if(n===5)return 'Five nearby cafés now compete. Even at the best price, economic profit is approximately zero: the stylized long-run equilibrium.';return `With ${n} nearby cafés, the profit-maximizing shop earns ${money(o.profit)} per day. Positive economic profit can attract another café.`}
+function update(){const u=chosen(),o=optimum();$('price-output').textContent=priceFormat(state.price);
+ $('metric-cups').textContent=num(u.q);$('metric-revenue').textContent=money(u.revenue);$('metric-total-cost').textContent=money(u.cost);$('metric-profit').textContent=money(u.profit);
+ $('metric-profit').className='number '+(u.profit>0.01?'good':u.profit<-.01?'bad':'');
+ $('best-price').textContent=priceFormat(o.p);$('best-profit').textContent=money(o.profit);$('best-quantity').textContent=num(o.q)+' cups';
+ const stages=$('entry-stages');stages.replaceChildren();for(let n=2;n<=5;n++){const div=document.createElement('div');div.className='entry-stage'+(n===state.firms?' current':'');if(n===state.firms)div.setAttribute('aria-current','step');const bold=document.createElement('strong');bold.textContent=n;const label=document.createElement('span');label.textContent=(n===state.firms?'Now · ':'')+'rivals';div.append(bold,label);stages.appendChild(div)}
+ $('add-entrant').disabled=state.firms===5;$('long-run').disabled=state.firms===5;
+ const breakEven=Math.abs(o.profit)<0.02;
+ $('market-heading').textContent=breakEven?'Long-run zero economic profit':'Short-run economic profit';
+ $('market-explainer').textContent=breakEven?'At the best price, P = ATC = $5.50. Economic profit is zero, but P exceeds MC ($4.00): the shop retains some pricing power.':'Other cafés can enter because an optimized shop is profitable. Each entrant shifts your shop’s demand inward, reducing the best price and profit.';
+ const a=intercept();$('formulas').textContent=`Demand: P = ${a.toFixed(4)} − 0.015Q\nMarginal revenue: MR = ${a.toFixed(4)} − 0.030Q\nMarginal cost: MC = 2.50 + 0.015Q\nAverage total cost: ATC = 225/Q + 2.50 + 0.0075Q\nTotal economic cost: TC = 225 + 2.50Q + 0.0075Q²\nCups sold at your price: Q = max[0, (${a.toFixed(4)} − P)/0.015]`;
+ paint();}
+function setMessage(m){$('action-message').textContent=m}
+function redrawButtons(){
+ const buttons=[['toggle-mr','showMR','2.','MR'],['toggle-mc','showMC','3.','MC'],['toggle-atc','showATC','4.','ATC'],['toggle-best','showBest','5.','best output']];
+ for(const [id,key,num,label] of buttons){const element=$(id);element.setAttribute('aria-pressed',String(state[key]));element.textContent=num+' '+(state[key]?'Hide ':label==='best output'?'Mark ':'Add ')+label;}
+ const tip=state.showBest?'Step 5: The X is where MR meets MC. Read the best price above it on demand.':state.showATC?'Step 4: ATC includes fixed and variable economic costs. Compare the price with ATC.':state.showMC?'Step 3: MC rises slightly as producing extra cups becomes more costly.':state.showMR?'Step 2: MR lies below demand for a downward-sloping firm demand curve.':'Step 1: Demand slopes down because a higher coffee price generally means fewer cups sold.';$('build-tip').textContent=tip;
+}
 
-const cafe={n:3,price:35,quality:1,ads:20,year:0,stage:0,records:[]};
-const cParams=(n=cafe.n)=>{
- const a=62-3.3*(n-1)+3.5*cafe.quality+6*Math.sqrt(cafe.ads/100);
- const b=1.35,c=12+2*cafe.quality,d=.35,F=115+cafe.ads+15*cafe.quality;
- const qopt=Math.max(0,(a-c)/(2*b+d)),popt=a-b*qopt;
- const piopt=(popt-c)*qopt-.5*d*qopt*qopt-F;
- return {a,b,c,d,F,qopt,popt,piopt};
-};
-const cCalc=(p=cafe.price)=>{const k=cParams(),q=Math.max(0,(k.a-p)/k.b),rev=p*q,tc=k.F+k.c*q+.5*k.d*q*q;return {...k,q,rev,tc,profit:rev-tc};};
-const qualityNames=['Basic','Standard','Premium','Specialty'];
-const cUpdate=()=>{
- const s=cCalc();setText('#price-val',money(cafe.price));setText('#quality-val',qualityNames[cafe.quality]);setText('#ads-val',money(cafe.ads));
- setText('#firms-label',`${cafe.n} competing shops`);setText('#opt-price',money(s.popt));setText('#typical-profit',money(s.piopt));
- $('#metrics').innerHTML=metric('Your quantity sold',one(s.q))+metric('Revenue',money(s.rev))+metric('Economic profit',money(s.profit),s.profit>=0?'positive':'negative')+metric('Firms in market',int(cafe.n));
- const past=cafe.n>1?cParams(cafe.n-1):null;
- $('#chart').innerHTML=makeChart({maxQ:45,maxP:90,aria:`With ${cafe.n} coffee shops, your current price ${money(cafe.price)} sells ${one(s.q)} units and earns ${money(s.profit)} economic profit. Representative profit is ${money(s.piopt)}.`,curves:[...(past?[{fn:q=>past.a-past.b*q,color:'#566575',type:'historic',short:'Past D',width:3.2}]:[]),{fn:q=>s.a-s.b*q,color:'#245b82',type:'demand',short:'D'},{fn:q=>s.a-2*s.b*q,color:'#a52235',type:'revenue',short:'MR'},{fn:q=>s.c+s.d*q,color:'#145c43',type:'cost',short:'MC'},{fn:q=>q<2?NaN:s.F/q+s.c+.5*s.d*q,color:'#855909',type:'average',short:'ATC',width:3.7}],hlines:[{p:cafe.price,q:s.q,color:'#843042'}],vlines:[{q:s.q,y:cafe.price,color:'#843042',pattern:'5 7'}],points:[{q:s.qopt,p:s.c+s.d*s.qopt,color:'#192d40',shape:'cross'},{q:s.q,p:cafe.price,color:'#843042',shape:'circle'}]});
- setText('#chart-summary',`There are ${cafe.n} coffee shops. Your chosen price is ${money(cafe.price)}, quantity ${one(s.q)}, and economic profit ${money(s.profit)}. The profit-maximizing price is ${money(s.popt)} at Q = ${one(s.qopt)}. D is solid/circle, MR long-dashed/diamond, MC dotted/square, ATC dash-dot/triangle, and prior demand (when shown) alternates dashes and X marks.`);
- const chartPoints=[['Your choice',s.q],['Profit maximum',s.qopt],['Example Q = 10',10]];
- $('#chart-data-rows').innerHTML=chartPoints.map(([name,q])=>`<tr><th scope="row">${name}</th><td>${one(q)}</td><td>${money(s.a-s.b*q)}</td><td>${money(s.a-2*s.b*q)}</td><td>${money(s.c+s.d*q)}</td><td>${q>0?money(s.F/q+s.c+.5*s.d*q):'Undefined at Q = 0'}</td><td>${past?money(past.a-past.b*q):'Not applicable'}</td></tr>`).join('');
- const judge=s.piopt>12?`Representative firms earn ${money(s.piopt)}. Entry is likely, moving demand left.`:s.piopt< -12?`Representative firms lose ${money(Math.abs(s.piopt))}. Exit is likely, moving demand right.`:`Representative firms are near zero economic profit (${money(s.piopt)}). Entry and exit slow down.`;
- setText('#insight-title',s.piopt>12?'Entry pressure from profit':s.piopt< -12?'Exit pressure from losses':'Near the long-run equilibrium');setText('#insight-text',judge);
- setText('#market-caption','Positive typical profits induce entry; losses induce exit. The zero-profit band is ±$12 in this discrete teaching model.');
- $('#record').innerHTML=cafe.records.length?cafe.records.slice(-7).map(r=>`<tr><td>${r.year}</td><td>${r.n}</td><td>${money(r.pi)}</td><td>${r.action}</td></tr>`).join(''):'<tr><td>0</td><td>3</td><td>—</td><td>Start</td></tr>';
- $('#equation').innerHTML=`Shop demand: P = ${one(s.a)} − 1.35Q<br>Marginal cost: MC = ${one(s.c)} + 0.35Q<br>Fixed cost (incl. quality and ads): ${money(s.F)}<br>Profit-max Q: ${one(s.qopt)}, price: ${money(s.popt)}<br>ATC minimum (excess-capacity benchmark): Q = ${one(Math.sqrt(2*s.F/s.d))}`;
-};
-const cYear=()=>{
- const s=cParams(),prior=cafe.n;let action='Stable';if(s.piopt>12&&cafe.n<12){cafe.n++;action='Entry (+1 firm)';}else if(s.piopt< -12&&cafe.n>1){cafe.n--;action='Exit (−1 firm)';}else if((s.piopt>12&&cafe.n===12)||(s.piopt< -12&&cafe.n===1))action='Limit reached';
- cafe.year++;cafe.records.push({year:cafe.year,n:prior,pi:s.piopt,action});cUpdate();return action;
-};
-const cReset=()=>{Object.assign(cafe,{n:3,price:35,quality:1,ads:20,year:0,records:[]});$('#price').value=35;$('#quality').value=1;$('#ads').value=20;cUpdate();};
-const cafeChallenges=[
- {prompt:'Find the profit-maximizing price for YOUR current market and product decisions. Use the price slider.',check:()=>Math.abs(cafe.price-cParams().popt)<=.75,ok:()=>`Correct. The best price is about ${money(cParams().popt)}. It comes from choosing Q where MR = MC.`,no:()=>`Try again. Your shop currently earns ${money(cCalc().profit)}; use MR and MC to adjust price.`},
- {prompt:'Use Advance one year or Simulate long run until the representative firm is close to zero economic profit.',check:()=>Math.abs(cParams().piopt)<=12,ok:()=>`Correct. At ${cafe.n} shops, representative economic profit is approximately ${money(cParams().piopt)}.`,no:()=>`Typical profit is ${money(cParams().piopt)}. Continue entry or exit adjustments to approach zero economic profit.`},
- {prompt:'What happens when a monopolistically competitive industry offers persistent positive economic profits?',options:[['entry','New firms enter and shift existing firms\' demand left.'],['fixed','Demand never changes because every product is different.'],['exit','Firms leave and each incumbent\'s demand shifts right.']],answer:'entry',check:()=>$('#task input[name="concept"]:checked')?.value==='entry',ok:()=>`Correct. Free entry erodes economic profits in the long run.`,no:()=>`Consider how new close substitutes change the quantity customers want from an existing firm.`}
-];
-const cTask=()=>{const t=cafeChallenges[cafe.stage];$('#task').innerHTML=`<h3>${cafe.stage+1}. ${t.prompt}</h3>`+(t.options?`<fieldset><legend>Choose one</legend>${t.options.map(([v,lab])=>`<label class="answer"><input type="radio" name="concept" value="${v}"><span>${lab}</span></label>`).join('')}</fieldset>`:'<p class="hint">Use the business and market controls, then check your decision.</p>');setText('#progress',`${cafe.stage+1} of 3`);$('#grade').hidden=false;$('#next').hidden=true;statusMsg($('#task-feedback'),'');};
-window.resultsText=()=>{const s=cCalc();return `ECO 201 • Monopolistic competition: coffee shop\nCoffee price: ${money(cafe.price)}\nQuality: ${qualityNames[cafe.quality]}\nAdvertising: ${money(cafe.ads)}\nCurrent shops: ${cafe.n}\nYour economic profit: ${money(s.profit)}\nTypical firm economic profit: ${money(s.piopt)}\nReflection: Why do new firms enter and how does this change demand?`;};
-document.addEventListener('DOMContentLoaded',()=>{
- for(const id of ['price','quality','ads'])$('#'+id).addEventListener('input',()=>{cafe[id]=Number($('#'+id).value);cUpdate();});
- $('#optimize').addEventListener('click',()=>{cafe.price=Math.round(cParams().popt*2)/2;$('#price').value=cafe.price;cUpdate();statusMsg($('#market-status'),`Price set near the theoretical optimum, ${money(cafe.price)}. The slider uses $0.50 steps.`,'good');});
- $('#year').addEventListener('click',()=>{const a=cYear();statusMsg($('#market-status'),`Year ${cafe.year}: ${a}. Market has ${cafe.n} firms.`);});
- $('#longrun').addEventListener('click',()=>{let runs=0;while(Math.abs(cParams().piopt)>12&&runs<20){const before=cafe.n;cYear();runs++;if(cafe.n===before)break;}cUpdate();statusMsg($('#market-status'),`Simulated ${runs} year(s). There are ${cafe.n} shops; representative profit is ${money(cParams().piopt)}.`,'good');});
- $('#reset').addEventListener('click',()=>{cReset();statusMsg($('#market-status'),'Market reset to year 0.');});
- $('#grade').addEventListener('click',()=>{const t=cafeChallenges[cafe.stage],ok=t.check();statusMsg($('#task-feedback'),ok?t.ok():t.no(),ok?'good':'bad');if(ok){$('#grade').hidden=true;$('#next').hidden=false;$('#next').textContent=cafe.stage===2?'Start over':'Next challenge →';}});
- $('#next').addEventListener('click',()=>{cafe.stage=(cafe.stage+1)%3;cTask();});cTask();cUpdate();
+function resetView(){state.showMR=false;state.showMC=false;state.showATC=false;state.showBest=false;redrawButtons()}
+for(const [id,key] of [['toggle-mr','showMR'],['toggle-mc','showMC'],['toggle-atc','showATC'],['toggle-best','showBest']])$(id).addEventListener('click',()=>{state[key]=!state[key];if(key==='showBest'&&state.showBest){state.showMR=true;state.showMC=true;}if((key==='showMR'||key==='showMC')&&!state[key])state.showBest=false;redrawButtons();update()});
+$('chart-reset').addEventListener('click',()=>{resetView();update()});
+$('coffee-price').addEventListener('input',e=>{applyPrice(Number(e.target.value));update()});
+$('price-number').addEventListener('change',e=>{const v=Number(e.target.value);if(!Number.isFinite(v)||e.target.value===''){applyPrice(state.price);setMessage('Enter a coffee price between $4.75 and $7.25.');return}applyPrice(v);update()});
+$('optimal-price').addEventListener('click',()=>{applyPrice(optimum().p);update();setMessage(`The price is now ${priceFormat(state.price)}—the nearest 5¢ to the profit-maximizing price. The best-price benchmark uses the exact calculated optimum.`)});
+function entrant(){if(state.firms===5)return;const previous=optimum();state.firms++;const current=optimum();applyPrice(current.p);update();setMessage(`A new café opened. The best price falls from ${priceFormat(previous.p)} to ${priceFormat(current.p)}; maximum daily profit falls from ${money(previous.profit)} to ${money(current.profit)}. Your shop has adjusted its price to the new best level.`)}
+$('add-entrant').addEventListener('click',entrant);
+$('long-run').addEventListener('click',()=>{state.firms=5;applyPrice(optimum().p);update();setMessage('At five nearby cafés, the best price is $5.50, output is 100 cups/day, and economic profit is $0.00. Price still exceeds marginal cost ($4.00).')});
+function resetMarket(){state.firms=2;applyPrice(6.25);resetView();update();setMessage('Market reset: two nearby cafés and strong demand. Start with demand alone, or add MR, MC, and ATC as needed.')}
+$('reset-market').addEventListener('click',resetMarket);
+function resultsText(){const x=chosen(),o=optimum();return [
+ 'ECO 201 — Coffee Shop Competition',
+ 'Nearby competing cafés: '+state.firms,
+ 'My price per cup: '+priceFormat(state.price),
+ 'Daily cups sold: '+num(x.q),
+ 'Daily revenue: '+money(x.revenue),
+ 'Daily economic cost: '+money(x.cost),
+ 'Daily economic profit: '+money(x.profit),
+ 'Best price in this market: '+priceFormat(o.p),
+ 'Best daily economic profit: '+money(o.profit),
+ 'Reflection: Explain what happens to your shop’s demand and profit when a new café opens.'
+ ].join('\n')}
+$('copy-results').addEventListener('click',async()=>{
+ const data=resultsText(),feedback=$('copy-feedback');
+ try{if(!navigator.clipboard||!navigator.clipboard.writeText)throw Error('Clipboard not available');await navigator.clipboard.writeText(data);feedback.textContent='Results copied. You can paste them into a Canvas reflection.'}
+ catch(err){const textArea=document.createElement('textarea');textArea.value=data;textArea.setAttribute('aria-label','Your results text to copy manually');textArea.style.width='100%';textArea.rows=10;feedback.replaceChildren(document.createTextNode('Direct copying is unavailable in this browser. Select and copy the text below: '),textArea);textArea.focus();textArea.select()}
 });
-</script></body></html>
+$('print-results').addEventListener('click',()=>window.print());
+const tasks=[
+ {title:'Find a profitable price',prompt:'With two nearby cafés, set your price so your shop earns at least $125/day in economic profit.',check:()=>state.firms===2&&chosen().profit>=125,good:'Yes. A differentiated firm can earn positive economic profit in the short run.',bad:'With two rivals nearby, try a price near $6.15. Look for at least $125 in daily economic profit.'},
+ {title:'Watch entry reduce profit',prompt:'Let exactly two more cafés open, bringing the total nearby rivals to four. Set the best price and observe how much maximum daily profit remains (about $40).',check:()=>state.firms===4&&chosen().profit>=35&&chosen().profit<=45,good:'Correct. Entry reduces this shop’s demand and best attainable profit, even when it adjusts its price.',bad:'Bring the nearby rival count to four and choose the most profitable price. Look for roughly $40 in daily economic profit.'},
+ {title:'Find the long-run equilibrium',prompt:'Move to five neighboring cafés. Choose the price that produces approximately zero economic profit while the shop still sells coffee.',check:()=>state.firms===5&&chosen().q>0&&Math.abs(chosen().profit)<2&&state.price>chosen().mc,good:'Exactly. Zero economic profit does not mean the shop charges marginal cost. Here P = ATC = $5.50, but MC = $4.00.',bad:'At five nearby rivals, choose the price near $5.50. The shop should sell coffee, break even economically, and still charge more than MC.'}
+];
+function showTask(){const t=tasks[state.task];$('challenge-status').textContent=`Challenge ${state.task+1} of ${tasks.length}`;$('task-title').textContent=t.title;$('task-prompt').textContent=t.prompt;$('challenge-feedback').textContent='';$('challenge-feedback').className='feedback';$('next-task').hidden=true;$('check-answer').disabled=false;state.passed=false;}
+$('check-answer').addEventListener('click',()=>{const t=tasks[state.task],pass=t.check();const f=$('challenge-feedback');f.textContent=pass?t.good:t.bad;f.className='feedback '+(pass?'good':'bad');if(pass){state.passed=true;$('check-answer').disabled=true;$('next-task').hidden=state.task===tasks.length-1;if(state.task===tasks.length-1)f.textContent+=' All three challenges complete.';}});
+$('next-task').addEventListener('click',()=>{if(!state.passed||state.task>=tasks.length-1)return;state.task++;showTask()});
+for(const b of document.querySelectorAll('[data-mode]'))b.addEventListener('click',()=>{state.mode=b.dataset.mode;for(const m of document.querySelectorAll('[data-mode]'))m.setAttribute('aria-pressed',String(m===b));for(const panel of document.querySelectorAll('[data-mode-panel]'))panel.hidden=panel.dataset.modePanel!==state.mode;if(state.mode==='challenge'){state.task=0;showTask();resetMarket()} });
+applyPrice(state.price);redrawButtons();update();setMessage(statusLine());
+// Pure calculation helpers are intentionally exposed for instructor verification, not as a grading API.
+window.ECO201CoffeeModel=Object.freeze({parameters:Object.freeze({...model}),demand:(q,n)=>model.a0-model.delta*(n-2)-model.b*q,quantity:(p,n)=>Math.max(0,(model.a0-model.delta*(n-2)-p)/model.b),mr:(q,n)=>model.a0-model.delta*(n-2)-2*model.b*q,mc,atc,totalCost,optimumAt:n=>optimum(model.a0-model.delta*(n-2))});
+})();
+</script>
+</body></html>
