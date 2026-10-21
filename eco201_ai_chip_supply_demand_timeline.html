@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>ECO 201 | AI Chip Prices &amp; Quantities: 2022–2028</title>
+<style>
+  :root {
+    --ink: #18243a;
+    --ink2: #374961;
+    --muted: #526277;
+    --red: #b51f32;
+    --red-dark: #891729;
+    --navy: #13253f;
+    --bg: #f4f6fa;
+    --border: #d5dce6;
+    --grid: #e6ebf2;
+    --supply: #006b85;
+    --supply-dark: #005268;
+    --demand: #ab402e;
+    --demand-dark: #832f21;
+    --base: #65758b;
+    --white: #ffffff;
+    --ring: #ffd46a;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif; }
+  a { color:#174d83; text-decoration-thickness:1px; text-underline-offset:3px; }
+  a:hover { color:#8b1c31; }
+  a:focus-visible { outline: 3px solid #b51f32; outline-offset: 4px; border-radius: 2px; }
+  .frame { max-width: 1450px; margin: 0 auto; padding: 0 28px 45px; }
+  .hero { background: linear-gradient(111deg,#11233f 0%,#19314f 73%,#202f48 100%); color:#fff; border-bottom:6px solid var(--red); }
+  .hero-inside { max-width: 1450px; margin: 0 auto; padding: 28px 28px 31px; }
+  .eyebrow { color:#e7b7c0; font-size:.77rem; font-weight:800; letter-spacing:.15em; text-transform:uppercase; margin:0 0 8px; }
+  h1 { font-size: clamp(1.8rem,3.1vw,2.85rem); line-height:1.12; letter-spacing:-.036em; margin:0; }
+  .subtitle { color:#e3ebf5; max-width:950px; font-size:1.09rem; margin:12px 0 0; }
+  .hero-note { display: inline-block; border:1px solid #9babbd; padding:5px 11px; border-radius:20px; color:#fff; margin-top:14px; font-size:.88rem; }
+  .timeline-panel { background:#fff; margin-top:24px; padding:22px 28px 20px; border:1px solid var(--border); border-radius:16px; box-shadow:0 4px 14px #13253f08; }
+  .timeline-header { display:flex; align-items:end; justify-content:space-between; gap:18px; margin-bottom:17px; }
+  .timeline-title { margin:0; color:var(--ink2); font-size:.82rem; letter-spacing:.09em; font-weight:800; text-transform:uppercase; }
+  #stageDate { font-size:clamp(1.45rem,2.3vw,2.05rem); line-height:1.17; font-weight:800; letter-spacing:-.03em; margin:4px 0 0; }
+  .hint { color:var(--muted); font-size:.9rem; margin:0 0 3px; text-align:right; }
+  #timeline { appearance:none; -webkit-appearance:none; display:block; width:100%; height:14px; border:1px solid #afbac9; border-radius:100px; background:linear-gradient(to right, var(--red) 0%, var(--red) var(--progress, 0%), #d9e0e9 var(--progress, 0%), #d9e0e9 100%); margin:11px 0 5px; cursor:pointer; touch-action:pan-y; }
+  #timeline::-webkit-slider-thumb { appearance:none; -webkit-appearance:none; width:30px; height:30px; border-radius:50%; background:#fff; border:7px solid var(--red); box-shadow:0 2px 3px #0002,0 0 0 2px #fff; }
+  #timeline::-moz-range-thumb { width:17px; height:17px; border-radius:50%; background:#fff; border:7px solid var(--red); box-shadow:0 2px 3px #0002; }
+  #timeline:focus-visible { outline:4px solid #254f82; outline-offset:6px; }
+  .stops { display:grid; grid-template-columns:repeat(8,1fr); gap:0; padding-top:12px; }
+  .stop { color:var(--muted); font-size:.76rem; font-weight:650; text-align:center; line-height:1.35; position:relative; padding:6px 3px 0; }
+  .stop:before { content:""; position:absolute; top:0; left:50%; height:6px; width:2px; background:#8d9aad; }
+  .stop:first-child { text-align:left; }
+  .stop:first-child:before {left:0;}
+  .stop:last-child {text-align:right;}
+  .stop:last-child:before {left:auto;right:0;}
+  .stop.future {color:#8b1c31;}
+  .stop.current {font-weight:900; color:var(--red-dark);}
+  .stop .part {display:inline;}
+  .key {display:inline-flex; align-items:center; gap:6px; color:#576679; font-size:.85rem; margin-top:9px;}
+  .key svg { flex:0 0 auto; }
+  .main-grid { display:grid; grid-template-columns:minmax(0,1.75fr) minmax(330px,.85fr); gap:20px; margin-top:20px; align-items:stretch; }
+  .panel { background:#fff; border:1px solid var(--border); border-radius:16px; box-shadow:0 4px 14px #13253f07; }
+  .chart-panel { padding:21px 20px 17px; min-width:0; }
+  h2 {font-size:1.23rem;letter-spacing:-.02em;margin:0;}
+  .chart-sub { color:var(--muted);font-size:.88rem;margin:3px 0 13px; }
+  .legend {display:flex;flex-wrap:wrap;gap:11px 18px;margin-bottom:6px;font-size:.88rem;color:var(--ink2);}
+  .legend-item {display:inline-flex;align-items:center;gap:7px;}
+  .legend-swatch { width:39px;height:14px; flex:none; }
+  svg#graph { display:block; width:100%; height:auto; max-height:585px; overflow:visible; }
+  #graph text {font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;}
+  .graph-note {font-size:.83rem; color:var(--muted); line-height:1.46; border-top:1px solid var(--border); padding-top:12px; margin:0 5px;}
+  .story-panel {padding:21px 24px 23px;}
+  .tagline {font-size:.77rem; letter-spacing:.09em; font-weight:850; text-transform:uppercase; color:var(--red-dark); margin:0 0 9px;}
+  .story-panel h2 {font-size:clamp(1.35rem,2vw,1.8rem);line-height:1.2;letter-spacing:-.034em; }
+  #stageIntro {font-size:1rem;color:var(--ink2);margin:13px 0 21px;}
+  .shift-block {border-top:1px solid var(--border);padding:15px 0 14px;display:grid;grid-template-columns:1fr;gap:5px;}
+  .shift-heading {display:flex;gap:9px;align-items:baseline;flex-wrap:wrap;}
+  .shift-heading strong {font-size:1rem;}
+  .shift-indicator {font-size:.75rem; letter-spacing:.02em; font-weight:800;border:1px solid var(--border); border-radius:4px; padding:2px 8px;white-space:nowrap;}
+  #demandIndicator {color:var(--demand-dark);border-color:#d3a59c;}
+  #supplyIndicator {color:var(--supply-dark);border-color:#7ca9b5;}
+  .shift-block p {margin:2px 0 0;font-size:.93rem;color:var(--ink2);}
+  .result {border-top:2px solid #a4afbe;margin-top:3px;padding-top:17px;}
+  .result h3 {font-size:1rem;margin:0 0 8px;letter-spacing:.01em;}
+  .result-grid {display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+  .result-tile {border:1px solid var(--border);border-radius:9px;padding:9px 11px;}
+  .result-tile .small {font-size:.75rem;line-height:1.4;font-weight:650;color:var(--muted);}
+  .result-tile .big {font-size:clamp(1.1rem,1.8vw,1.35rem);line-height:1.36; font-weight:850;color:var(--ink);font-variant-numeric:tabular-nums;}
+  .result-tile .change {font-size:.78rem;line-height:1.4; font-weight:650;color:var(--muted);margin-top:4px;}
+  .benchmark {margin:16px 0 0;padding:12px 15px;border-radius:8px;border:1px solid #d5dce6;background:#f5f7fb;color:#283c56;font-size:.88rem;line-height:1.52;}
+  .benchmark strong {color:#17283f;}
+  #reading {font-size:.88rem;line-height:1.48;color:var(--ink2);margin:10px 0 0;}
+  .evidence-panel {margin-top:18px;padding:14px 16px;background:#f5f7fa;border:1px solid var(--border);border-left:4px solid var(--navy);border-radius:6px;}
+  .evidence-panel h3 {font-size:.78rem;letter-spacing:.07em;margin:0 0 6px;text-transform:uppercase;color:var(--ink2);}
+  #evidence {font-size:.9rem;line-height:1.52;margin:0;}
+  #source {font-size:.83rem; margin:8px 0 0;}
+  #source a {overflow-wrap:anywhere;}
+  .takeaway {margin:20px 0 0;background:#fff;border:1px solid var(--border);border-radius:14px;display:grid;grid-template-columns:1.05fr 1fr 1fr;gap:0;}
+  .takeaway > div {padding:17px 20px;}
+  .takeaway > div + div {border-left:1px solid var(--border);}
+  .takeaway h3 {margin:0 0 6px;font-size:.88rem;letter-spacing:.01em;}
+  .takeaway p {margin:0;font-size:.88rem;color:var(--ink2);}
+  .footer {color:var(--muted);font-size:.82rem;line-height:1.5;margin:22px 3px 0;}
+  .footer strong{color:var(--ink2);}
+  .sr-only { position:absolute !important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+  @media (max-width:1060px) {.main-grid{grid-template-columns:1fr;}.story-panel{display:grid;grid-template-columns:1fr 1fr;gap:0 21px;}.story-head,.result,.evidence-panel{grid-column:1 / -1;}.story-panel .shift-block:nth-of-type(1){grid-column:1;}.story-panel .shift-block:nth-of-type(2){grid-column:2;}.takeaway{grid-template-columns:repeat(3,1fr);}}
+  @media (max-width:640px) { .frame{padding:0 13px 35px;}.hero-inside{padding:22px 16px 23px;} h1{font-size:2rem;} .subtitle{font-size:1rem;} .timeline-panel{padding:19px 15px 14px;margin-top:14px;} .timeline-header{align-items:start;flex-direction:column;gap:5px;}.hint{text-align:left;font-size:.83rem;} .stops .stop{font-size:.69rem;padding-left:0;padding-right:0;} .stop .part{display:block;} .main-grid{gap:13px;margin-top:13px;} .chart-panel{padding:16px 8px 14px;} .chart-panel > h2,.chart-sub,.legend{padding-left:10px;padding-right:10px;} .legend{gap:5px 12px;font-size:.79rem;} .legend-swatch{width:29px;} .graph-note{font-size:.77rem;} .story-panel{display:block;padding:20px 17px 21px;} .takeaway{display:block;margin-top:13px;} .takeaway>div+div{border-top:1px solid var(--border);border-left:0;} #graph{min-height:270px;} }
+  @media (prefers-reduced-motion: reduce) { * { scroll-behavior:auto !important; } }
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="hero-inside">
+    <p class="eyebrow">ECO 201 &nbsp;·&nbsp; Supply and demand over time</p>
+    <h1>How the AI boom shifted the chip market</h1>
+    <p class="subtitle">Watch demand surge and supply expand more slowly. Move the timeline to see how the modeled <strong>price per AI chip</strong> and <strong>number of chips sold</strong> change.</p>
+    <span class="hero-note">Price per AI chip vs. quantity of AI chips · NOT stock prices</span>
+  </div>
+</header>
+<main class="frame">
+  <section class="timeline-panel" aria-labelledby="timelineLabel">
+    <div class="timeline-header">
+      <div>
+        <p class="timeline-title" id="timelineLabel">One timeline • eight milestones</p>
+        <div id="stageDate">Late 2022 · Starting point</div>
+      </div>
+      <p class="hint">Drag the timeline or use the ← → arrow keys.</p>
+    </div>
+    <label class="sr-only" for="timeline">Historical timeline from 2022 to an illustrative 2028 scenario</label>
+    <input type="range" id="timeline" min="0" max="7" step="1" value="0" aria-describedby="timelineHelp" style="--progress:0%">
+    <span class="sr-only" id="timelineHelp">One control changes the date, demand curve, supply curve, and explanatory text. The final 2028 point is hypothetical.</span>
+    <div class="stops" aria-hidden="true">
+      <span class="stop current">2022</span><span class="stop"><span class="part">May</span> <span class="part">’23</span></span><span class="stop"><span class="part">Late</span> <span class="part">’23</span></span><span class="stop">2024</span><span class="stop"><span class="part">Early</span> <span class="part">’25</span></span><span class="stop"><span class="part">Late</span> <span class="part">’25</span></span><span class="stop"><span class="part">Oct</span> <span class="part">’26</span></span><span class="stop future">2028*</span>
+    </div>
+    <div class="key"><svg width="18" height="16" viewBox="0 0 18 16" aria-hidden="true"><path d="M1 8h14m-5-5 5 5-5 5" fill="none" stroke="#9b1f33" stroke-width="2"/></svg> Both curves shift to the right over time, but not at the same speed.</div>
+  </section>
+  <div class="main-grid">
+    <section class="panel chart-panel" aria-labelledby="chartHeader">
+      <h2 id="chartHeader">AI accelerator chips: price and quantity</h2>
+      <p class="chart-sub">Price = dollars per AI accelerator chip (vertical). Quantity = chips sold per quarter (horizontal). Both numeric axes are <strong>illustrative model values</strong>.</p>
+      <div class="legend" aria-hidden="true">
+        <span class="legend-item"><svg class="legend-swatch" viewBox="0 0 39 14"><path d="M2 7 H37" stroke="#ab402e" stroke-width="4" stroke-dasharray="10 5"/></svg>Demand (D): downward</span>
+        <span class="legend-item"><svg class="legend-swatch" viewBox="0 0 39 14"><path d="M2 7 H37" stroke="#006b85" stroke-width="4"/></svg>Supply (S): upward</span>
+        <span class="legend-item"><svg class="legend-swatch" viewBox="0 0 39 14"><path d="M2 7 H37" stroke="#65758b" stroke-width="2" stroke-dasharray="2 5"/></svg>2022 reference</span>
+      </div>
+      <svg id="graph" viewBox="0 0 900 555" role="img" aria-labelledby="chartTitle chartDescription" xmlns="http://www.w3.org/2000/svg">
+        <title id="chartTitle">Supply and demand for AI accelerator chips, price per chip on the vertical axis and quarterly chip quantity on the horizontal axis</title>
+        <desc id="chartDescription">Initial 2022 market. Demand slopes downward and supply slopes upward. Their intersection is an illustrative equilibrium of 13,000 dollars per accelerator chip and 200,000 accelerator chips per quarter. Historical events inform the direction of curve shifts, while numbers are hypothetical.</desc>
+        <defs>
+          <clipPath id="plotClip"><rect id="clipRect" x="82" y="40" width="775" height="418"/></clipPath>
+          <marker id="axisArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#334155"/></marker>
+        </defs>
+        <g id="gridlines" aria-hidden="true"></g>
+        <g id="baseCurves" clip-path="url(#plotClip)" aria-hidden="true">
+          <line id="baseDemand" stroke="#6e7b8d" stroke-width="2.3" stroke-dasharray="2 7" stroke-linecap="round" />
+          <line id="baseSupply" stroke="#6e7b8d" stroke-width="2.3" stroke-dasharray="2 7" stroke-linecap="round" />
+        </g>
+        <g id="baseLabels" aria-hidden="true">
+          <text id="baseDemandLabel" font-size="21" font-weight="750" fill="#596779">D₀</text>
+          <text id="baseSupplyLabel" font-size="21" font-weight="750" fill="#596779">S₀</text>
+          <path id="baseEqMarker" fill="#fff" stroke="#6e7b8d" stroke-width="2"/>
+          <text id="baseEqLabel" font-size="19" fill="#596779" font-weight="750">E₀</text>
+        </g>
+        <g id="currentGuides" aria-hidden="true">
+          <line id="priceGuide" stroke="#455a70" stroke-width="2" stroke-dasharray="5 6" />
+          <line id="quantityGuide" stroke="#455a70" stroke-width="2" stroke-dasharray="5 6" />
+          <text id="priceGuideLabel" font-size="19" font-weight="850" fill="#233751" text-anchor="start">P</text>
+          <text id="quantityGuideLabel" font-size="19" font-weight="850" fill="#233751" text-anchor="middle">Q</text>
+        </g>
+        <g clip-path="url(#plotClip)" aria-hidden="true">
+          <line id="activeDemand" stroke="#ab402e" stroke-width="5" stroke-dasharray="17 8" stroke-linecap="round" />
+          <line id="activeSupply" stroke="#006b85" stroke-width="5" stroke-linecap="round" />
+        </g>
+        <g id="curveLabels" aria-hidden="true">
+          <text id="demandLabel" font-size="25" font-weight="900" fill="#883021" stroke="#fff" stroke-width="5" paint-order="stroke">D</text>
+          <text id="supplyLabel" font-size="25" font-weight="900" fill="#005168" stroke="#fff" stroke-width="5" paint-order="stroke">S</text>
+        </g>
+        <g id="equilibrium" aria-hidden="true">
+          <circle id="eqRing" r="12" fill="#fff" stroke="#243349" stroke-width="3" />
+          <circle id="eqCenter" r="5.5" fill="#243349"/>
+          <text id="eqLabel" font-size="22" font-weight="900" fill="#17283f" stroke="#fff" stroke-width="6" paint-order="stroke">E</text>
+        </g>
+        <g id="axes" aria-hidden="true">
+          <path id="priceAxis" d="M82 458 V34" stroke="#334155" stroke-width="2.8" fill="none" marker-end="url(#axisArrow)"/>
+          <path id="quantityAxis" d="M82 458 H868" stroke="#334155" stroke-width="2.8" fill="none" marker-end="url(#axisArrow)"/>
+          <text x="98" y="25" font-size="20" font-weight="800" fill="#1e2b40">Price per AI chip ($)</text>
+          <text id="quantityTitle" x="475" y="530" font-size="22" font-weight="800" fill="#1e2b40" text-anchor="middle">Quantity of AI chips</text>
+          <text id="quantitySubtitle" x="475" y="553" font-size="17" fill="#526277" text-anchor="middle">sold per quarter (millions of chips)</text>
+        </g>
+      </svg>
+      <p class="graph-note"><strong>Model, not measured history:</strong> The horizontal and vertical scales have real units (chips per quarter and dollars per chip), but every plotted equilibrium is an illustrative teaching value, <strong>not</strong> actual shipments or transaction prices. New chip generations also differ dramatically in performance.</p>
+    </section>
+    <section class="panel story-panel" aria-labelledby="storyTitle">
+      <div class="story-head">
+        <p class="tagline" id="phaseType">Historical context</p>
+        <h2 id="storyTitle">Before the generative-AI surge</h2>
+        <p id="stageIntro">AI hardware existed, but the late-2022 generative-AI wave had not yet prompted the scale of orders that followed.</p>
+      </div>
+      <div class="shift-block" id="demandBlock">
+        <div class="shift-heading"><strong>Demand (D)</strong><span class="shift-indicator" id="demandIndicator">2022 reference</span></div>
+        <p id="demandReason">The baseline: demand for AI accelerator chips before the mass-market generative-AI boom.</p>
+      </div>
+      <div class="shift-block" id="supplyBlock">
+        <div class="shift-heading"><strong>Supply (S)</strong><span class="shift-indicator" id="supplyIndicator">2022 reference</span></div>
+        <p id="supplyReason">The baseline: existing chip fabrication, packaging, memory, and testing capacity.</p>
+      </div>
+      <section class="result" aria-labelledby="resultHeading">
+        <h3 id="resultHeading">What happens to the equilibrium in this model?</h3>
+        <div class="result-grid">
+          <div class="result-tile"><div class="small">Modeled chip price (P)</div><div class="big" id="priceDirection">$13,000 / chip</div><div class="change" id="priceComparison">2022 reference</div></div>
+          <div class="result-tile"><div class="small">Modeled chips sold (Q)</div><div class="big" id="quantityDirection">200,000 chips / quarter</div><div class="change" id="quantityComparison">2022 reference</div></div>
+        </div>
+        <p id="reading">2022 is the reference point for all later shifts.</p>
+      </section>
+      <section class="evidence-panel" aria-labelledby="evidenceHeading">
+        <h3 id="evidenceHeading">Historical evidence</h3>
+        <p id="evidence">ChatGPT launched publicly on November 30, 2022, marking an important milestone in the popularization of generative AI.</p>
+        <p id="source"><a href="https://openai.com/index/chatgpt/" target="_blank" rel="noopener noreferrer">Source: OpenAI (Nov. 2022) ↗</a></p>
+      </section>
+    </section>
+  </div>
+  <aside class="takeaway" aria-label="How to read the model">
+    <div><h3>1. Why did demand move?</h3><p>Cloud firms and other buyers wanted more GPUs and specialized AI accelerators at <em>every given price</em>. That shifts the whole demand curve right.</p></div>
+    <div><h3>2. Why didn't supply keep up?</h3><p>Leading-edge fabrication, high-bandwidth memory, and advanced packaging require investment, equipment, and time. Supply responds with a lag.</p></div>
+    <div><h3>3. Why does the price rise?</h3><p>Through 2026 the <em>modeled demand shift exceeds the supply response</em>, raising both the price <em>per AI chip</em> and the <em>number of chips sold</em>. This is a scenario, not a claim that every chip became more expensive.</p></div>
+  </aside>
+  <p class="benchmark"><strong>Real-world price check:</strong> <a href="https://epoch.ai/data/ai-chip-sales-documentation/methodology" target="_blank" rel="noopener noreferrer">Epoch AI’s semiconductor price research</a> puts A100 accelerators around <strong>$10k–$15k</strong> in 2022–23, H100s around <strong>$27k–$35k</strong> in 2023, and GB200 systems at approximately <strong>$33k–$42k per GPU</strong> in later generations. These are <em>different products</em>, not like-for-like inflation: Epoch estimates that the <strong>same H100/H200 product group actually became less expensive</strong> from 2023 to 2025. The graph shows economic price <em>pressure</em> for a changing category of high-end AI accelerators, not a literal market transaction series.</p>
+  <p class="footer"><strong>Scope and sources:</strong> Historical shift explanations draw on <a href="https://investor.nvidia.com/news/press-release-details/2023/NVIDIA-Announces-Financial-Results-for-First-Quarter-Fiscal-2024/" target="_blank" rel="noopener noreferrer">NVIDIA</a>, <a href="https://investor.tsmc.com/static/annualReports/2023/english/index.html" target="_blank" rel="noopener noreferrer">TSMC</a>, and <a href="https://epoch.ai/data/ai-chip-sales" target="_blank" rel="noopener noreferrer">Epoch AI’s shipment research</a>. The October 2026 assessment uses TSMC’s October 15, 2026 earnings materials. <strong>All graph price and quantity levels are educational assumptions;</strong> their units describe chip goods, not stock shares or company values. <strong>2028 is a hypothetical supply catch-up scenario, not a forecast.</strong></p>
+  <div class="sr-only" id="liveDescription" role="status" aria-live="polite" aria-atomic="true"></div>
+</main>
+<script>
+'use strict';
+// Inverse demand: price ($thousands/chip) = 14 + d - 0.5q;
+// Inverse supply: price ($thousands/chip) = 8 - s + 2.5q.
+// q is hundreds of thousands of AI accelerator chips per quarter.
+// These values are intentionally illustrative, NOT estimated price/shipments data.
+// Source links support the historical developments, NOT the numerical curve shifts.
+const milestones = [
+  {
+    label:'Late 2022 · Starting point', year:'2022', short:'2022', d:0, s:0, hypothetical:false,
+    title:'Before the generative-AI surge',
+    intro:'AI hardware existed, but the late-2022 generative-AI wave had not yet prompted the scale of orders that followed.',
+    demand:'The reference market: existing uses for data-center GPUs and AI acceleration before the mass-market generative-AI wave.',
+    supply:'The reference market: existing capacity for fabrication, memory, advanced packaging, and testing.',
+    evidence:'ChatGPT became publicly available on November 30, 2022, helping bring generative AI to a much wider audience.',
+    source:'OpenAI · November 30, 2022',url:'https://openai.com/index/chatgpt/',
+    interpret:'This starting equilibrium is the reference for every later date.'
+  },
+  {
+    label:'May 2023 · Demand takes off', year:'2023', short:'May 2023', d:14, s:1, hypothetical:false,
+    title:'Generative AI sends chip demand outward',
+    intro:'More AI-model training and inference means more buyers seeking specialized data-center chips, even at higher prices.',
+    demand:'Big rightward shift: cloud firms, AI developers, and enterprises plan much more spending on AI processing.',
+    supply:'Only a small rightward shift: existing production lines cannot instantly match a jump in orders.',
+    evidence:'NVIDIA reported record quarterly Data Center revenue of $4.28 billion and said it was substantially increasing supply to meet surging demand.',
+    source:'NVIDIA · May 24, 2023',url:'https://investor.nvidia.com/news/press-release-details/2023/NVIDIA-Announces-Financial-Results-for-First-Quarter-Fiscal-2024/',
+    interpret:'Demand shifts much farther than supply. In the model, the new equilibrium moves up and right.'
+  },
+  {
+    label:'Late 2023 · Capacity bottlenecks', year:'2023', short:'Late 2023', d:18, s:3, hypothetical:false,
+    title:'Orders accelerate; packaging becomes a bottleneck',
+    intro:'Firms need advanced accelerators, but a finished AI chip depends on more than making the silicon wafer.',
+    demand:'Another sizable right shift: buyers compete for GPUs, custom accelerators, and the capacity to assemble AI systems.',
+    supply:'A smaller right shift: leading-edge production expands, but advanced packaging and high-bandwidth memory remain constraints.',
+    evidence:'TSMC reported robust CoWoS advanced-packaging demand from multiple AI-chip customers in 2023. TrendForce warned that CoWoS capacity would be strained in the second half of 2023.',
+    source:'TSMC · 2023 annual report',url:'https://investor.tsmc.com/static/annualReports/2023/english/index.html',
+    interpret:'When capacity expands more slowly than demand, the model shows upward price pressure alongside higher output.'
+  },
+  {
+    label:'May 2024 · Explosive growth', year:'2024', short:'May 2024', d:24, s:6, hypothetical:false,
+    title:'Demand keeps outrunning new capacity',
+    intro:'AI use spreads from model training into deployed products, services, and data centers. Suppliers begin scaling more aggressively.',
+    demand:'Further right shift: spending on AI data centers and accelerated computing accelerates.',
+    supply:'Rightward shift too: producers increase output, expand advanced packaging, and work through manufacturing limits.',
+    evidence:'For the quarter ended April 28, 2024, NVIDIA reported Data Center revenue of $22.6 billion, up 427% year over year.',
+    source:'NVIDIA · May 22, 2024',url:'https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-first-quarter-fiscal-2025',
+    interpret:'Both curves move right, but the demand shift remains larger. The modeled quantity and price are above the starting market.'
+  },
+  {
+    label:'Feb 2025 · New chip generation', year:'2025', short:'Early 2025', d:30, s:9, hypothetical:false,
+    title:'New products arrive; supply starts responding',
+    intro:'NVIDIA’s Blackwell-generation systems begin shipping in volume as advanced packaging and manufacturing investment continues.',
+    demand:'Right again: buyers want both existing AI accelerators and new generations of higher-performance hardware.',
+    supply:'A more visible right shift: improved manufacturing, packaging, and product ramp-ups increase available output.',
+    evidence:'NVIDIA reported quarterly Data Center revenue of $35.6 billion in February 2025; the company began shipping Blackwell production systems during its fourth fiscal quarter.',
+    source:'NVIDIA · February 26, 2025',url:'https://investor.nvidia.com/news/press-release-details/2025/NVIDIA-Announces-Financial-Results-for-Fourth-Quarter-and-Fiscal-2025/default.aspx',
+    interpret:'Demand still grows faster than available supply; the model shows a higher chip price and more chips sold, even as new factories and packaging lines come online.'
+  },
+  {
+    label:'Late 2025 · Wider capacity expansion', year:'2025', short:'Late 2025', d:35, s:13, hypothetical:false,
+    title:'Production grows—but so does AI adoption',
+    intro:'Chipmakers expand advanced processing and packaging capacity while inference, enterprise AI, and newer applications broaden demand.',
+    demand:'Substantial rightward shift: more inference usage and infrastructure spending raise demand across AI hardware.',
+    supply:'Another large right shift: foundries, packaging firms, and equipment suppliers expand capacity planned in earlier years.',
+    evidence:'TSMC reported strong AI-related demand throughout 2025 and a 35.9% year-over-year increase in U.S.-dollar revenue.',
+    source:'TSMC · 2025 annual report',url:'https://investor.tsmc.com/static/annualReports/2025/english/index.html',
+    interpret:'The chip quantity keeps growing. In this illustrative path, demand continues to outrun supply, so the price per chip still rises.'
+  },
+  {
+    label:'Oct 2026 · Demand remains strong', year:'2026', short:'Oct 2026', d:40, s:16, hypothetical:false,
+    title:'AI demand remains strong as capacity expands',
+    intro:'AI accelerators, networking chips, and agentic-AI infrastructure sustain demand while producers make multiyear investments to increase production.',
+    demand:'Further right shift: more AI adoption and specialized computing use keep drawing in buyers.',
+    supply:'Strong rightward expansion: more advanced manufacturing and packaging capacity is planned or ramping, although equipment constraints remain.',
+    evidence:'At its October 15, 2026 earnings call, TSMC described continued robust AI demand and planned $60–64 billion in 2026 capital expenditure; it also noted tight equipment supply.',
+    source:'TSMC · October 15, 2026',url:'https://investor.tsmc.com/english/quarterly-results/2026/q3',
+    interpret:'The example keeps price per chip rising through 2026 because AI-chip demand outpaces the expansion of available supply. This is modeled price pressure, not observed average selling prices.'
+  },
+  {
+    label:'2028 · Hypothetical scenario', year:'2028', short:'2028 scenario', d:45, s:51, hypothetical:true,
+    title:'What if capacity finally catches up?',
+    intro:'A possible future path—not a historical fact. Suppose demand continues growing, while multiyear factory and packaging investments let supply expand faster.',
+    demand:'Hypothetical right shift: AI use keeps increasing, though demand growth slows compared with the early boom.',
+    supply:'Hypothetical larger right shift: new capacity, improved yields, more competition, and packaging expansion allow faster output growth.',
+    evidence:'TSMC said in October 2026 that capital investment during 2026–2028 would be significantly higher than in the preceding three years. The size of these future curve shifts is invented for learning purposes.',
+    source:'TSMC · October 15, 2026 (investment plans)',url:'https://investor.tsmc.com/english/quarterly-results/2026/q3',
+    interpret:'Only in this explicitly hypothetical 2028 scenario does supply catch up enough to make the example price slip from 2026—while chip output keeps growing. It is not a prediction.'
+  }
+];
+
+const $ = id => document.getElementById(id);
+const graph = $('graph');
+const slider = $('timeline');
+// q is measured in 100,000 accelerator chips sold per quarter.
+// p is thousands of USD per accelerator chip. These scales are pedagogical, not fitted data.
+const qMax = 40, pMax = 55;
+let left=82, right=857;
+const plotTop=40, bottom=458;
+const toX = q => left+(right-left)*(q/qMax);
+const toY = p => bottom-(bottom-plotTop)*(p/pMax);
+const P_D = (q,d) => 14+d-0.5*q;
+const P_S = (q,s) => 8-s+2.5*q;
+const equilibrium = (d,s) => {
+  const q = (6+d+s)/3;
+  return {q,p:P_D(q,d)};
+};
+const chipCount = q => q >= 10 ? (q/10).toFixed(1)+' million' : (Math.round(q)*100000).toLocaleString('en-US');
+const chipPrice = p => (Math.round(p)*1000).toLocaleString('en-US', {style:'currency',currency:'USD',maximumFractionDigits:0});
+const countMillions = q => (q/10).toFixed(2).replace(/0+$/,'').replace(/\.$/,'')+'M';
+const baseEq = equilibrium(0,0);
+const ns='http://www.w3.org/2000/svg';
+let currentD=0,currentS=0;
+let currentStep=0;
+let animation=null;
+
+function set(el, attrs) { const e=typeof el==='string'?$(el):el; for(const [k,v] of Object.entries(attrs)) e.setAttribute(k,String(v)); }
+function drawGrid() {
+  const group=$('gridlines');
+  group.replaceChildren();
+  const svgText=(x,y,value,anchor='end')=>{
+    const t=document.createElementNS(ns,'text');
+    t.textContent=value;
+    set(t,{x,y,fill:'#526277','font-size':18,'font-weight':650,'text-anchor':anchor});
+    group.appendChild(t);
+  };
+  // Horizontal grid: price in actual dollar units, every $10,000.
+  for(let p=10;p<=50;p+=10){
+    const l=document.createElementNS(ns,'line');
+    set(l,{x1:left,y1:toY(p),x2:right,y2:toY(p),stroke:'#e3e8f0','stroke-width':1.2});
+    group.appendChild(l);
+    svgText(left-13,toY(p)+6,`$${p}k`);
+  }
+  svgText(left-13,bottom+5,'$0');
+  // Vertical grid: quantity of chips sold per quarter (1M per division).
+  for(let q=10;q<=qMax;q+=10){
+    const l=document.createElementNS(ns,'line');
+    set(l,{x1:toX(q),y1:plotTop,x2:toX(q),y2:bottom,stroke:'#ebeff4','stroke-width':1.2});
+    group.appendChild(l);
+  }
+  for(let q=0;q<=qMax;q+=5) {
+    svgText(toX(q),bottom+45,q===0?'0':countMillions(q), 'middle');
+  }
+}
+function endpoints(a,b) {
+  const all=[{q:0,p:a},{q:qMax,p:a+b*qMax}];
+  if (Math.abs(b)>1e-9) { all.push({q:(0-a)/b,p:0},{q:(pMax-a)/b,p:pMax}); }
+  const good=all.filter(({q,p}) => q>=-1e-6 && q<=qMax+1e-6 && p>=-1e-6 && p<=pMax+1e-6).sort((x,y)=>x.q-y.q);
+  return good.length>1 ? [good[0],good[good.length-1]] : [{q:0,p:a},{q:qMax,p:a+b*qMax}];
+}
+function drawLine(id,intercept,slope) {
+  const [a,b]=endpoints(intercept,slope);
+  set(id,{x1:toX(a.q),y1:toY(a.p),x2:toX(b.q),y2:toY(b.p)});
+}
+function updateGeometry(d,s,stage) {
+  const eq=equilibrium(d,s); const x=toX(eq.q), y=toY(eq.p);
+  drawLine('activeDemand',14+d,-.5);
+  drawLine('activeSupply',8-s,2.5);
+  set('priceGuide',{x1:left,y1:y,x2:x,y2:y});
+  set('quantityGuide',{x1:x,y1:y,x2:x,y2:bottom});
+  set('priceGuideLabel',{x:left+14,y:y-12});
+  set('quantityGuideLabel',{x,y:bottom-11});
+  $('priceGuideLabel').textContent=stage===0?'P₀':'Pₜ';
+  $('quantityGuideLabel').textContent=stage===0?'Q₀':'Qₜ';
+  set('eqRing',{cx:x,cy:y});set('eqCenter',{cx:x,cy:y});
+  const eqLabelX=x>right-105?x-104:x+18;
+  set('eqLabel',{x:eqLabelX,y:y-14});
+  $('eqLabel').textContent=stage===0?'E₀':'Eₜ';
+  const qDemandLabel=Math.min(qMax-1.7,eq.q+7);
+  const qSupplyLabel=Math.min(qMax-2.2,eq.q+2);
+  set('demandLabel',{x:toX(qDemandLabel)+2,y:toY(P_D(qDemandLabel,d))-11});
+  set('supplyLabel',{x:toX(qSupplyLabel)+2,y:toY(P_S(qSupplyLabel,s))-12});
+  $('demandLabel').textContent=stage===0?'D₀':'Dₜ';
+  $('supplyLabel').textContent=stage===0?'S₀':'Sₜ';
+  const isBase=stage===0;
+  $('baseCurves').style.display=isBase?'none':'';
+  $('baseLabels').style.display=isBase?'none':'';
+}
+function drawBaseline() {
+  drawLine('baseDemand',14,-.5);drawLine('baseSupply',8,2.5);
+  const bx=toX(baseEq.q),by=toY(baseEq.p);
+  set('baseEqMarker',{d:`M ${bx} ${by-7} l 7 7 l -7 7 l -7 -7 Z`});
+  set('baseEqLabel',{x:bx-30,y:by-13});
+  set('baseDemandLabel',{x:toX(12),y:toY(P_D(12,0))-13});
+  set('baseSupplyLabel',{x:toX(10),y:toY(P_S(10,0))-9});
+}
+function direction(n,base) {
+  if(Math.abs(n-base)<.1) return 'Unchanged';
+  return n>base?'↑ Higher':'↓ Lower';
+}
+function fillWords(index){
+  if(index===0) return 'Reference';
+  return ['Reference','Small →','Large →','Very large →','Very large →','Very large →','Very large →','Hypothetical →'][index];
+}
+function updateStory(stage){
+  const m=milestones[stage];
+  $('stageDate').textContent=m.label;
+  $('phaseType').textContent=m.hypothetical?'Illustrative future scenario':'Historical context';
+  $('storyTitle').textContent=m.title;
+  $('stageIntro').textContent=m.intro;
+  $('demandIndicator').textContent=stage===0?'2022 reference':(m.hypothetical?'Scenario: right →':'Shift right →');
+  $('supplyIndicator').textContent=stage===0?'2022 reference':(m.hypothetical?'Scenario: right →':'Shift right →');
+  $('demandReason').textContent=m.demand;
+  $('supplyReason').textContent=m.supply;
+  const eq=equilibrium(m.d,m.s);
+  $('priceDirection').textContent=chipPrice(eq.p)+' / chip';
+  $('quantityDirection').textContent=chipCount(eq.q)+' chips / quarter';
+  const prev=stage>0?equilibrium(milestones[stage-1].d,milestones[stage-1].s):baseEq;
+  $('priceComparison').textContent=stage===0?'2022 reference':(eq.p>prev.p+.02?'↑ Up from previous milestone':eq.p<prev.p-.02?'↓ Down from previous milestone':'Unchanged from previous milestone');
+  $('quantityComparison').textContent=stage===0?'2022 reference':(eq.q>prev.q?'↑ More chips sold than previously':'No increase vs. previous milestone');
+  $('reading').textContent=m.interpret;
+  $('evidence').textContent=m.evidence;
+  const source=$('source');
+  const link=document.createElement('a');link.textContent=`Source: ${m.source} ↗`;link.href=m.url;link.target='_blank';link.rel='noopener noreferrer';
+  source.replaceChildren(link);
+  const percent=(stage/(milestones.length-1))*100;
+  slider.style.setProperty('--progress',percent+'%');
+  slider.setAttribute('aria-valuetext',m.label+(m.hypothetical?', hypothetical extrapolation':''));
+  document.querySelectorAll('.stop').forEach((stop,i)=>{stop.classList.toggle('current',i===stage);});
+  $('chartDescription').textContent=`${m.label}. Demand curve and supply curve intersect at an illustrative equilibrium of ${chipPrice(eq.p)} per AI accelerator chip and ${chipCount(eq.q)} chips sold per quarter. ${stage===0?'This is the reference equilibrium.':'Both curves have shifted right compared with 2022.'} These are hypothetical teaching values, not recorded prices or shipments.`;
+  $('liveDescription').textContent=`${m.label}. ${m.title}. Model price ${chipPrice(eq.p)} per AI chip; quantity ${chipCount(eq.q)} chips per quarter. ${stage===0?'Baseline.':'Demand and supply shifted right.'}`;
+}
+function chooseStage(n,animate=true){
+  const m=milestones[n];
+  currentStep=n;
+  updateStory(n);
+  if(animation){cancelAnimationFrame(animation);animation=null;}
+  const startD=currentD,startS=currentS;
+  if(!animate||window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    currentD=m.d;currentS=m.s;updateGeometry(currentD,currentS,n);return;
+  }
+  const duration=410;
+  let start=null;
+  function tick(t){
+    if(start===null)start=t;
+    const k=Math.min(1,(t-start)/duration);
+    const eased=1-Math.pow(1-k,3);
+    currentD=startD+(m.d-startD)*eased;
+    currentS=startS+(m.s-startS)*eased;
+    updateGeometry(currentD,currentS,n);
+    if(k<1)animation=requestAnimationFrame(tick);else animation=null;
+  }
+  animation=requestAnimationFrame(tick);
+}
+slider.addEventListener('input',e=>chooseStage(Number(e.target.value),true));
+function adjustLayout(){
+  const mobile=window.innerWidth <= 640;
+  right=mobile?585:857;
+  graph.setAttribute('viewBox',`0 0 ${mobile?630:900} 555`);
+  set('clipRect',{x:left,y:plotTop,width:right-left,height:bottom-plotTop});
+  set('priceAxis',{d:`M${left} ${bottom} V34`});
+  set('quantityAxis',{d:`M${left} ${bottom} H${right+11}`});
+  set('quantityTitle',{x:(left+right)/2});
+  set('quantitySubtitle',{x:(left+right)/2});
+  if(animation){cancelAnimationFrame(animation);animation=null;}
+  drawGrid();drawBaseline();updateGeometry(currentD,currentS,currentStep);
+}
+window.addEventListener('resize',adjustLayout);
+chooseStage(0,false);
+adjustLayout();
+</script>
+</body>
+</html>
