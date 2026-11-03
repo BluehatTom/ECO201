@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#99002b">
+<meta name="description" content="Accessible ECO 201 Chapter 16 economics simulations: demand under uncertain quality, information signals and used cars, and insurance markets.">
+<title>ECO 201 | Chapter 16 Interactive Learning Lab</title>
+<style>
+:root{color-scheme:light;--red:#99002b;--red-dark:#740020;--ink:#182332;--muted:#44546a;--bg:#f5f7fa;--paper:#fff;--line:#c6d0db;--wash:#f0f2f6;--navy:#234d73;--navy-light:#e7eff7;--high:#9b2647;--low:#245b80;--ok:#185a3a;--warning:#795100;--radius:16px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;font-size:16px;line-height:1.5;background:var(--bg);color:var(--ink)}
+a{color:#164b88}button,input,select,textarea{font:inherit}button{cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:3px solid #0968bd;outline-offset:3px}
+.skip{position:absolute;top:-100px;left:16px;z-index:100;background:white;color:#132b41;padding:12px;border:2px solid #132b41}.skip:focus{top:12px}
+.site-header{background:#fff;border-bottom:5px solid var(--red)}.topline{max-width:1140px;margin:auto;padding:14px 22px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.brand{font-weight:800;letter-spacing:.035em;color:var(--red)}.course-id{font-size:.88rem;font-weight:700;color:var(--muted)}
+main{max-width:1140px;padding:22px 22px 60px;margin:auto}.intro{margin:0 0 20px}.eyebrow{text-transform:uppercase;letter-spacing:.1em;font-size:.82rem;font-weight:800;color:var(--red);margin:0 0 6px}h1{font-size:clamp(1.7rem,3.8vw,2.65rem);line-height:1.16;margin:0 0 8px}h2{font-size:clamp(1.4rem,2.5vw,2rem);line-height:1.23;margin:0 0 7px}h3{font-size:1.17rem;line-height:1.25;margin:0 0 10px}h4{font-size:1.06rem;margin:0 0 8px}p{margin:.25em 0 .8em}.subtext{color:var(--muted);max-width:75ch}.small{font-size:.88rem}.micro{font-size:.8rem}.strong{font-weight:700}.money,.num{font-variant-numeric:tabular-nums}
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 20px}.tab{padding:11px 18px;background:var(--paper);color:var(--ink);border:2px solid var(--line);border-radius:10px;font-weight:750}.tab[aria-selected="true"]{border-color:var(--red);background:var(--red);color:white}.tab[aria-selected="false"]:hover{border-color:var(--red)}[hidden]{display:none!important}
+.panel{min-width:0}.section-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:6px 0 16px}.chip{background:var(--navy-light);border:1px solid #a6bbd1;border-radius:999px;color:#153854;font-size:.82rem;font-weight:700;padding:5px 11px;white-space:nowrap}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(16px,2.5vw,24px);box-shadow:0 2px 6px rgba(18,34,54,.04);margin-bottom:18px}.card>h3:first-child{margin-top:0}.card-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.choice{display:block;border:2px solid var(--line);border-radius:12px;padding:16px;cursor:pointer;background:#fff;position:relative;min-height:205px}.choice:hover{border-color:#66778b}.choice:has(input:checked){border-color:var(--red);box-shadow:inset 0 0 0 1px var(--red);background:#fff8fa}.choice input{width:19px;height:19px;accent-color:var(--red);vertical-align:middle;margin:0 6px 0 0}.car-code{font-size:1rem;font-weight:800;letter-spacing:.04em}.car-price{font-size:1.9rem;font-weight:800;margin:10px 0}.car-notes{margin:0;padding-left:19px;color:var(--muted);font-size:.94rem}.car-notes li{margin:2px 0}fieldset{border:0;padding:0;margin:0;min-width:0}legend{font-weight:750;margin-bottom:12px}.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:15px 0 0}.btn{border-radius:9px;border:2px solid var(--red);padding:10px 17px;font-weight:760;background:var(--red);color:#fff;min-height:44px}.btn:hover:not(:disabled){background:var(--red-dark);border-color:var(--red-dark)}.btn.secondary{background:#fff;color:var(--red)}.btn.secondary:hover:not(:disabled){background:#fff2f6}.btn.neutral{border-color:#7c8a99;background:#fff;color:#1c3147}.btn.neutral:hover:not(:disabled){background:#edf1f6}
+.notice{padding:13px 16px;background:#f2f6fa;border:1px solid #9cb5cc;border-left:5px solid var(--navy);border-radius:8px;margin-top:14px}.notice p:last-child{margin-bottom:0}.notice.success{border-left-color:var(--ok);background:#f2f9f4;border-color:#a9cfb8}.note-title{font-weight:780;margin:0 0 5px}
+.results{margin-top:17px}.data-table{width:100%;border-collapse:collapse;text-align:left;font-size:.95rem;background:white}.table-wrap{max-width:100%;overflow-x:auto}.data-table caption{text-align:left;font-weight:750;margin-bottom:8px}.data-table th,.data-table td{border-bottom:1px solid var(--line);padding:10px 12px;vertical-align:top}.data-table thead th{background:#e9edf2;font-weight:750}.data-table tbody th{font-weight:720}.data-table tbody tr:last-child td,.data-table tbody tr:last-child th{border-bottom:0}.highlight-row{background:#f9f2f5}.pill{font-size:.78rem;font-weight:750;border:1px solid #b6c2cb;border-radius:50px;padding:2px 8px;display:inline-block}
+.radio-stack{display:flex;gap:15px;flex-wrap:wrap;margin:5px 0 15px}.radio-stack label{display:inline-flex;align-items:center;gap:7px;cursor:pointer;border:1px solid var(--line);border-radius:9px;padding:10px 13px;min-height:44px}.radio-stack label:has(input:checked){background:#f2e9ed;border-color:var(--red)}input[type=radio],input[type=checkbox]{accent-color:var(--red);width:18px;height:18px}
+.stat-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:15px 0}.stat{background:var(--wash);border-radius:12px;padding:13px}.stat .lab{font-size:.81rem;color:#374861;font-weight:700}.stat .val{font-size:clamp(1.2rem,2vw,1.65rem);font-weight:800;margin:3px 0 0}.stat .detail{font-size:.78rem;color:var(--muted)}.chartbox{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px}.chart-title{font-size:.97rem;font-weight:800;margin:0 0 14px}.barrow{display:grid;grid-template-columns:minmax(130px,1fr) minmax(80px,3fr) 60px;align-items:center;gap:10px;margin:12px 0}.barlabel{font-size:.88rem;font-weight:720}.track{height:23px;border-radius:5px;background:#e6e9ef;border:1px solid #cad2dc;overflow:hidden}.fill{height:100%;min-width:0;transition:width .15s ease;background:repeating-linear-gradient(45deg,var(--low),var(--low) 13px,#317195 13px,#317195 19px)}.fill.hi{background:repeating-linear-gradient(45deg,var(--high),var(--high) 13px,#b73b60 13px,#b73b60 19px)}.barvalue{font-weight:800;font-size:.9rem;text-align:right;font-variant-numeric:tabular-nums}.legend{display:flex;gap:15px;flex-wrap:wrap;font-size:.84rem;color:var(--muted)}.legend .swatch{display:inline-block;width:15px;height:9px;border-radius:2px;margin-right:5px;vertical-align:middle}.legend .swatch.low{background:var(--low)}.legend .swatch.high{background:var(--high)}
+.rounds{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:14px 0}.round{border:2px solid var(--line);background:white;color:var(--ink);border-radius:12px;min-height:80px;padding:13px;text-align:left}.round[aria-pressed="true"]{border-color:var(--red);background:#fff4f7}.round:hover{border-color:var(--red)}.round strong{display:block;margin-bottom:5px;font-size:1rem}.round span{font-size:.84rem;color:var(--muted)}.round-pill{font-size:.76rem;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:.04em}
+.metric-big{font-size:2.35rem;color:var(--red);font-weight:850;line-height:1.1;margin:.12em 0 .15em}.step-line{margin:5px 0;color:var(--muted)}.round-compare{padding:13px 18px;background:#f7f8fa;border-radius:12px}.round-compare .barrow{grid-template-columns:70px minmax(70px,4fr) 75px}.round-compare .fill{background:repeating-linear-gradient(90deg,var(--navy),var(--navy) 10px,#38749a 10px,#38749a 15px)}.round-compare .barrow.active .fill{background:repeating-linear-gradient(90deg,var(--red),var(--red) 10px,#be3860 10px,#be3860 15px)}.round-compare .barrow.active .barlabel{color:var(--red)}
+.form-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.field label{display:block;font-weight:750;margin-bottom:6px}.field select,.field input[type=number],.field textarea{width:100%;padding:10px;border:2px solid #9eacbc;background:white;color:var(--ink);border-radius:8px}.field input[type=range]{width:100%;accent-color:var(--red);min-height:30px}.field output{font-weight:800;color:var(--red)}.field small{display:block;color:var(--muted)}.checkbox-line{display:flex;align-items:flex-start;gap:10px;margin:16px 0 6px;cursor:pointer;font-weight:700}.checkbox-line input{margin-top:3px;flex:0 0 auto}
+.feedback{margin-top:10px;padding:12px;background:#f2f6fa;border-radius:8px;border:1px solid #a6bdd0}.feedback strong{display:block}.question-box{padding:15px;border:1px solid #bdcad6;border-radius:12px;margin-top:15px}.question-box label{display:block;font-weight:750}.question-box input[type=number]{max-width:200px;padding:10px;border:2px solid #8595a6;border-radius:8px;margin-top:7px}.question-box .btn{margin-top:9px}
+.dl{display:grid;grid-template-columns:auto 1fr;gap:8px 18px;margin:0}.dl dt{font-weight:760}.dl dd{margin:0}.fine-print{font-size:.84rem;color:var(--muted)}.instruction{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 16px;margin:14px 0}.instruction strong{color:var(--red)}.reflect{width:100%;max-width:100%;min-height:92px;padding:12px;border:2px solid #9cabb9;border-radius:9px;resize:vertical}.footer{max-width:1140px;margin:0 auto;padding:15px 22px 25px;font-size:.82rem;color:var(--muted);border-top:1px solid var(--line)}details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 17px;margin:15px 0}summary{cursor:pointer;font-weight:800;padding:5px 0}details[open] summary{margin-bottom:10px}.screen-reader-only{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+@media(max-width:780px){.grid3,.grid2,.rounds,.form-grid{grid-template-columns:1fr}.choice{min-height:0}.stat-row{grid-template-columns:repeat(2,minmax(0,1fr))}.barrow{grid-template-columns:1fr 2fr 50px}.topline{padding:12px 16px}main{padding:18px 16px 45px}.round{min-height:0}.rounds{gap:7px}}
+@media(max-width:410px){.stat-row{grid-template-columns:1fr 1fr}.stat .val{font-size:1.2rem}.barrow{grid-template-columns:75px minmax(50px,1fr) 42px;gap:6px}.barlabel{font-size:.8rem}.barvalue{font-size:.8rem}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.fill{transition:none}}
+@media print{body{background:white}.site-header{border-bottom:2px solid #000}.tabs,.actions,.btn,.no-print{display:none!important}.panel{display:block!important}.choice{min-height:0}.card{box-shadow:none;break-inside:avoid}.footer{font-size:10px}.rounds,.form-grid,.grid3{grid-template-columns:repeat(3,1fr)}.screen-reader-only{display:none}}
+
+@media(max-width:600px){.graph-wrap{overflow-x:auto}#demandGraph{min-width:630px}.graph-key{min-width:560px}}
+/* New demand/quality activities — all controls have visible labels and text equivalents. */
+.module-callout{display:flex;gap:12px;align-items:flex-start;padding:13px 16px;border-left:5px solid var(--red);background:#fff5f7;border-radius:7px;margin:12px 0 20px}
+.module-callout p{margin:0}
+.demand-layout{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(270px,.9fr);gap:18px;align-items:start}
+.graph-wrap{min-width:0;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px}
+.graph-wrap svg{width:100%;height:auto;display:block;max-height:500px}
+.graph-caption{font-size:.87rem;color:var(--muted);margin:5px 5px 0}
+.controls{display:grid;gap:14px}
+.control-group{background:#f3f6fa;border:1px solid #bac9d8;padding:14px;border-radius:12px}
+.control-group label,.control-group .group-label{display:block;font-weight:780;margin-bottom:6px}
+.control-group input[type=range]{width:100%;min-height:36px;accent-color:var(--red)}
+.control-group input[type=checkbox]{margin:2px 5px 0 0;vertical-align:middle}
+.control-group .hint{color:var(--muted);font-size:.85rem;margin:2px 0 0}
+.control-value{font-size:1.18rem;font-weight:850;color:var(--red)}
+.preset-list{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 0}
+.preset-list button{border:1px solid #708497;background:white;color:#142a42;border-radius:8px;padding:8px 11px;min-height:44px;font-weight:700}
+.preset-list button[aria-pressed=true]{border:2px solid var(--red);background:#fff2f6;color:var(--red)}
+.preset-list button:hover{border-color:var(--red)}
+.outcome-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:13px}
+.outcome-grid .stat{background:#e9eef5}
+.outcome-grid .val{font-size:clamp(1.2rem,2.1vw,1.65rem)}
+.checkform{display:grid;gap:11px}
+.checkform legend{margin-bottom:9px;font-weight:760}
+.checkform label{display:block;cursor:pointer;margin:7px 0}
+.checkform input[type=radio]{margin-right:8px;vertical-align:middle}
+.signal-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin:12px 0 18px}
+.signal-card{background:#f3f7fa;border:1px solid #bccbd9;border-radius:10px;padding:13px 14px;min-height:112px}
+.signal-card:nth-child(2n){background:#f9f2f4}
+.signal-card h4{font-size:1rem;color:#19344d;margin:0 0 5px}
+.signal-card p{margin:0;font-size:.91rem;color:#263b50}
+.match-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.match-grid select{padding:10px;border:2px solid #92a3b5;border-radius:9px;width:100%;background:white;color:var(--ink);min-height:46px}
+.match-grid label{font-weight:740;display:block;margin-bottom:7px}
+.input-mini{max-width:250px;width:100%;padding:10px;border:2px solid #92a3b5;border-radius:9px;min-height:46px}
+.next-module{margin-top:15px;display:flex;justify-content:flex-end}
+.graph-key{display:flex;flex-wrap:wrap;gap:9px 20px;font-size:.86rem;margin:8px 0 2px}
+.graph-key span{display:inline-flex;align-items:center;gap:6px}
+.graph-key .line{display:inline-block;width:27px;height:0;border-top:4px solid #234a68}
+.graph-key .dash{border-top-style:dashed;border-top-color:#aa1542}
+.graph-key .supply{border-top-color:#18677a}
+.graph-key .supply2{border-top-color:#6e4785;border-top-style:dashed}
+@media(max-width:900px){.demand-layout{grid-template-columns:1fr}}
+@media(max-width:780px){.signal-grid,.outcome-grid,.match-grid{grid-template-columns:1fr}}
+@media print{.demand-layout{grid-template-columns:1fr}.signal-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.preset-list{display:none}}
+
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the interactive lab</a>
+<header class="site-header">
+  <div class="topline"><div class="brand">ECO 201 <span class="course-id">/ INTERACTIVE ECONOMICS LAB</span></div><div class="course-id">ECO 201 · Chapter 16</div></div>
+</header>
+<main id="main">
+ <div class="intro"><p class="eyebrow">Information · Risk · Insurance</p><h1>Chapter 16 Interactive Learning Lab</h1><p class="subtext">Make choices, reveal information, and test how changes in risk and incentives affect market results. The three modules follow the ECO 201 Chapter 16 slides. Use them in order or jump to an activity.</p></div>
+ <div class="instruction"><strong>Suggested sequence:</strong> <strong>1. Demand and uncertainty</strong> (slide 4), <strong>2. Trust and used cars</strong> (slides 5–7), <strong>3. Insurance</strong> (slides 9–18). All scenarios are classroom models, not observed market data. The lab works offline; nothing is sent to a server.</div>
+ <div class="tabs" role="tablist" aria-label="Choose a learning module. Use left and right arrow keys to switch tabs.">
+  <button class="tab" role="tab" id="tab-demand" aria-controls="panel-demand" aria-selected="true" tabindex="0">1 · Demand &amp; uncertainty</button>
+  <button class="tab" role="tab" id="tab-cars" aria-controls="panel-cars" aria-selected="false" tabindex="-1">2 · Trust &amp; used cars</button>
+  <button class="tab" role="tab" id="tab-insurance" aria-controls="panel-insurance" aria-selected="false" tabindex="-1">3 · Insurance company</button>
+ </div>
+
+ <section class="panel" id="panel-demand" role="tabpanel" aria-labelledby="tab-demand" tabindex="0">
+  <div class="section-head"><div><p class="eyebrow">Meeting 1 · Slide 4</p><h2>When quality is uncertain, demand can fall</h2><p class="subtext">Move buyer uncertainty up or down. Watch the demand curve move and see how equilibrium price and quantity respond.</p></div><span class="chip">8–10 minutes</span></div>
+  <div class="module-callout"><p><strong>Start here:</strong> This model treats buyer uncertainty as a reduction in willingness to pay. A change in product quality could also affect supply. Use the third control to explore that possibility.</p></div>
+  <div class="card">
+   <h3>Experiment 1 · Shift the demand curve</h3>
+   <div class="demand-layout">
+    <div class="graph-wrap" tabindex="0" role="region" aria-label="Supply and demand graph; on narrow screens scroll horizontally to see the whole graph">
+     <svg id="demandGraph" viewBox="0 0 800 460" role="img" aria-labelledby="demandGraphTitle demandGraphDesc" preserveAspectRatio="xMidYMid meet">
+      <title id="demandGraphTitle">Supply and demand for used cars under uncertain quality</title>
+      <desc id="demandGraphDesc">Known-quality demand D1 intersects supply S1. Uncertainty creates D2, which can change equilibrium. Numerical quantities and prices are also provided below the chart.</desc>
+      <rect x="68" y="22" width="698" height="358" fill="#ffffff"/>
+      <g stroke="#e3e9ef" stroke-width="1" aria-hidden="true"><path d="M 68 77 H 766 M 68 132 H 766 M 68 187 H 766 M 68 242 H 766 M 68 297 H 766 M 68 352 H 766"/></g>
+      <g fill="#293d52" font-size="17" font-family="Arial, sans-serif" aria-hidden="true">
+       <text x="54" y="384" text-anchor="end">$0k</text><text x="54" y="302" text-anchor="end">$3k</text><text x="54" y="219" text-anchor="end">$6k</text><text x="54" y="137" text-anchor="end">$9k</text><text x="54" y="55" text-anchor="end">$12k</text>
+       <text x="68" y="403" text-anchor="middle">0</text><text x="208" y="403" text-anchor="middle">20</text><text x="348" y="403" text-anchor="middle">40</text><text x="487" y="403" text-anchor="middle">60</text><text x="627" y="403" text-anchor="middle">80</text><text x="766" y="403" text-anchor="middle">100</text>
+       <text x="420" y="448" text-anchor="middle" font-weight="700">Quantity of used cars (per week)</text><text transform="translate(20,206) rotate(-90)" text-anchor="middle" font-weight="700">Price per car ($ thousands)</text>
+      </g>
+      <path d="M68 22 V380 H766" fill="none" stroke="#334b62" stroke-width="2" aria-hidden="true"/>
+      <path id="d1Line" d="" fill="none" stroke="#234a68" stroke-width="4" aria-hidden="true"/>
+      <path id="d2Line" d="" fill="none" stroke="#aa1542" stroke-width="4" stroke-dasharray="12 8" aria-hidden="true"/>
+      <path id="s1Line" d="" fill="none" stroke="#18677a" stroke-width="4" aria-hidden="true"/>
+      <path id="s2Line" d="" fill="none" stroke="#6e4785" stroke-width="4" stroke-dasharray="10 7" aria-hidden="true" hidden/>
+      <g id="baselineMarker" aria-hidden="true"><path id="baseGuide" d="" fill="none" stroke="#345f78" stroke-dasharray="3 5" stroke-width="1.8"/><circle id="baseCircle" r="6" fill="#ffffff" stroke="#234a68" stroke-width="3"/><text id="baseLabel" x="0" y="0" fill="#17324a" font-size="18" font-weight="800" font-family="Arial,sans-serif">E1</text></g>
+      <g id="currentMarker" aria-hidden="true"><path id="currentGuide" d="" fill="none" stroke="#aa1542" stroke-dasharray="3 5" stroke-width="1.8"/><circle id="currentCircle" r="6" fill="#aa1542" stroke="#ffffff" stroke-width="2"/><text id="currentLabel" x="0" y="0" fill="#8c1537" font-size="18" font-weight="800" font-family="Arial,sans-serif">E2</text></g>
+      <g fill="#182c43" font-family="Arial,sans-serif" font-size="18" font-weight="800" aria-hidden="true">
+       <text id="d1Label" x="600" y="170" fill="#234a68">D1</text><text id="d2Label" x="615" y="230" fill="#aa1542">D2</text><text id="s1Label" x="620" y="240" fill="#18677a">S1</text><text id="s2Label" x="635" y="178" fill="#6e4785" hidden>S2</text>
+      </g>
+     </svg>
+     <div class="graph-key" aria-hidden="true"><span><i class="line"></i>Demand with known quality (D1)</span><span id="demandLegend"><i class="line dash"></i>Current demand (D2)</span><span><i class="line supply"></i>Original supply (S1)</span><span id="supplyLegend" hidden><i class="line supply2"></i>Supply if sellers exit (S2)</span></div>
+     <p class="graph-caption">On narrow screens, scroll horizontally to see the entire graph. Numeric results and explanations are below. Illustrative schedule, not actual used-car market data. Curves use line style and labels, not color alone.</p>
+    </div>
+    <div class="controls">
+     <div class="control-group"><label for="demandRisk">Buyer uncertainty: discount in willingness to pay</label><div class="control-value" id="riskValue">$2,000</div><input type="range" id="demandRisk" min="0" max="4000" step="500" value="2000" aria-describedby="riskHelp"><p class="hint" id="riskHelp">Higher uncertainty moves demand to the left. Start at $2,000 and try $0 or $4,000.</p></div>
+     <div class="control-group"><label><input type="checkbox" id="demandVerified">Independent inspection provides credible quality information</label><p class="hint">Assume verification reduces the buyer's uncertainty discount by 75%. Inspection costs are excluded from this graph.</p></div>
+     <div class="control-group"><label><input type="checkbox" id="demandSellerExit">High-quality sellers withdraw</label><p class="hint">This shifts supply left/up in the model. Price may rise or fall because both curves change.</p></div>
+     <div><div class="strong">Try a scenario</div><div class="preset-list" role="group" aria-label="Demand curve presets"><button type="button" data-demand-preset="baseline" aria-pressed="false">Known quality</button><button type="button" data-demand-preset="risk" aria-pressed="true">Uncertain quality</button><button type="button" data-demand-preset="verify" aria-pressed="false">Add inspection</button><button type="button" data-demand-preset="exit" aria-pressed="false">Seller exit</button></div></div>
+    </div>
+   </div>
+   <div class="outcome-grid" aria-label="Demand graph results">
+    <div class="stat"><div class="lab">Current equilibrium price</div><div class="val" id="demandPrice">$6,455</div><div class="detail" id="priceChange">Lower than known quality</div></div>
+    <div class="stat"><div class="lab">Current equilibrium quantity</div><div class="val" id="demandQty">55</div><div class="detail" id="qtyChange">Fewer cars sold</div></div>
+    <div class="stat"><div class="lab">Effective uncertainty discount</div><div class="val" id="effectiveRisk">$2,000</div><div class="detail">After any verification effect</div></div>
+   </div>
+   <div class="table-wrap"><table class="data-table"><caption>Numerical alternative to the graph</caption><thead><tr><th scope="col">Scenario</th><th scope="col">Demand</th><th scope="col">Supply</th><th scope="col">Price per car</th><th scope="col">Quantity per week</th></tr></thead><tbody><tr><th scope="row">Known quality, original supply</th><td>D1</td><td>S1</td><td id="demandBasePrice">$7,273</td><td id="demandBaseQty">72.7</td></tr><tr><th scope="row">Current controls</th><td id="demandCurveName">D2</td><td id="supplyCurveName">S1</td><td id="demandCurrentPrice">$6,455</td><td id="demandCurrentQty">54.5</td></tr></tbody></table></div>
+   <div class="notice" role="status" aria-live="polite" aria-atomic="true"><p class="note-title" id="demandOutcomeTitle">Buyers become less willing to pay</p><p id="demandExplanation">When demand shifts left and supply holds constant, equilibrium price and quantity both decrease.</p></div>
+  </div>
+  <div class="card"><h3>Experiment 2 · Can you explain the graph?</h3>
+   <fieldset class="checkform"><legend>Buyers are less willing to pay for an uncertain-quality car at every quantity. What happened?</legend><label><input type="radio" name="demandQuiz" value="move"> A movement along the same demand curve</label><label><input type="radio" name="demandQuiz" value="shift"> A shift of the demand curve to the left</label><label><input type="radio" name="demandQuiz" value="supply"> A shift of supply only</label></fieldset>
+   <div class="actions"><button type="button" class="btn" id="checkDemand">Check my explanation</button><button type="button" class="btn secondary" id="resetDemand">Reset graph</button></div>
+   <p id="demandQuizFeedback" class="feedback" role="status" aria-live="polite" hidden></p>
+   <label for="demandReflection" class="strong">What could make buyers more willing to pay again?</label><textarea class="reflect" id="demandReflection" rows="2" placeholder="Describe an information signal or a change in confidence."></textarea>
+   <div class="next-module"><button type="button" class="btn" id="nextDemand">Next: Trust signals &amp; used cars</button></div>
+  </div>
+ </section>
+
+ <section class="panel" id="panel-cars" role="tabpanel" aria-labelledby="tab-cars" tabindex="0" hidden>
+  <div class="section-head"><div><p class="eyebrow">Meeting 1 · Slides 5–7</p><h2>Trust signals and the Used Car Marketplace</h2><p class="subtext">Learn how buyers and sellers reduce information gaps. Then choose a used car before the hidden repair costs are known.</p></div><span class="chip">About 15–18 minutes</span></div>
+
+  <div class="card"><h3>Experiment 1 · Choose a way to reduce uncertainty</h3>
+   <p>Information is not equally available to everyone. Some tools tell buyers more about quality; others protect a seller or lender when payment is uncertain.</p>
+   <div class="signal-grid" aria-label="Definitions of six approaches to information problems">
+    <div class="signal-card"><h4>Reputation &amp; reviews</h4><p>Evidence from earlier customers or repeat business.</p></div>
+    <div class="signal-card"><h4>Money-back guarantee</h4><p>Refund when specific conditions are met.</p></div>
+    <div class="signal-card"><h4>Warranty</h4><p>Repair or replacement for a stated period.</p></div>
+    <div class="signal-card"><h4>Service contract</h4><p>Extra paid coverage for specified repairs.</p></div>
+    <div class="signal-card"><h4>License or certification</h4><p>Evidence of training or demonstrated qualifications.</p></div>
+    <div class="signal-card"><h4>Collateral or cosigner</h4><p>Protection for a lender if a borrower fails to repay.</p></div>
+   </div>
+   <div class="match-grid">
+    <div><label for="signalCase">Situation to solve</label><select id="signalCase">
+     <option value="reviews">You do not know whether an unfamiliar online seller is reliable.</option>
+     <option value="warranty">A new laptop may have a manufacturing defect next month.</option>
+     <option value="guarantee">A buyer wants a refund if a trial purchase does not meet stated conditions.</option>
+     <option value="service">After the original warranty ends, you want extra paid repair coverage.</option>
+     <option value="license">You need evidence an electrician meets licensing requirements.</option>
+     <option value="collateral">A lender wants a right to seize an asset if the borrower defaults.</option>
+     <option value="cosigner">A lender wants another person legally responsible if the borrower fails to pay.</option>
+    </select></div>
+    <div><label for="signalChoice">Which mechanism fits best?</label><select id="signalChoice">
+     <option value="">Choose a mechanism...</option><option value="reviews">Reputation &amp; reviews</option><option value="guarantee">Money-back guarantee</option><option value="warranty">Warranty</option><option value="service">Service contract</option><option value="license">License or certification</option><option value="collateral">Collateral</option><option value="cosigner">Cosigner</option>
+    </select></div>
+   </div>
+   <div class="actions"><button type="button" id="checkSignal" class="btn">Check the match</button><button type="button" id="nextSignal" class="btn secondary">Try another situation</button></div>
+   <p id="signalFeedback" class="feedback" role="status" aria-live="polite" hidden></p>
+   <div class="notice"><strong>Important distinction:</strong> A warranty and inspection can reduce buyer concerns about a product; collateral and a cosigner protect a lender against nonpayment. They do not establish that the item itself is high quality.</div>
+  </div>
+  <div class="card">
+   <h3>Experiment 2 · Buy before the repair costs are known</h3>
+   <p>Assume these cars have the same model, age, and approximate mileage. You can afford any of them. Which would you choose?</p>
+   <fieldset><legend>Choose one car. The hidden repairs will be revealed after you decide.</legend>
+    <div class="grid3">
+     <label class="choice"><span class="car-code"><input type="radio" name="car" value="A">Car A</span><div class="car-price money">$6,000</div><ul class="car-notes"><li>No service records</li><li>Sold as-is</li><li>No inspection report</li></ul></label>
+     <label class="choice"><span class="car-code"><input type="radio" name="car" value="B">Car B</span><div class="car-price money">$7,500</div><ul class="car-notes"><li>Full service history</li><li>Independent inspection</li><li>No warranty</li></ul></label>
+     <label class="choice"><span class="car-code"><input type="radio" name="car" value="C">Car C</span><div class="car-price money">$9,000</div><ul class="car-notes"><li>Dealer-certified</li><li>Six-month warranty</li><li>Inspection supplied</li></ul></label>
+    </div>
+   </fieldset>
+   <div style="margin-top:13px"><label for="carMaxBid" class="strong">Your maximum total budget for car plus immediate repairs (optional, dollars)</label><p class="fine-print">Enter the most you can spend in total before you discover the repair costs.</p><input class="input-mini" type="number" id="carMaxBid" min="0" max="100000" step="100" inputmode="numeric" placeholder="For example, 7500"></div>
+   <div class="actions"><button class="btn" id="revealCars" disabled>Reveal repairs and compare</button><button class="btn secondary" id="resetCars" type="button">Start over</button></div>
+   <div class="notice results" id="carResults" hidden>
+     <p class="note-title">Step 2 · Compare the true immediate costs</p>
+     <div class="table-wrap"><table class="data-table"><caption>Sticker price plus known out-of-pocket repairs</caption><thead><tr><th scope="col">Car</th><th scope="col">Price</th><th scope="col">Repairs</th><th scope="col">Total</th><th scope="col">Result</th></tr></thead><tbody id="carTableBody"></tbody></table></div>
+     <p id="carInterpretation"></p><p id="bidInterpretation"></p>
+     <p class="fine-print">These are hypothetical out-of-pocket repair expenses after any applicable warranty coverage. Future repairs, hassle, and risk are not included.</p>
+   </div>
+   <p id="carAnnounce" class="screen-reader-only" role="status" aria-live="polite"></p>
+  </div>
+  <div class="card">
+   <h3>Extension · Why would good sellers leave the market?</h3>
+   <p>Consider a separate <strong>simplified market</strong> with 50 higher-quality cars and 50 lower-quality cars. An independent inspection can reveal a car’s quality before purchase.</p>
+   <fieldset>
+    <legend>Choose how much information buyers can verify:</legend>
+    <div class="radio-stack"><label><input type="radio" name="verification" value="no" checked> No independent verification</label><label><input type="radio" name="verification" value="yes"> Verified inspections available</label></div>
+   </fieldset>
+   <div class="grid2">
+    <div class="chartbox"><p class="chart-title">Cars that trade in this stylized market</p><div class="barrow"><span class="barlabel">Higher quality</span><div class="track"><div id="marketHighBar" class="fill hi" style="width:0"></div></div><span class="barvalue" id="marketHighNum">0</span></div><div class="barrow"><span class="barlabel">Lower quality</span><div class="track"><div id="marketLowBar" class="fill" style="width:100%"></div></div><span class="barvalue" id="marketLowNum">50</span></div><p class="fine-print">Each bar is out of 50 potential cars. Exact counts are also shown at right.</p></div>
+    <div><div class="stat-row" style="grid-template-columns:repeat(2,minmax(0,1fr));margin-top:0"><div class="stat"><div class="lab">Cars sold</div><div class="val num" id="marketTotal">50</div><div class="detail">Out of 100 potential cars</div></div><div class="stat"><div class="lab">Inspection fee</div><div class="val money" id="marketFee">$0</div><div class="detail">Paid by each buyer</div></div></div><p class="note-title" id="marketExplanationTitle">Without reliable quality signals</p><p id="marketExplanation">Buyers initially value the 50/50 mix at $8,000. High-quality sellers require at least $8,500, so they withdraw. Buyers then learn that only lower-quality cars remain.</p></div>
+   </div>
+   <div class="table-wrap"><table class="data-table"><caption>Assumptions and example trading prices</caption><thead><tr><th scope="col">Car quality</th><th scope="col">Buyer value if known</th><th scope="col">Seller minimum</th><th scope="col">Illustrative transaction</th></tr></thead><tbody><tr><th scope="row">Higher</th><td>$10,000</td><td>$8,500</td><td id="marketHighTransaction">No trade</td></tr><tr><th scope="row">Lower</th><td>$6,000</td><td>$4,800</td><td id="marketLowTransaction">50 cars at $5,500 each</td></tr></tbody></table></div>
+   <p class="fine-print">The assumed prices and participation are illustrative—not an empirical estimate or a full equilibrium model. When inspections are available, this example assumes buyers pay $250 per car to verify quality.</p>
+   <p id="marketAnnounce" class="screen-reader-only" role="status" aria-live="polite"></p>
+   <details><summary>How does this illustrate an information problem?</summary><p>When sellers know more than buyers, buyers may not pay enough for genuinely higher-quality goods. Some good sellers may exit, leaving a thinner market with fewer choices. A trustworthy inspection makes it possible to distinguish quality and trade both types. In practice, inspections can be imperfect and are valuable only when their benefits exceed their costs.</p></details>
+  </div>
+  <div class="card"><h3>Explain your decision</h3><label for="carReflection" class="strong">What information mattered most to you, and why?</label><textarea class="reflect" id="carReflection" rows="3" placeholder="Write 1–3 sentences. Your answer stays in this browser tab."></textarea><div class="next-module"><button type="button" class="btn" id="nextCars">Next: Run an insurance company</button></div></div>
+ </section>
+ <section class="panel" id="panel-insurance" role="tabpanel" aria-labelledby="tab-insurance" tabindex="0" hidden>
+  <div class="section-head"><div><p class="eyebrow">Meeting 2 · Slides 9–18</p><h2>Run an Insurance Company</h2><p class="subtext">Find the claims-only premium needed to cover expected payouts—and see why the risk pool changes.</p></div><span class="chip">About 12–15 minutes</span></div>
+  <div class="card"><h3>Guided rounds · What changes the break-even premium?</h3><p>Every covered claim costs <strong>$3,000</strong> in this fictional example. For the three guided rounds, there is no deductible or coinsurance. Choose a round to examine the assumptions and calculations.</p>
+   <div class="rounds" role="group" aria-label="Guided insurance rounds"><button class="round" id="round1" data-round="1" aria-pressed="true"><strong>Round 1 · Start</strong><span>80 lower-risk + 40 higher-risk drivers</span></button><button class="round" id="round2" data-round="2" aria-pressed="false"><strong>Round 2 · Selection</strong><span>Some lower-risk drivers leave</span></button><button class="round" id="round3" data-round="3" aria-pressed="false"><strong>Round 3 · Behavior</strong><span>Higher-risk drivers become less careful</span></button></div>
+   <div class="grid2">
+    <div><p class="eyebrow" id="roundHeading">Round 1 · Base pool</p><div class="metric-big money" id="guidedPremium">$250</div><p class="strong" style="margin-top:0">Annual claims-only break-even premium per person</p><p id="guidedExplain">80 lower-risk drivers (5%) and 40 higher-risk drivers (15%) are insured.</p><p id="guidedFormula" class="step-line">(80 × 5% + 40 × 15%) × $3,000 ÷ 120 = $250</p><div class="notice"><p id="guidedConcept"><strong>Concept:</strong> The group pools different risks and pays an average expected cost.</p></div></div>
+    <div class="round-compare" aria-label="Text-labeled comparison of premiums across the three guided rounds"><p class="chart-title">Claims-only break-even premium by round</p><div class="barrow active" id="barRound1"><span class="barlabel">Round 1</span><div class="track"><div class="fill" style="width:66.67%"></div></div><span class="barvalue">$250</span></div><div class="barrow" id="barRound2"><span class="barlabel">Round 2</span><div class="track"><div class="fill" style="width:80%"></div></div><span class="barvalue">$300</span></div><div class="barrow" id="barRound3"><span class="barlabel">Round 3</span><div class="track"><div class="fill" style="width:100%"></div></div><span class="barvalue">$375</span></div><p class="fine-print">These dollar labels are the chart’s data, so no color interpretation is required.</p></div>
+   </div>
+   <div class="table-wrap"><table class="data-table"><caption>Calculation breakdown for the selected round</caption><thead><tr><th scope="col">Risk group</th><th scope="col">People covered</th><th scope="col">Annual claim chance</th><th scope="col">Expected claims</th></tr></thead><tbody><tr><th scope="row">Lower risk</th><td id="gLowCount">80</td><td>5%</td><td id="gLowExpected">4.00</td></tr><tr><th scope="row">Higher risk</th><td id="gHighCount">40</td><td id="gHighRate">15%</td><td id="gHighExpected">6.00</td></tr></tbody><tfoot><tr><th scope="row">Total</th><td id="gTotal">120</td><td>—</td><td id="gClaims">10.00</td></tr></tfoot></table></div>
+   <div class="notice"><p id="gDetails">Expected insurer payout: 10 × $3,000 = $30,000; $30,000 ÷ 120 insured = $250 each. This covers claims only, not operating costs.</p></div>
+   <p id="roundAnnounce" class="screen-reader-only" role="status" aria-live="polite"></p>
+  </div>
+  <div class="card">
+   <h3>Extension · Design your own insurance plan</h3><p>Move the premium, choose a deductible and coinsurance rate, or introduce a behavior change. See the number of people insured and whether expected premium revenue covers expected insurer payments.</p>
+   <div class="form-grid">
+    <div class="field"><label for="premiumSlider">Annual premium: <output id="premiumOutput" for="premiumSlider">$250</output></label><input type="range" min="100" max="600" step="25" value="250" id="premiumSlider"><small>Move in $25 increments; one premium for all who enroll.</small></div>
+    <div class="field"><label for="deductible">Deductible per claim</label><select id="deductible"><option value="0">$0</option><option value="250">$250</option><option value="500">$500</option><option value="1000">$1,000</option></select><small>Policyholder pays this first.</small></div>
+    <div class="field"><label for="coinsurance">Policyholder coinsurance</label><select id="coinsurance"><option value="0">0% (insurer covers balance)</option><option value="10">10%</option><option value="20">20%</option><option value="30">30%</option></select><small>Percent of loss left after deductible.</small></div>
+   </div>
+   <label class="checkbox-line"><input type="checkbox" id="moralHazard">Simulate moral hazard: higher-risk drivers' annual claim chance rises from 15% to 20% after coverage</label>
+   <div class="actions"><button class="btn secondary" id="resetInsurance">Reset insurance plan</button></div>
+   <div class="stat-row" aria-label="Insurance plan summary">
+    <div class="stat"><div class="lab">Insured drivers</div><div class="val num" id="customCovered">120</div><div class="detail" id="customMix">80 lower + 40 higher</div></div>
+    <div class="stat"><div class="lab">Insurer pays per claim</div><div class="val money" id="customPayout">$3,000</div><div class="detail" id="customPatient">Customer pays $0 per claim</div></div>
+    <div class="stat"><div class="lab">Break-even premium</div><div class="val money" id="customBreakEven">$250</div><div class="detail">Expected claims only, per person</div></div>
+    <div class="stat"><div class="lab">Expected result</div><div class="val money" id="customNet">$0</div><div class="detail" id="customStatus">Break-even on expected claims</div></div>
+   </div>
+   <div class="grid2">
+    <div class="chartbox"><p class="chart-title">Lower-risk and higher-risk customers insured</p><div class="barrow"><span class="barlabel">Lower risk</span><div class="track"><div class="fill" id="customLowBar" style="width:100%"></div></div><span class="barvalue num" id="customLowN">80</span></div><div class="barrow"><span class="barlabel">Higher risk</span><div class="track"><div class="fill hi" id="customHighBar" style="width:100%"></div></div><span class="barvalue num" id="customHighN">40</span></div><p class="fine-print">Each group’s bar is scaled to its original size: 80 lower-risk or 40 higher-risk customers.</p></div>
+    <div class="chartbox"><p class="chart-title">Expected annual insurer finances</p><dl class="dl"><dt>Premium revenue</dt><dd class="money" id="customRevenue">$30,000</dd><dt>Expected insurer claims</dt><dd class="money" id="customClaims">$30,000</dd><dt>Expected claims</dt><dd class="num" id="customNumClaims">10.00</dd><dt>Per-claim customer cost</dt><dd class="money" id="customCustomerCost">$0</dd></dl></div>
+   </div>
+   <div class="notice" id="customNotice"><p class="note-title" id="customNoticeTitle">Claims-only break-even</p><p id="customExplanation">At $250, all 120 drivers remain in the pool under these illustrative enrollment assumptions.</p></div>
+   <details><summary>View the assumptions behind the custom model</summary><p><strong>Initial population:</strong> 80 lower-risk drivers with a 5% annual chance of one claim and 40 higher-risk drivers with a 15% chance. A claim produces a $3,000 covered loss.</p><p><strong>Illustrative enrollment:</strong> At premiums up to $250, all 80 lower-risk drivers stay. At $275–$350, 40 stay; at $375–$450, 20 stay; above $450, none stay. All 40 higher-risk drivers stay through $500; above $500, 20 stay. These thresholds are invented solely for classroom exploration.</p><p><strong>Cost sharing:</strong> On each $3,000 covered claim, the insured first pays the deductible, then the chosen coinsurance on the remaining balance. For simplicity, the simulation does not change enrollment or claim probabilities when cost sharing changes. The moral-hazard checkbox changes only the higher-risk group’s probability.</p><p><strong>Profit caution:</strong> Expected result = premium revenue minus expected insurer claim payments. It is not actual profit: operating expenses, investment income, taxes, and reserves are excluded. Values are expected averages, not guarantees.</p></details>
+   <p id="customAnnounce" class="screen-reader-only" role="status" aria-live="polite"></p>
+  </div>
+  <div class="card"><h3>Quick calculation check</h3><p>A <strong>$1,000</strong> covered bill has <strong>$200 deductible</strong> remaining and then <strong>20% coinsurance</strong>. Assume no copayment and no other plan limits. How much does the policyholder pay?</p><div class="question-box"><label for="costAnswer">Your answer (dollars)</label><input type="number" id="costAnswer" inputmode="decimal" min="0" max="1000" step="0.01" placeholder="Enter an amount"><div><button id="checkCost" class="btn">Check calculation</button></div><p class="feedback" id="costFeedback" role="status" aria-live="polite" hidden></p></div></div>
+  <div class="card"><h3>Explain what you observed</h3><label for="insuranceReflection" class="strong">What caused the premium to increase across the guided rounds?</label><textarea class="reflect" id="insuranceReflection" rows="3" placeholder="Write 1–3 sentences about adverse selection and moral hazard."></textarea></div>
+ </section>
+ <section class="card" aria-labelledby="exportTitle"><h2 id="exportTitle" style="font-size:1.3rem">Save your responses</h2><p>The downloaded text file records your graph scenario, quality-signal matching, car choice, calculations, insurance settings, and written responses. It contains no name unless you add one in your own notes.</p><div class="actions"><button class="btn" id="downloadSummary">Download my lab summary (.txt)</button><button class="btn neutral" id="printLab">Print / Save as PDF</button></div><p id="exportStatus" role="status" aria-live="polite" class="small"></p></section>
+ <details class="no-print"><summary>Instructor notes and example answers</summary><p><strong>Module 1:</strong> Demand shifts left when uncertain quality reduces buyers’ willingness to pay at a given price. When sellers leave too, the price effect depends on the relative shifts. <strong>Module 2:</strong> Match signals to uncertainty problems; then choose any car before revealing repairs. After repairs, A costs $9,000; B costs $8,000; C costs $9,200. B is least expensive on this narrow immediate-cost measure. Ask how future risk, inspection, and warranty terms could change a buyer’s choice.</p><p><strong>Module 3:</strong> Round 1: (80×0.05 + 40×0.15)×$3,000 ÷120 = $250. Round 2: (40×0.05 + 40×0.15)×$3,000 ÷80 = $300 (adverse selection). Round 3: (40×0.05 + 40×0.20)×$3,000 ÷80 = $375 (moral hazard assumption). Quick check: $200 + 20% of $800 = $360 paid by customer; $640 by insurer.</p><p><strong>Accessibility:</strong> Controls are keyboard-operable, graphical changes have numerical text equivalents, and the three modules have separate headings and landmarks. The simulation does not depend on color alone. The downloadable text summary is usable as a student response record.</p></details>
+</main>
+<footer class="footer">ECO 201 · Chapter 16. Adapted for teaching from OpenStax <em>Principles of Microeconomics 3e</em>, Chapter 16. Numerical models and classroom scenarios are hypothetical. The source slideshow uses CC BY-NC-SA 4.0. No analytics, network calls, or external libraries.</footer>
+<script>
+'use strict';
+(function(){
+const $=id=>document.getElementById(id);
+const money=n=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(n);
+const precise=n=>new Intl.NumberFormat('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}).format(n);
+const carInfo={A:{price:6000,repairs:3000},B:{price:7500,repairs:500},C:{price:9000,repairs:200}};
+let chosenCar=null, revealed=false, activeRound=1, currentPlan=null, lastCostAttempt='Not attempted';
+const tabIds=['tab-demand','tab-cars','tab-insurance'];
+function setTab(index,moveFocus=false){
+  tabIds.forEach((id,i)=>{const tab=$(id),panel=$(tab.getAttribute('aria-controls')),isActive=i===index;tab.setAttribute('aria-selected',String(isActive));tab.tabIndex=isActive?0:-1;panel.hidden=!isActive;});
+  if(moveFocus)$(tabIds[index]).focus();
+}
+tabIds.forEach((id,i)=>{$(id).addEventListener('click',()=>setTab(i));$(id).addEventListener('keydown',e=>{let next=i;if(e.key==='ArrowRight')next=(i+1)%tabIds.length;else if(e.key==='ArrowLeft')next=(i+tabIds.length-1)%tabIds.length;else if(e.key==='Home')next=0;else if(e.key==='End')next=tabIds.length-1;else return;e.preventDefault();setTab(next,true);});});
+$('nextDemand').addEventListener('click',()=>{setTab(1);$('tab-cars').focus();window.scrollTo({top:0,behavior:'instant'});});
+$('nextCars').addEventListener('click',()=>{setTab(2);$('tab-insurance').focus();window.scrollTo({top:0,behavior:'instant'});});
+
+// MODULE 1: demand and uncertain quality (illustrative inverse price schedules, $thousands).
+// S1 = 4 + 0.045Q; D1 = 12 - 0.065Q.
+// Uncertain quality reduces buyers' willingness to pay by p ($thousands).
+// High-quality exit optionally raises supply reservation price by $1,500 at each Q.
+const baseQ=(12-4)/(.065+.045), baseP=4+.045*baseQ;
+let currentDemand={risk:2000,verify:false,exit:false,discount:2000,quantity:0,price:0}, demandQuizLast='Not attempted';
+const xcoord=q=>68+(q/100)*698;
+const ycoord=p=>380-(p/13)*358;
+function curvePath(fn){return `M ${xcoord(0).toFixed(1)} ${ycoord(fn(0)).toFixed(1)} L ${xcoord(100).toFixed(1)} ${ycoord(fn(100)).toFixed(1)}`;}
+function setSvgPath(id,d){$(id).setAttribute('d',d);}
+function svgShow(id,show){const el=$(id);if(show){el.removeAttribute('hidden');el.style.display='';}else{el.setAttribute('hidden','');el.style.display='none';}}
+function updatePoint(prefix,q,p){const x=xcoord(q),y=ycoord(p);$(prefix+'Circle').setAttribute('cx',x.toFixed(1));$(prefix+'Circle').setAttribute('cy',y.toFixed(1));$(prefix+'Guide').setAttribute('d',`M ${x.toFixed(1)} ${y.toFixed(1)} H 68 M ${x.toFixed(1)} ${y.toFixed(1)} V 380`);$(prefix+'Label').setAttribute('x',(x+11).toFixed(1));$(prefix+'Label').setAttribute('y',(y-12).toFixed(1));}
+function setDemandPreset(which){const vals={baseline:[0,false,false],risk:[2000,false,false],verify:[2000,true,false],exit:[2000,false,true]},v=vals[which];if(!v)return;$('demandRisk').value=v[0];$('demandVerified').checked=v[1];$('demandSellerExit').checked=v[2];updateDemand(which);}
+function updateDemand(preset=''){
+ const risk=Number($('demandRisk').value),verify=$('demandVerified').checked,exit=$('demandSellerExit').checked,discount=risk*(verify?.25:1),Sinter=exit?5.5:4,Dinter=12-discount/1000,q=(Dinter-Sinter)/(.065+.045),p=Sinter+.045*q;
+ currentDemand={risk,verify,exit,discount,quantity:q,price:p};
+ $('riskValue').textContent=money(risk);$('effectiveRisk').textContent=money(discount);$('demandQty').textContent=precise(q);$('demandPrice').textContent=money(p*1000);
+ $('demandBasePrice').textContent=money(baseP*1000);$('demandBaseQty').textContent=precise(baseQ);$('demandCurrentPrice').textContent=money(p*1000);$('demandCurrentQty').textContent=precise(q);
+ $('demandCurveName').textContent=discount===0?'D1':'D2';$('supplyCurveName').textContent=exit?'S2':'S1';
+ const dP=p-baseP,dQ=q-baseQ,word=delta=>Math.abs(delta)<1e-6?'unchanged':delta>0?'higher':'lower';
+ $('priceChange').textContent=Math.abs(dP)<1e-6?'unchanged from baseline':`${word(dP)} than baseline`; $('qtyChange').textContent=Math.abs(dQ)<1e-6?'unchanged from baseline':`${word(dQ)} than baseline`;
+ if(exit){$('demandOutcomeTitle').textContent=discount===0?'Supply changes while demand holds constant':'Both demand and supply are changing';$('demandExplanation').textContent=discount===0?`High-quality sellers withdraw, shifting supply left/up while demand is unchanged. The price rises from ${money(baseP*1000)} to ${money(p*1000)}, and quantity falls from ${precise(baseQ)} to ${precise(q)}.`:`With a ${money(discount)} buyer uncertainty discount and fewer high-quality sellers, the model gives price ${money(p*1000)} and quantity ${precise(q)}. Price is ${word(dP)} than the original ${money(baseP*1000)} because the demand and supply shifts pull in different directions. Quantity falls. The magnitude of each shift determines the net price effect.`;}
+ else if(discount===0){$('demandOutcomeTitle').textContent='Known quality: original equilibrium';$('demandExplanation').textContent='With no buyer uncertainty discount and the original supply schedule, the market is at E1. Neither price nor quantity changes.';}
+ else{$('demandOutcomeTitle').textContent=verify?'An inspection restores some buyer confidence':'Buyers become less willing to pay';$('demandExplanation').textContent=`Holding supply fixed, the lower willingness to pay shifts demand left from D1 to D2. Equilibrium quantity falls from ${precise(baseQ)} to ${precise(q)} cars per week, and price falls from ${money(baseP*1000)} to ${money(p*1000)}. ${verify?'Credible inspection reduces—but does not fully eliminate—the uncertainty effect.':'The supply curve is unchanged in this simplified case.'}`;}
+ setSvgPath('d1Line',curvePath(x=>12-.065*x));setSvgPath('d2Line',curvePath(x=>12-discount/1000-.065*x));setSvgPath('s1Line',curvePath(x=>4+.045*x));setSvgPath('s2Line',curvePath(x=>5.5+.045*x));
+ svgShow('s2Line',exit);svgShow('s2Label',exit);$('supplyLegend').hidden=!exit;
+ $('d1Label').setAttribute('x',String(xcoord(90)-20));$('d1Label').setAttribute('y',String(ycoord(12-.065*90)-11));$('d2Label').setAttribute('x',String(xcoord(91)-7));$('d2Label').setAttribute('y',String(ycoord(Dinter-.065*91)-11));
+ $('s1Label').setAttribute('x',String(xcoord(91)-4));$('s1Label').setAttribute('y',String(ycoord(4+.045*91)-12));
+ $('s2Label').setAttribute('x',String(xcoord(92)-4));$('s2Label').setAttribute('y',String(ycoord(5.5+.045*92)-12));
+ updatePoint('base',baseQ,baseP);updatePoint('current',q,p);
+ const same=Math.abs(q-baseQ)<.01&&Math.abs(p-baseP)<.01;svgShow('currentMarker',!same);
+ svgShow('d2Line',discount!==0);svgShow('d2Label',discount!==0);$('demandLegend').hidden=discount===0;
+ $('demandGraphDesc').textContent=`D1 intersects S1 at price ${money(baseP*1000)} and quantity ${precise(baseQ)}. Under current controls, ${discount===0?'D1':'D2'} intersects ${exit?'S2':'S1'} at price ${money(p*1000)} and quantity ${precise(q)}. The current buyer uncertainty discount is ${money(discount)}; supply has ${exit?'shifted upward due to seller exit':'not shifted'}. All curves and values are hypothetical.`;
+ for(const button of document.querySelectorAll('[data-demand-preset]'))button.setAttribute('aria-pressed',String(button.dataset.demandPreset===preset));
+}
+$('demandRisk').addEventListener('input',()=>updateDemand());$('demandVerified').addEventListener('change',()=>updateDemand());$('demandSellerExit').addEventListener('change',()=>updateDemand());
+for(const button of document.querySelectorAll('[data-demand-preset]'))button.addEventListener('click',()=>setDemandPreset(button.dataset.demandPreset));
+$('resetDemand').addEventListener('click',()=>setDemandPreset('risk'));
+$('checkDemand').addEventListener('click',()=>{const picked=document.querySelector('input[name="demandQuiz"]:checked'),fb=$('demandQuizFeedback');fb.hidden=false;if(!picked){fb.textContent='Choose an answer before checking.';return;}const ok=picked.value==='shift';demandQuizLast=ok?'Correct':'Try again';fb.textContent=`${ok?'Correct.':'Not quite.'} When buyers lower the amount they will pay for an uncertain-quality car at every price, demand shifts left. A movement along a demand curve would result from a change in the product’s own price, holding other determinants constant.`;});
+
+// MODULE 2: matching quality signals to the problem they address.
+const signalPrompts={
+ reviews:'Look for independent reviews or a seller’s established reputation. Prior buyers can provide evidence, though reviews can be unreliable.',
+ warranty:'A warranty promises repairs or replacement over a stated period, subject to coverage terms.',
+ guarantee:'A money-back guarantee promises a refund when stated conditions are met.',
+ service:'A paid service contract extends or adds repair coverage for the specified period or problems.',
+ license:'A relevant professional license or certification can indicate training or demonstrated qualifications. Requirements vary.',
+ collateral:'Collateral is property the lender may be able to seize and sell after default, subject to law and contract.',
+ cosigner:'A cosigner is another person who agrees to be responsible for repayment if the borrower does not pay.'};
+let signalCorrect=0,signalAttemptCount=0;
+$('checkSignal').addEventListener('click',()=>{const expected=$('signalCase').value,pick=$('signalChoice').value,fb=$('signalFeedback');fb.hidden=false;if(!pick){fb.textContent='Select a mechanism first.';return;}signalAttemptCount++;if(pick===expected)signalCorrect++;fb.textContent=`${pick===expected?'Correct.':'Not the best match here.'} ${signalPrompts[expected]}`;});
+$('nextSignal').addEventListener('click',()=>{const options=$('signalCase').options;$('signalCase').selectedIndex=($('signalCase').selectedIndex+1)%options.length;$('signalChoice').value='';$('signalFeedback').hidden=true;$('signalCase').focus();});
+$('signalCase').addEventListener('change',()=>{$('signalChoice').value='';$('signalFeedback').hidden=true;});
+
+// MODULE 1: buyer decision
+for(const input of document.querySelectorAll('input[name="car"]'))input.addEventListener('change',e=>{chosenCar=e.target.value;$('revealCars').disabled=false;if(revealed){revealed=false;$('carResults').hidden=true;}$('carAnnounce').textContent=`Car ${chosenCar} selected. Activate Reveal repairs and compare to continue.`;});
+function revealCar(){if(!chosenCar)return;revealed=true;const rows=['A','B','C'].map(c=>{const o=carInfo[c],total=o.price+o.repairs,labels=[c===chosenCar?'Your choice':'',c==='B'?'Lowest immediate total':''].filter(Boolean).join('; ')||'—';return `<tr class="${c===chosenCar?'highlight-row':''}"><th scope="row">Car ${c}</th><td>${money(o.price)}</td><td>${money(o.repairs)}</td><td>${money(total)}</td><td>${labels}</td></tr>`;}).join('');$('carTableBody').innerHTML=rows;const selectedTotal=carInfo[chosenCar].price+carInfo[chosenCar].repairs;$('carInterpretation').textContent=`You chose Car ${chosenCar}, with immediate price-plus-repair costs of ${money(selectedTotal)}. Car B has the lowest immediate total at $8,000. This does not prove it is the best car over its full lifetime.`;const bidRaw=$('carMaxBid').value.trim(),bid=bidRaw===''?null:Number(bidRaw);$('bidInterpretation').textContent=bid===null?'You did not enter a maximum willingness to pay.':`Your all-in budget was ${money(bid)}. The chosen car plus revealed repairs costs ${money(selectedTotal)}, which is ${bid>=selectedTotal?'within':'above'} your budget by ${money(Math.abs(bid-selectedTotal))}. This is a spending comparison; the overall value to you also depends on reliability and future costs.`;$('carResults').hidden=false;$('carAnnounce').textContent=`Repair costs revealed. Your Car ${chosenCar} totals ${money(selectedTotal)}. Car A totals $9,000; Car B $8,000; Car C $9,200.`;}
+$('revealCars').addEventListener('click',revealCar);
+$('resetCars').addEventListener('click',()=>{for(const el of document.querySelectorAll('input[name="car"]'))el.checked=false;chosenCar=null;revealed=false;$('revealCars').disabled=true;$('carMaxBid').value='';$('bidInterpretation').textContent='';$('carResults').hidden=true;$('carAnnounce').textContent='Car choice reset. Choose a car to start.';});
+// MODULE 1: stylized market
+function marketSignals(){const verified=document.querySelector('input[name="verification"]:checked').value==='yes',high=verified?50:0,low=50,total=high+low;$('marketHighBar').style.width=`${high*2}%`;$('marketLowBar').style.width=`${low*2}%`;$('marketHighNum').textContent=high;$('marketLowNum').textContent=low;$('marketTotal').textContent=total;$('marketFee').textContent=verified?'$250':'$0';$('marketExplanationTitle').textContent=verified?'With credible quality verification':'Without reliable quality signals';$('marketExplanation').textContent=verified?'Inspections identify which cars are higher and lower quality. In this example both groups can trade at separate prices that satisfy buyers and sellers. Buyers pay the inspection fee.':'Buyers initially value the 50/50 mix at $8,000. High-quality sellers require at least $8,500, so they withdraw. Buyers then learn that only lower-quality cars remain.';$('marketHighTransaction').textContent=verified?'50 cars at $9,500 each':'No trade';$('marketLowTransaction').textContent='50 cars at $5,500 each';$('marketAnnounce').textContent=`Market outcome updated: ${total} cars trade, ${high} higher quality and ${low} lower quality. Inspections ${verified?'are':'are not'} available.`;}
+for(const el of document.querySelectorAll('input[name="verification"]'))el.addEventListener('change',marketSignals);
+// MODULE 2 guided
+const guided={1:{nL:80,nH:40,pL:.05,pH:.15,tag:'Round 1 · Base pool',text:'80 lower-risk drivers (5%) and 40 higher-risk drivers (15%) are insured.',concept:'Risk pooling: people with different expected losses pay a common claims-only premium.'},2:{nL:40,nH:40,pL:.05,pH:.15,tag:'Round 2 · Adverse selection',text:'40 lower-risk drivers leave the market; 40 lower-risk and 40 higher-risk drivers remain.',concept:'Adverse selection: a larger share of the remaining pool has higher expected claims, so average costs rise.'},3:{nL:40,nH:40,pL:.05,pH:.20,tag:'Round 3 · Moral hazard',text:'The pool stays at 40 lower-risk and 40 higher-risk drivers, but higher-risk claim probability increases from 15% to 20% after coverage.',concept:'Moral hazard: in this hypothetical round, insured drivers take fewer precautions and the chance of claims increases.'}};
+function showRound(n){activeRound=n;const r=guided[n],lowExp=r.nL*r.pL,hiExp=r.nH*r.pH,num=lowExp+hiExp,payout=num*3000,covered=r.nL+r.nH,prem=payout/covered;for(const btn of document.querySelectorAll('[data-round]'))btn.setAttribute('aria-pressed',String(Number(btn.dataset.round)===n));for(let i=1;i<=3;i++)$('barRound'+i).classList.toggle('active',i===n);$('roundHeading').textContent=r.tag;$('guidedPremium').textContent=money(prem);$('guidedExplain').textContent=r.text;$('guidedFormula').textContent=`(${r.nL} × 5% + ${r.nH} × ${n===3?'20':'15'}%) × $3,000 ÷ ${covered} = ${money(prem)}`;$('guidedConcept').innerHTML=`<strong>Concept:</strong> ${r.concept}`;$('gLowCount').textContent=r.nL;$('gHighCount').textContent=r.nH;$('gHighRate').textContent=n===3?'20%':'15%';$('gLowExpected').textContent=precise(lowExp);$('gHighExpected').textContent=precise(hiExp);$('gTotal').textContent=covered;$('gClaims').textContent=precise(num);$('gDetails').textContent=`Expected insurer payout: ${precise(num)} × $3,000 = ${money(payout)}; ${money(payout)} ÷ ${covered} insured = ${money(prem)} each. This covers expected claims only, not operating expenses.`;$('roundAnnounce').textContent=`${r.tag}. Break-even premium ${money(prem)} per year for ${covered} insured. ${r.concept}`;}
+for(const btn of document.querySelectorAll('[data-round]'))btn.addEventListener('click',()=>showRound(Number(btn.dataset.round)));
+// MODULE 2 custom
+function customerCounts(p){const lo=p<=250?80:p<=350?40:p<=450?20:0;const hi=p<=500?40:20;return {lo,hi};}
+function calculateCustom(){const premium=Number($('premiumSlider').value),deductible=Number($('deductible').value),co=Number($('coinsurance').value)/100,moral=$('moralHazard').checked,counts=customerCounts(premium),covered=counts.lo+counts.hi,payout=(3000-Math.min(3000,deductible))*(1-co),customer=3000-payout,claims=counts.lo*.05+counts.hi*(moral?.20:.15),cost=claims*payout,revenue=covered*premium,net=revenue-cost,breakEven=cost/covered,status=net>0.005?'Expected surplus':net<-.005?'Expected deficit':'Claims-only break-even';currentPlan={premium,deductible,coinsurance:co,moral,counts,covered,payout,customer,claims,cost,revenue,net,breakEven,status};$('premiumOutput').textContent=money(premium);$('customCovered').textContent=covered;$('customMix').textContent=`${counts.lo} lower + ${counts.hi} higher`;$('customPayout').textContent=money(payout);$('customPatient').textContent=`Customer pays ${money(customer)} per claim`;$('customBreakEven').textContent=money(breakEven);$('customNet').textContent=`${net<0?'−':''}${money(Math.abs(net))}`;$('customStatus').textContent=status;$('customLowBar').style.width=`${counts.lo/80*100}%`;$('customHighBar').style.width=`${counts.hi/40*100}%`;$('customLowN').textContent=counts.lo;$('customHighN').textContent=counts.hi;$('customRevenue').textContent=money(revenue);$('customClaims').textContent=money(cost);$('customNumClaims').textContent=precise(claims);$('customCustomerCost').textContent=money(customer);$('customNoticeTitle').textContent=status;$('customExplanation').textContent=`At ${money(premium)} annually, this assumed market keeps ${counts.lo} lower-risk and ${counts.hi} higher-risk drivers in the pool. Expected premium revenue is ${money(revenue)} and expected insurer claim payouts are ${money(cost)}. The claims-only break-even premium would be ${money(breakEven)}. ${moral?'With the moral-hazard assumption switched on, higher-risk drivers have a 20% claim probability.':'Higher-risk drivers retain a 15% claim probability.'}`;$('customAnnounce').textContent=`Updated plan: ${covered} drivers, break-even premium ${money(breakEven)}, ${status.toLowerCase()} of ${money(Math.abs(net))}.`;}
+for(const id of ['premiumSlider','deductible','coinsurance','moralHazard'])$(id).addEventListener(id==='premiumSlider'?'input':'change',calculateCustom);
+$('resetInsurance').addEventListener('click',()=>{$('premiumSlider').value=250;$('deductible').value='0';$('coinsurance').value='0';$('moralHazard').checked=false;calculateCustom();});
+$('checkCost').addEventListener('click',()=>{const input=$('costAnswer'),value=Number(input.value),fb=$('costFeedback');if(input.value.trim()===''||!Number.isFinite(value)||value<0){fb.hidden=false;fb.textContent='Enter a dollar amount to check your calculation.';return;}const right=Math.abs(value-360)<.005;lastCostAttempt=`${money(value)} — ${right?'correct':'not correct'}`;fb.hidden=false;fb.textContent=(right?'Correct! ':'Try again. ')+`The first $200 is deductible. Of the remaining $800, 20% is $160. The policyholder pays $200 + $160 = $360, and the insurer pays $640.`;});
+function summaryText(){const o=chosenCar?carInfo[chosenCar]:null,verification=document.querySelector('input[name="verification"]:checked').value==='yes',r=guided[activeRound],gCost=(r.nL*r.pL+r.nH*r.pH)*3000,gBreak=gCost/(r.nL+r.nH),p=currentPlan;return `ECO 201 — Chapter 16 Interactive Learning Lab\nNumbers are hypothetical.\n\nMODULE 1 — UNCERTAINTY AND DEMAND\nBuyer uncertainty discount selected: ${money(currentDemand.risk)}\nIndependent inspection: ${currentDemand.verify?'On':'Off'}\nHigh-quality sellers exit: ${currentDemand.exit?'Yes':'No'}\nEffective uncertainty discount: ${money(currentDemand.discount)}\nMarket price: ${money(currentDemand.price*1000)}; quantity: ${precise(currentDemand.quantity)}\nDemand graph check: ${demandQuizLast}\nDemand reflection: ${$('demandReflection').value.trim()||'(not entered)'}\n\nMODULE 2 — TRUST AND USED CARS\nQuality-signal matches attempted: ${signalAttemptCount}; correct: ${signalCorrect}\nCar maximum all-in spending budget: ${$('carMaxBid').value.trim()?money(Number($('carMaxBid').value)):'(not entered)'}\nCar selected: ${chosenCar?'Car '+chosenCar:'Not selected'}\nRepair costs revealed: ${revealed?'Yes':'No'}\n${chosenCar?`Chosen car sticker price: ${money(o.price)}\nChosen car immediate repairs: ${money(o.repairs)}\nChosen car immediate total: ${money(o.price+o.repairs)}`:''}\nMarket quality verification: ${verification?'Verified inspections ($250 per buyer)':'Not available'}\nHigher-quality cars traded: ${verification?50:0}; lower-quality cars traded: 50\nStudent reflection: ${$('carReflection').value.trim()||'(not entered)'}\n\nMODULE 3 — INSURANCE\nGuided round reviewed last: ${activeRound}\nExpected claims-only break-even: ${money(gBreak)} per covered driver\nGuided round: lower risk ${r.nL} at 5%; higher risk ${r.nH} at ${Math.round(r.pH*100)}%; loss $3,000\nCustom premium: ${money(p.premium)}; deductible ${money(p.deductible)}; coinsurance ${Math.round(p.coinsurance*100)}%; moral hazard ${p.moral?'on':'off'}\nInsured: ${p.covered} (${p.counts.lo} lower, ${p.counts.hi} higher)\nExpected annual insurer cost: ${money(p.cost)}\nExpected premium revenue: ${money(p.revenue)}\nExpected result: ${p.status} ${money(Math.abs(p.net))}\nExpected break-even premium per driver: ${money(p.breakEven)}\nCost-sharing quick check: ${lastCostAttempt}\nStudent reflection: ${$('insuranceReflection').value.trim()||'(not entered)'}\n\nThis is a classroom model, not financial or insurance advice.\n`;}
+$('downloadSummary').addEventListener('click',()=>{try{const blob=new Blob([summaryText()],{type:'text/plain;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='ECO201_Ch16_Lab_Responses.txt';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),3000);$('exportStatus').textContent='Summary file created for download. Your answers were not sent to a server.';}catch(e){$('exportStatus').textContent='Could not download in this browser. You can still select and copy your written responses.';}});
+$('printLab').addEventListener('click',()=>window.print());
+setTab(0);updateDemand('risk');marketSignals();showRound(1);calculateCustom();
+})();
+</script>
+</body>
+</html>
