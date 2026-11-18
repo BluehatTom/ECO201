@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#99002b">
+<meta name="description" content="Accessible Chapter 19 comparative advantage lab with three fictional international trade scenarios, opportunity-cost work, PPF graphs, trade controls, and self-check.">
+<title>ECO 201 | Chapter 19 Comparative Advantage & Trade Lab</title>
+<style>
+:root{color-scheme:light;--red:#99002b;--red-dark:#720020;--ink:#1c2b3b;--muted:#415369;--bg:#f5f7f9;--white:#fff;--line:#bdc9d5;--pale:#f0f4f8;--navy:#174d75;--green:#17613e;--purple:#653784}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font:16px/1.52 system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:var(--ink);background:var(--bg)}
+button,select,input,textarea{font:inherit}a{color:#164e83;text-underline-offset:3px}
+:focus-visible{outline:3px solid #1264ad;outline-offset:3px}
+.skip{position:absolute;left:10px;top:-100px;background:white;padding:12px;z-index:10}.skip:focus{top:8px}
+.top{background:#fff;border-bottom:5px solid var(--red)}
+.top-inner{max-width:1150px;margin:auto;padding:13px 22px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.brand{font-weight:850;color:var(--red)}.course{font-weight:650;color:#3e5164;font-size:.92rem}
+main{max-width:1150px;margin:auto;padding:24px 22px 65px}
+h1{font-size:clamp(1.75rem,4vw,2.55rem);line-height:1.16;margin:0 0 8px}
+h2{font-size:clamp(1.3rem,2.7vw,1.8rem);line-height:1.25;margin:0 0 12px}
+h3{font-size:1.12rem;margin:0 0 8px}
+p{margin:6px 0 12px}
+.eyebrow{font-weight:850;text-transform:uppercase;letter-spacing:.08em;font-size:.82rem;color:var(--red);margin:0 0 6px}
+.lead{max-width:78ch;color:var(--muted)}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:clamp(16px,2.5vw,24px);margin-top:18px}
+.note{padding:12px 15px;background:var(--pale);border-left:5px solid var(--navy);border-radius:6px;margin:13px 0}
+.note p:last-child{margin-bottom:0}
+.controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+label{display:block;font-weight:750;margin-bottom:7px}
+select{width:100%;max-width:600px;border:2px solid #8294a7;background:white;color:var(--ink);border-radius:8px;padding:11px;min-height:46px}
+input[type=range]{width:100%;accent-color:var(--red);min-height:35px;cursor:pointer}
+output{font-weight:850;font-variant-numeric:tabular-nums;color:var(--red-dark)}
+.btn{border:2px solid var(--red);border-radius:9px;padding:9px 16px;font-weight:800;min-height:44px;background:var(--red);color:#fff;cursor:pointer}
+.btn:hover{background:var(--red-dark)}.btn.secondary{background:white;color:var(--red-dark)}.btn.secondary:hover{background:#fff0f4}
+.actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+table{width:100%;border-collapse:collapse;text-align:left;font-size:.96rem}
+th,td{border-bottom:1px solid #d7dfe7;padding:9px 12px;vertical-align:top}
+thead th{background:#edf1f5;font-weight:800}
+tbody th{font-weight:750}
+.tablewrap{max-width:100%;overflow-x:auto}
+caption{font-weight:750;text-align:left;padding:0 0 10px}
+.small{color:var(--muted);font-size:.9rem}
+.num{font-variant-numeric:tabular-nums}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.plot{margin:0;padding:12px;border:1px solid var(--line);border-radius:11px;min-width:0;background:#fff}
+.plot h3{margin:0 0 3px}
+.plot svg{display:block;width:100%;height:auto}
+.plot figcaption{font-size:.88rem;color:var(--muted);margin-top:8px}
+.legend{display:flex;flex-wrap:wrap;gap:9px 20px;font-weight:650;font-size:.84rem;margin-top:12px}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.legend b{font-size:1.1rem;line-height:1}
+.legend .ppf{display:inline-block;width:23px;border-top:3px solid var(--red)}
+.legend .before{color:#354a60}.legend .special{color:var(--navy)}.legend .consumption{color:var(--purple)}
+.metric-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:14px 0 4px}
+.metric{background:var(--pale);border:1px solid var(--line);border-radius:9px;padding:12px}
+.metric strong{display:block;font-size:1.12rem;font-variant-numeric:tabular-nums}
+.metric span{display:block;font-size:.82rem;color:var(--muted)}
+fieldset{border:1px solid var(--line);border-radius:10px;padding:14px;margin:0 0 12px}
+legend{font-weight:800;padding:0 7px}
+.radio-row{display:flex;gap:10px;flex-wrap:wrap}
+.radio-row label{display:inline-flex;align-items:center;gap:8px;margin:3px 0;font-weight:550;padding:8px 11px;border:1px solid #b9c6d4;border-radius:8px;cursor:pointer}
+.radio-row label:has(input:checked){background:#f3e8ed;border-color:var(--red)}
+input[type=radio]{width:18px;height:18px;accent-color:var(--red)}
+.feedback{margin-top:12px;background:#eff5f9;border:1px solid #aabfd2;padding:14px;border-radius:9px}
+.feedback[hidden]{display:none}
+textarea{width:100%;min-height:90px;border:2px solid #8294a7;border-radius:9px;padding:11px}
+details{margin-top:12px;border:1px solid var(--line);border-radius:9px;background:#fafbfd;padding:12px}
+summary{font-weight:800;cursor:pointer}
+.status{font-weight:700}
+.footer-note{color:#43536a;font-size:.85rem;margin-top:20px}
+@media(max-width:850px){.controls,.grid2{grid-template-columns:1fr}.metric-list{grid-template-columns:1fr 1fr}}
+@media(max-width:530px){main{padding:17px 12px 45px}.top-inner{padding:11px 12px}.metric-list{grid-template-columns:1fr}table{font-size:.9rem}th,td{padding:8px}.plot{padding:5px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{body{background:#fff}.card{break-inside:avoid}.btn,.actions{display:none}.plot{break-inside:avoid}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to lab</a>
+<header class="top"><div class="top-inner"><div class="brand">Miami University · Economics Interactive Lab</div><div class="course"><a href="../index.html">All ECO 201 labs</a> · Chapter 19</div></div></header>
+<main id="main">
+<p class="eyebrow">ECO 201 · Chapter 19 · International Trade</p>
+<h1>Comparative Advantage: Who Should Make What?</h1>
+<p class="lead">Explore three different examples. Calculate opportunity costs, decide which country should specialize, and experiment with the terms of trade. This lab uses simplified, fictional production numbers—not actual national production statistics.</p>
+<div class="note"><strong>Your goal:</strong> Explain why absolute advantage is different from comparative advantage, and when trade allows countries to consume beyond what they can produce alone. Allow about 15–20 minutes.</div>
+
+<section class="card" aria-labelledby="chooseTitle">
+<h2 id="chooseTitle">Choose a scenario</h2>
+<label for="scenario">Industry and countries</label>
+<select id="scenario">
+<option value="solar">Solar panels and backpacks — Germany / Vietnam</option>
+<option value="medical">Diagnostic kits and coffee — Colombia / South Korea</option>
+<option value="scooters">Electric scooters and T-shirts — Canada / Mexico</option>
+</select>
+<p id="context" class="small"></p>
+<div class="tablewrap"><table aria-describedby="capacityHelp"><caption>Maximum output with the same fixed resources</caption><thead><tr><th scope="col">Country</th><th scope="col" id="capA">Good 1</th><th scope="col" id="capB">Good 2</th></tr></thead><tbody id="capacityRows"></tbody></table></div>
+<p id="capacityHelp" class="small">If a country produces only one good, it reaches that good's maximum. It can also produce a mix. Opportunity costs are constant within this simplified model.</p>
+</section>
+
+<section class="card" aria-labelledby="costTitle">
+<h2 id="costTitle">1. Calculate opportunity cost</h2>
+<p>To find the cost of producing <strong>one unit of Good 1</strong>, divide the maximum output of Good 2 by the maximum output of Good 1.</p>
+<p><strong>Formula:</strong> Opportunity cost of 1 Good 1 = Maximum Good 2 ÷ Maximum Good 1</p>
+<div class="tablewrap"><table><caption>Opportunity cost, absolute advantage, and comparative advantage</caption><thead><tr><th scope="col">Country</th><th scope="col">Cost of 1 Good 1</th><th scope="col">Cost of 1 Good 2</th></tr></thead><tbody id="costRows"></tbody></table></div>
+<p id="advantageText" class="note"></p>
+<details><summary>Show the arithmetic</summary><p id="arithmetic"></p></details>
+</section>
+
+<section class="card" aria-labelledby="tradeTitle">
+<h2 id="tradeTitle">2. Specialize and trade</h2>
+<p id="specialization"></p>
+<div class="controls">
+<div>
+<label for="rate">Exchange rate: units of Good 2 paid for 1 Good 1</label>
+<input id="rate" type="range" min="0.1" max="5" step="0.1" value="1.5" aria-describedby="rateHelp">
+<p><output id="rateOutput" for="rate">1.5</output> <span id="rateUnits">units of Good 2 per Good 1</span></p>
+<p id="rateHelp" class="small">Move the slider below or above the two opportunity costs. Watch which country still gains.</p>
+</div>
+<div>
+<label for="quantity">Amount of Good 1 shipped to the importing country</label>
+<input id="quantity" type="range" min="0" max="60" step="1" value="30" aria-describedby="quantityHelp">
+<p><output id="quantityOutput" for="quantity">30</output> <span id="quantityUnits">units of Good 1</span></p>
+<p id="quantityHelp" class="small">Trade quantity is limited by available output; the slider's maximum adjusts to the exchange rate.</p>
+</div>
+</div>
+<div class="actions"><button class="btn secondary" id="reset" type="button">Reset this scenario</button></div>
+<div id="tradeStatus" class="note status" role="status" aria-live="polite"></div>
+<div class="metric-list" aria-label="Trade summary">
+<div class="metric"><strong id="supplierText">–</strong><span>Country exporting Good 1</span></div>
+<div class="metric"><strong id="tradeText">–</strong><span>Goods exchanged</span></div>
+<div class="metric"><strong id="termsText">–</strong><span>Terms of trade</span></div>
+</div>
+<h3 style="margin-top:20px">Production possibilities and consumption</h3>
+<div class="grid2">
+<figure class="plot"><h3 id="graphTitle0">Country 1</h3><svg id="graph0" viewBox="0 0 500 320" role="img" aria-label="Production possibilities frontier for country 1"></svg><figcaption id="figcap0"></figcaption></figure>
+<figure class="plot"><h3 id="graphTitle1">Country 2</h3><svg id="graph1" viewBox="0 0 500 320" role="img" aria-label="Production possibilities frontier for country 2"></svg><figcaption id="figcap1"></figcaption></figure>
+</div>
+<div class="legend" aria-label="Graph symbols">
+<span><i class="ppf" aria-hidden="true"></i> Production possibilities frontier</span>
+<span><b class="before" aria-hidden="true">○</b> Before trade: mixed production</span>
+<span><b class="special" aria-hidden="true">■</b> After specialization: production</span>
+<span><b class="consumption" aria-hidden="true">◆</b> After trade: consumption</span>
+</div>
+<div class="tablewrap" style="margin-top:18px"><table><caption>Exact numerical outcomes (accessible alternative to the graphs)</caption><thead><tr><th scope="col">Country</th><th scope="col">Before: Good 1 / Good 2</th><th scope="col">After: production, Good 1 / Good 2</th><th scope="col">After: consumption, Good 1 / Good 2</th><th scope="col">Consumption vs. own PPF</th></tr></thead><tbody id="outcomes"></tbody></table></div>
+<p class="small">A point beyond a country's PPF represents a production combination it cannot make alone. It shows potential gains from trade, not a guarantee that every individual is better off or that both goods increase compared with the original mix.</p>
+</section>
+
+<section class="card" aria-labelledby="challengeTitle">
+<h2 id="challengeTitle">3. Check your understanding</h2>
+<p>Answer using your selected scenario and the <strong>current slider values</strong>. Then check your work.</p>
+<fieldset><legend id="q1prompt">1. Who has the absolute advantage in Good 1?</legend><div class="radio-row" id="q1choices"></div></fieldset>
+<fieldset><legend id="q2prompt">2. Who has the comparative advantage in Good 1?</legend><div class="radio-row" id="q2choices"></div></fieldset>
+<fieldset><legend>3. With this exchange rate and trade quantity, are both countries consuming beyond their own PPF?</legend><div class="radio-row"><label><input type="radio" name="q3" value="yes">Yes</label><label><input type="radio" name="q3" value="no">No</label></div></fieldset>
+<div class="actions"><button class="btn" type="button" id="check">Check answers</button><button class="btn secondary" type="button" id="clear">Clear answers</button></div>
+<div class="feedback" id="feedback" role="status" aria-live="polite" hidden></div>
+<h3 style="margin-top:22px">Reflection</h3>
+<label for="reflection">In 2–3 sentences, explain why a country might import a good even if it can produce that good with fewer resources than another country.</label>
+<textarea id="reflection" placeholder="Use comparative advantage and opportunity cost in your explanation."></textarea>
+<div class="actions"><button class="btn secondary" type="button" id="copy">Copy my results and reflection</button><span id="copyStatus" class="small" role="status" aria-live="polite"></span></div>
+</section>
+<p class="footer-note">Educational model: all capacities and trade rates are hypothetical. Assumptions: two goods, two countries, fixed resources, straight-line PPFs, no transport costs, no trade barriers, and full specialization after trade. Developed with the help of ChatGPT.</p>
+</main>
+<script>
+(function(){
+"use strict";
+var scenarios=[
+{id:"solar",title:"Solar panels and backpacks",countries:["Germany","Vietnam"],goods:["solar panel batches","backpack batches"],max:[[120,90],[60,180]],rate:1.5,quantity:30,context:"A simplified manufacturing example: one country is relatively effective at panel production, while the other is relatively effective at making backpacks."},
+{id:"medical",title:"Diagnostic kits and coffee",countries:["Colombia","South Korea"],goods:["diagnostic kit batches","coffee batches"],max:[[40,200],[160,80]],rate:2,quantity:30,context:"A simplified example contrasting agricultural output with high-tech medical goods. The order of comparative advantage is reversed from the first scenario."},
+{id:"scooters",title:"Electric scooters and T-shirts",countries:["Canada","Mexico"],goods:["electric scooter batches","T-shirt batches"],max:[[120,240],[60,200]],rate:2.6,quantity:40,context:"Here Canada can produce more of BOTH goods with the same resources. Does that mean Mexico has nothing to offer in trade?"}
+];
+var $=function(id){return document.getElementById(id)};
+var scenario=$("scenario"),rate=$("rate"),quantity=$("quantity"),current=scenarios[0];
+function fmt(x){return Number(Number(x).toFixed(2)).toLocaleString("en-US",{maximumFractionDigits:2})}
+function cost(i){return current.max[i][1]/current.max[i][0]}
+function specialists(){return cost(0)<cost(1)?[0,1]:[1,0]}
+function clamp(x,min,max){return Math.max(min,Math.min(max,x))}
+function pointStatus(i,a,b){
+ var maxA=current.max[i][0],maxB=current.max[i][1];
+ var top=maxB*(1-a/maxA);
+ if(a>maxA+0.00001||b>maxB+0.00001||b>top+0.00001)return "Beyond PPF";
+ if(a< -0.00001||b< -0.00001)return "Not feasible";
+ if(Math.abs(b-top)<0.00001)return "On PPF";
+ return "Within PPF"
+}
+function makeRadio(id,name){
+ var box=$(id);box.replaceChildren();
+ current.countries.forEach(function(country,i){
+ var label=document.createElement("label"),inp=document.createElement("input");
+ inp.type="radio";inp.name=name;inp.value=String(i);
+ label.append(inp,document.createTextNode(country));box.append(label)
+ });
+}
+function resetQuiz(){
+ document.querySelectorAll('input[name="q1"],input[name="q2"],input[name="q3"]').forEach(function(e){e.checked=false});
+ $("feedback").hidden=true;$("feedback").textContent="";$("copyStatus").textContent=""
+}
+function loadScenario(){
+ current=scenarios.find(function(s){return s.id===scenario.value})||scenarios[0];
+ $("context").textContent=current.context;
+ $("capA").textContent="Maximum "+current.goods[0];
+ $("capB").textContent="Maximum "+current.goods[1];
+ $("capacityRows").innerHTML=current.countries.map(function(c,i){return "<tr><th scope='row'>"+c+"</th><td class='num'>"+fmt(current.max[i][0])+"</td><td class='num'>"+fmt(current.max[i][1])+"</td></tr>"}).join("");
+ $("costRows").innerHTML=current.countries.map(function(c,i){return "<tr><th scope='row'>"+c+"</th><td>"+fmt(cost(i))+" "+current.goods[1]+"</td><td>"+fmt(1/cost(i))+" "+current.goods[0]+"</td></tr>"}).join("");
+ var s=specialists(),high=s[1],low=s[0], a0=current.max[0][0],a1=current.max[1][0],b0=current.max[0][1],b1=current.max[1][1];
+ $("advantageText").textContent="Absolute advantage: "+(a0>a1?current.countries[0]:current.countries[1])+" in "+current.goods[0]+", and "+(b0>b1?current.countries[0]:current.countries[1])+" in "+current.goods[1]+". Comparative advantage: "+current.countries[low]+" in "+current.goods[0]+" (lower opportunity cost); "+current.countries[high]+" in "+current.goods[1]+".";
+ $("arithmetic").textContent=current.countries.map(function(c,i){return c+": "+fmt(current.max[i][1])+" ÷ "+fmt(current.max[i][0])+" = "+fmt(cost(i))+" "+current.goods[1]+" forgone per "+current.goods[0]+". For one "+current.goods[1]+": "+fmt(current.max[i][0])+" ÷ "+fmt(current.max[i][1])+" = "+fmt(1/cost(i))+" "+current.goods[0]+" forgone."}).join(" ");
+ $("specialization").textContent="After specialization, "+current.countries[low]+" makes only "+current.goods[0]+" and "+current.countries[high]+" makes only "+current.goods[1]+". Before trade, assume both countries split their resources equally between the two goods.";
+ $("rateUnits").textContent=current.goods[1]+" per "+current.goods[0];
+ $("quantityUnits").textContent=current.goods[0];
+ $("q1prompt").textContent="1. Who has the absolute advantage in "+current.goods[0]+"?";
+ $("q2prompt").textContent="2. Who has the comparative advantage in "+current.goods[0]+"?";
+ makeRadio("q1choices","q1");makeRadio("q2choices","q2");resetQuiz();
+ var minC=Math.min(cost(0),cost(1)),maxC=Math.max(cost(0),cost(1));
+ rate.min=String(Math.max(.1,Math.floor(minC*.55*10)/10));
+ rate.max=String(Math.ceil(maxC*1.32*10)/10);
+ rate.value=String(current.rate);
+ quantity.value=String(current.quantity);
+ $("reflection").value="";
+ update();
+}
+function calculate(){
+ var term=Number(rate.value),s=specialists(),giver=s[0],receiver=s[1];
+ var feasible=Math.min(current.max[giver][0],current.max[receiver][0],current.max[receiver][1]/term);
+ var bound=Math.max(0,Math.floor(feasible));
+ quantity.max=String(bound);
+ quantity.value=String(clamp(Number(quantity.value),0,bound));
+ var units=Number(quantity.value),paid=units*term;
+ var produced=[[0,0],[0,0]],consumed=[[0,0],[0,0]];
+ produced[giver]=[current.max[giver][0],0];produced[receiver]=[0,current.max[receiver][1]];
+ consumed[giver]=[produced[giver][0]-units,paid];
+ consumed[receiver]=[units,produced[receiver][1]-paid];
+ var status=consumed.map(function(v,i){return pointStatus(i,v[0],v[1])});
+ return {term:term,units:units,paid:paid,giver:giver,receiver:receiver,produced:produced,consumed:consumed,status:status};
+}
+function svgLine(x1,y1,x2,y2,stroke,width,dash){
+ return '<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="'+stroke+'" stroke-width="'+width+'"'+(dash?' stroke-dasharray="'+dash+'"':'')+'/>';
+}
+function draw(i,model){
+ var A=current.max[i][0],B=current.max[i][1],before=[A/2,B/2],production=model.produced[i],consumption=model.consumed[i];
+ var left=68,top=24,w=372,h=224,scaleA=Math.max(A,consumption[0])*1.12,scaleB=Math.max(B,consumption[1])*1.12;
+ var x=function(q){return left+(q/scaleA)*w}, y=function(q){return top+h-(q/scaleB)*h};
+ var svg='<rect x="0" y="0" width="500" height="320" fill="white"/>';
+ for(var g=0;g<=4;g++){
+  var gy=top+g*h/4,gx=left+g*w/4;
+  svg+=svgLine(left,gy,left+w,gy,"#dce4eb",1,"");
+  svg+=svgLine(gx,top,gx,top+h,"#e7edf2",1,"");
+ }
+ svg+=svgLine(left,top,left,top+h,"#253849",2,"")+svgLine(left,top+h,left+w,top+h,"#253849",2,"");
+ svg+=svgLine(x(0),y(B),x(A),y(0),"#99002b",3,"");
+ svg+='<text x="'+(x(A*.50))+'" y="'+(y(B*.50)-12)+'" font-size="14" fill="#790023" font-weight="750">PPF</text>';
+ function circle(p){return '<circle cx="'+x(p[0])+'" cy="'+y(p[1])+'" r="7.5" fill="#fff" stroke="#354a60" stroke-width="3"/>'}
+ function square(p){return '<rect x="'+(x(p[0])-7)+'" y="'+(y(p[1])-7)+'" width="14" height="14" fill="#174d75" stroke="white" stroke-width="1.5"/>'}
+ function diamond(p){return '<polygon points="'+x(p[0])+','+(y(p[1])-9)+' '+(x(p[0])+9)+','+y(p[1])+' '+x(p[0])+','+(y(p[1])+9)+' '+(x(p[0])-9)+','+y(p[1])+'" fill="#653784" stroke="white" stroke-width="1.5"/>'}
+ svg+=circle(before)+square(production)+diamond(consumption);
+ var ticks=4;
+ for(var t=0;t<=ticks;t++){
+  var va=scaleA*t/ticks,vb=scaleB*t/ticks;
+  svg+='<text x="'+x(va)+'" y="268" font-size="12" text-anchor="middle" fill="#33475a">'+fmt(va)+'</text>';
+  svg+='<text x="59" y="'+(y(vb)+4)+'" font-size="12" text-anchor="end" fill="#33475a">'+fmt(vb)+'</text>';
+ }
+ svg+='<text x="255" y="303" font-size="14" text-anchor="middle" fill="#1c2b3b">'+current.goods[0]+'</text>';
+ svg+='<text x="14" y="137" font-size="14" text-anchor="middle" fill="#1c2b3b" transform="rotate(-90 14 137)">'+current.goods[1]+'</text>';
+ $("graph"+i).innerHTML=svg;
+ $("graph"+i).setAttribute("aria-label",current.countries[i]+" PPF: intercepts "+fmt(A)+" "+current.goods[0]+" and "+fmt(B)+" "+current.goods[1]+". Before trade "+fmt(before[0])+" / "+fmt(before[1])+". After specialization produces "+fmt(production[0])+" / "+fmt(production[1])+". After trade consumes "+fmt(consumption[0])+" / "+fmt(consumption[1])+". "+model.status[i]+".");
+ $("graphTitle"+i).textContent=current.countries[i];
+ $("figcap"+i).textContent="Before trade: "+fmt(before[0])+" / "+fmt(before[1])+". After trade consumption: "+fmt(consumption[0])+" / "+fmt(consumption[1])+". "+model.status[i]+".";
+}
+function update(){
+ var m=calculate(),low=cost(m.giver),high=cost(m.receiver);
+ $("rateOutput").textContent=fmt(m.term);
+ $("quantityOutput").textContent=fmt(m.units);
+ $("supplierText").textContent=current.countries[m.giver];
+ $("tradeText").textContent=fmt(m.units)+" for "+fmt(m.paid);
+ var termOK=m.term>low+1e-8&&m.term<high-1e-8;
+ $("termsText").textContent=termOK?"Between both costs":"Outside / at a cost";
+ var msg="Trade: "+current.countries[m.giver]+" sends "+fmt(m.units)+" "+current.goods[0]+"; "+current.countries[m.receiver]+" sends "+fmt(m.paid)+" "+current.goods[1]+". ";
+ if(m.units===0)msg+="No trade occurs; neither country has a post-trade gain.";
+ else if(termOK)msg+="The exchange rate lies between the countries' opportunity costs ("+fmt(low)+" and "+fmt(high)+"). Both countries consume beyond their own PPF.";
+ else msg+="At this exchange rate, one or both countries do not gain relative to domestic production. Compare the consumption points with each PPF.";
+ $("tradeStatus").textContent=msg;
+ $("outcomes").innerHTML=current.countries.map(function(c,i){var production=m.produced[i],consumption=m.consumed[i];return "<tr><th scope='row'>"+c+"</th><td>"+fmt(current.max[i][0]/2)+" / "+fmt(current.max[i][1]/2)+"</td><td>"+fmt(production[0])+" / "+fmt(production[1])+"</td><td>"+fmt(consumption[0])+" / "+fmt(consumption[1])+"</td><td>"+m.status[i]+"</td></tr>"}).join("");
+ draw(0,m);draw(1,m);
+ $("feedback").hidden=true;
+ return m;
+}
+function checked(name){var node=document.querySelector('input[name="'+name+'"]:checked');return node?node.value:null}
+$("check").addEventListener("click",function(){
+ var m=calculate(),a=checked("q1"),b=checked("q2"),c=checked("q3");
+ var area=$("feedback");area.hidden=false;
+ if(a===null||b===null||c===null){area.textContent="Answer all three questions before checking.";return}
+ var abs=current.max[0][0]>current.max[1][0]?0:1,comp=specialists()[0];
+ var both=m.units>0&&m.status.every(function(s){return s==="Beyond PPF"});
+ var points=(a===String(abs)?1:0)+(b===String(comp)?1:0)+(c===(both?"yes":"no")?1:0);
+ area.textContent=points+" of 3 correct. 1) Absolute advantage in "+current.goods[0]+": "+current.countries[abs]+" (higher maximum output). 2) Comparative advantage: "+current.countries[comp]+" (lower cost, "+fmt(cost(comp))+" "+current.goods[1]+" per "+current.goods[0]+"). 3) Both beyond their PPF now? "+(both?"Yes":"No")+". With "+fmt(m.units)+" traded at "+fmt(m.term)+" "+current.goods[1]+" per "+current.goods[0]+", the outcomes are "+m.status.join(" and ")+".";
+});
+$("clear").addEventListener("click",resetQuiz);
+$("reset").addEventListener("click",function(){rate.value=current.rate;quantity.value=current.quantity;resetQuiz();update()});
+scenario.addEventListener("change",loadScenario);
+rate.addEventListener("input",update);
+quantity.addEventListener("input",update);
+$("copy").addEventListener("click",function(){
+ var m=calculate(),details=current.countries.map(function(c,i){return c+": consumes "+fmt(m.consumed[i][0])+" "+current.goods[0]+" and "+fmt(m.consumed[i][1])+" "+current.goods[1]+" ("+m.status[i]+")"}).join("\n");
+ var results="ECO 201 - Chapter 19 Comparative Advantage Lab\nScenario: "+current.title+"\nOpportunity cost of 1 "+current.goods[0]+": "+current.countries[0]+" "+fmt(cost(0))+"; "+current.countries[1]+" "+fmt(cost(1))+" "+current.goods[1]+"\nComparative advantage in "+current.goods[0]+": "+current.countries[specialists()[0]]+"\nTrade: "+fmt(m.units)+" "+current.goods[0]+" for "+fmt(m.paid)+" "+current.goods[1]+"\n"+details+"\nReflection: "+$("reflection").value.trim();
+ var status=$("copyStatus");
+ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(results).then(function(){status.textContent="Results copied. Paste them into your assignment."}).catch(function(){status.textContent="Clipboard blocked by this browser. Select and copy the reflection and table manually."})}
+ else{status.textContent="Clipboard unavailable in this browser. Select and copy your reflection and the table manually."}
+});
+loadScenario();
+})();
+</script>
+</body>
+</html>
