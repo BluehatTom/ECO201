@@ -126,7 +126,7 @@ body{background:#fff;font-size:11pt}
 <h2>Global trade map</h2>
 <div><label for="bloc">Show existing trade agreement:</label> <select id="bloc"><option value="none">No overlay</option><option value="USMCA">USMCA · North America</option><option value="EU">European Union</option><option value="RCEP">RCEP · Indo-Pacific</option><option value="CPTPP">CPTPP · Pacific</option></select></div>
 </div>
-<div class="map-area"><svg id="world" viewBox="0 0 1116 522" role="img" aria-label="World map of countries and trade agreement memberships. Choose a trading partner using the map markers or the adjacent partner dropdown.">
+<div class="map-area"><svg id="world" viewBox="0 0 1116 522" role="group" aria-label="World map of countries and trade agreement memberships. Choose a trading partner using the map markers or the adjacent partner dropdown.">
 <rect width="1116" height="522" fill="#e8f3f8"></rect>
 <g id="graticule" aria-hidden="true"></g>
 <g id="lands"></g>
@@ -274,7 +274,7 @@ function mapInit(){
  var econ=economyOfCountry(q.id);
  var elem=makeSVG("path",{d:q.d,class:"country","data-iso":q.id,"data-econ":econ});
  elem.appendChild(makeSVG("title",{},q.name));
- if(econ){elem.setAttribute("role","button");elem.setAttribute("tabindex","0");elem.setAttribute("aria-label","Select "+nm(econ)+" as trading partner");
+ if(econ){elem.setAttribute("aria-label","Map region: "+nm(econ)+" (click to select as trading partner)");
   elem.addEventListener("click",function(){selectPartner(econ)});
   elem.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();selectPartner(econ)}})}
  frag.appendChild(elem);
@@ -371,7 +371,7 @@ function apply(){
   }else{
    var renewed=!!st.deals[partner];
    d.prices=renewed?-1:-2;d.jobs=-1;d.exports=renewed?3:6;d.trust=renewed?4:9;d.resilience=2;d.budget=-1;d.globalTrade=renewed?2:4;d.tension=-3;
-   st.deals[partner]=true;delete st.conflicts[partner];
+   st.deals[partner]=true;st.tariffs[partner]=0;delete st.conflicts[partner];
    title=renewed?"Existing deal expanded":"Trade agreement accepted";response=nm(partner)+" accepted a simulated bilateral deal and reduced barriers.";
    winners="Exporters, buyers seeking lower prices, and firms using imported components.";costs="Some import-competing firms face more competition; negotiators incur administrative costs.";
    reason="Lower trade barriers tend to increase market access and specialization opportunities, but effects vary by industry.";
@@ -379,7 +379,7 @@ function apply(){
   route="deal";
  }else if(p==="lower"){
   d.prices=-3;d.jobs=-2;d.exports=2;d.trust=6;d.resilience=1;d.globalTrade=3;d.tension=-3;d.budget=-1;
-  title="Import barriers lowered";response=nm(partner)+" welcomed the opening and offered to discuss its own rules.";
+  st.tariffs[partner]=0;title="Import barriers lowered";response=nm(partner)+" welcomed the opening and offered to discuss its own rules.";
   winners="Domestic buyers and import-dependent businesses.";costs="Import-competing producers may lose market share.";
   reason="Lower barriers make imports cheaper; the partner's own rules are not automatically changed.";
   route="deal";
@@ -395,6 +395,7 @@ function apply(){
     st.conflicts[partner]=true;delete st.deals[partner];
   }else response=nm(partner)+" protested but did not retaliate during this round.";
   title=(big?"25%":"10%")+" tariff imposed"+(retaliates?" — trade war escalates":"");
+  if(shared)response+=" The trading partners already share a trade framework, so this move could raise treaty-compliance questions.";
   winners="Domestic firms competing with imports and, while imports continue, the tariff-collecting government.";
   costs="Domestic buyers, firms using imported inputs, and exporters if retaliation occurs.";
   reason="Tariffs can shift purchases toward domestic output but raise prices. Higher tariff rates do not guarantee higher tariff revenue as imports shrink.";
@@ -424,7 +425,7 @@ function apply(){
  Object.keys(d).forEach(function(k){st[k]+=d[k]});
  st.relations[partner]=(st.relations[partner]??60)+d.trust;
  cap();
- st.trust=Math.round(Object.values(st.relations).reduce(function(a,b){return a+b},0)/Math.max(1,Object.values(st.relations).length));
+ 
  st.routes.push({partner:partner,kind:route,label:title});
  var turn=st.turn;
  st.moves.push({turn:turn,partner:partner,sector:sector,policy:p,title:title,response:response,winners:winners,costs:costs,reason:reason,deltas:d,score:score()});
