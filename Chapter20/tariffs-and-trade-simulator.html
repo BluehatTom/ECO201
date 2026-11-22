@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#99002b">
+<meta name="description" content="ECO 201 Chapter 20 interactive tariff simulator: explore protectionism, import changes, revenue, winners, losers, and deadweight loss.">
+<title>ECO 201 Chapter 20 — Tariffs and Trade</title>
+<style>
+:root{color-scheme:light;--red:#99002b;--redDark:#750025;--ink:#1d2c3a;--muted:#415263;--bg:#f5f7fa;--edge:#becbd7;--navy:#215575;--pale:#eff3f7;--green:#14613b}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.49 system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+a{color:#194b7a;text-underline-offset:3px}
+:focus-visible{outline:3px solid #1268bc;outline-offset:3px}
+.skip{position:absolute;left:10px;top:-90px;background:white;padding:12px;z-index:10}.skip:focus{top:8px}
+header{background:#fff;border-bottom:5px solid var(--red)}
+.top{max-width:1160px;padding:12px 22px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.brand{color:var(--redDark);font-weight:850}
+.course{color:var(--muted);font-size:.9rem}
+main{max-width:1160px;padding:20px 22px 50px;margin:auto}
+h1{font-size:clamp(1.8rem,3.3vw,2.45rem);line-height:1.14;margin:3px 0 8px}
+h2{font-size:1.3rem;margin:0 0 12px}
+h3{font-size:1.03rem;margin:0 0 6px}
+p{margin:5px 0 11px}
+.eyebrow{font-size:.83rem;letter-spacing:.07em;text-transform:uppercase;color:var(--red);font-weight:850}
+.lead{color:var(--muted);max-width:84ch}
+.card{background:white;border:1px solid var(--edge);border-radius:13px;padding:clamp(14px,2vw,23px);margin-top:15px}
+.note{border-left:4px solid var(--navy);background:var(--pale);padding:11px 13px;border-radius:6px}
+label{display:block;font-weight:750;margin:0 0 5px}
+select,input[type=number],input[type=text],textarea{border:2px solid #8092a5;border-radius:8px;background:white;color:var(--ink);min-height:43px;padding:8px 10px;max-width:100%}
+select{width:min(530px,100%)}
+input[type=number]{width:150px}
+input[type=text]{width:100%}
+textarea{width:100%;min-height:82px;resize:vertical}
+button{border:2px solid var(--red);border-radius:8px;background:var(--red);color:white;padding:9px 13px;min-height:42px;font-weight:750}
+button:hover{background:var(--redDark)}
+button.secondary{background:#fff;color:var(--redDark)}button.secondary:hover{background:#fff1f5}
+.controls-bar{display:flex;align-items:end;gap:14px;flex-wrap:wrap}
+.intro-info{margin:10px 0 0;color:var(--muted)}
+.workspace{display:grid;grid-template-columns:193px minmax(0,1fr);gap:14px;align-items:stretch;margin-top:12px}
+.slider-panel{background:#f7f9fb;border:1px solid var(--edge);border-radius:11px;padding:13px 11px;display:flex;flex-direction:column;align-items:center;gap:3px;text-align:center}
+.slider-panel h3{margin:0}
+.slider-panel output{font-size:1.6rem;font-weight:850;color:var(--redDark);font-variant-numeric:tabular-nums}
+.slider-panel .slider-unit{font-size:.84rem;color:var(--muted)}
+.slider-panel input[type=range]{writing-mode:vertical-lr;direction:rtl;width:40px;height:205px;min-height:205px;accent-color:var(--red);margin:6px auto;cursor:pointer;touch-action:none}
+.slider-panel .bound{color:#304458;font-size:.77rem;font-weight:750}
+.slider-panel .hint{font-size:.78rem;color:var(--muted);line-height:1.35}
+.slider-panel button{width:100%;margin-top:auto}
+.graph-panel{border:1px solid var(--edge);border-radius:11px;padding:10px;min-width:0}
+.graph-panel h3{margin:0 0 3px}
+.chart-scroll{max-width:100%;overflow-x:auto}
+.chart-scroll svg{display:block;width:100%;height:auto}
+.legend{display:flex;gap:9px 17px;flex-wrap:wrap;font-size:.8rem;margin:5px 0 2px;color:#2e455b}
+.legend-item{display:inline-flex;gap:6px;align-items:center}
+.key{display:inline-block;width:21px;border-top:3px solid currentColor}
+.key.supply{color:#99002b;border-top-style:dashed}
+.key.demand{color:#215575}
+.key.world{color:#596775;border-top:3px dotted}
+.key.price{color:#171e2b}
+.metricgrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:10px}
+.metric{padding:10px 9px;background:var(--pale);border:1px solid var(--edge);border-radius:9px;min-width:0}
+.metric strong{display:block;font-size:1.22rem;line-height:1.2;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.metric span{display:block;font-size:.77rem;margin-top:4px;color:var(--muted);line-height:1.25}
+.status{margin-top:11px;padding:10px 12px;background:#f3f6f9;border-left:4px solid #215575;border-radius:5px;font-size:.94rem}
+.status p{margin:0}
+table{border-collapse:collapse;width:100%;text-align:left;font-size:.94rem}
+caption{text-align:left;font-weight:750;margin:0 0 8px}
+th,td{border-bottom:1px solid var(--edge);padding:9px 10px;vertical-align:top}
+thead th{background:#eaf0f6}
+tbody th{font-weight:740}
+.table-wrap{max-width:100%;overflow-x:auto}
+.data h3{margin:15px 0 9px}
+details{border:1px solid var(--edge);border-radius:9px;margin-top:12px;padding:11px 13px}
+summary{font-weight:800;cursor:pointer}
+details p{margin:9px 0}
+.math{font-family:system-ui,Arial,sans-serif;font-variant-numeric:tabular-nums}
+.welfare{margin-top:12px;padding:12px;background:#f5f7f9;border:1px solid var(--edge);border-radius:9px}
+.welfare[hidden]{display:none}
+.welfare dl{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin:9px 0}
+.welfare dl div{padding:10px;border:1px solid var(--edge);background:white;border-radius:7px}
+dt{font-size:.79rem;color:var(--muted)}dd{margin:4px 0 0;font-weight:800;font-variant-numeric:tabular-nums}
+.checkrow{display:flex;gap:9px;align-items:center;margin-top:11px;font-weight:650}
+input[type=checkbox],input[type=radio]{width:19px;height:19px;accent-color:var(--red)}
+.challenge-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.challenge-grid label{font-size:.94rem}
+.challenge-grid p{margin:0}
+.field-note{color:var(--muted);font-size:.83rem;margin-top:5px}
+.radio-list label{font-weight:500;display:block;margin:5px 0;cursor:pointer}
+.action-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;align-items:center}
+.feedback{background:#eff5f9;border:1px solid #a0b5c8;padding:12px;border-radius:8px;margin-top:11px}
+.feedback[hidden]{display:none}
+.identity{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.report-note{font-size:.85rem;color:var(--muted);margin:14px 0}
+footer{margin-top:15px;color:#445468;font-size:.82rem}
+#printReport{display:none}
+@media(max-width:850px){.workspace{grid-template-columns:1fr}.slider-panel{flex-direction:row;justify-content:space-around;flex-wrap:wrap;text-align:left}.slider-panel input[type=range]{writing-mode:horizontal-tb;direction:ltr;height:35px;min-height:35px;width:min(300px,90vw)}.slider-panel button{width:auto;margin:0}.slider-panel .bound{display:none}.metricgrid{grid-template-columns:repeat(3,minmax(0,1fr))}.challenge-grid{grid-template-columns:1fr}}
+@media(max-width:600px){main{padding:15px 11px 35px}.top{padding:10px 11px}.metricgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.welfare dl{grid-template-columns:repeat(2,minmax(0,1fr))}.identity{grid-template-columns:1fr}.chart-scroll svg{width:670px;min-width:670px}}
+@media print{@page{size:letter;margin:.65in}body{background:white;font-size:11pt}body>header,body>main{display:none!important}#printReport{display:block!important;line-height:1.5}#printReport h1{font-size:20pt}#printReport h2{font-size:13pt;margin:14px 0 6px}#printReport table{font-size:10pt}#printReport th,#printReport td{padding:5px}#printReport .printmeta{margin:0 0 8px}#printReport .printsmall{font-size:10pt}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to lab</a>
+<header><div class="top"><div class="brand">Miami University · Economics Interactive Lab</div><div class="course"><a href="../index.html">All ECO 201 labs</a> · Chapter 20</div></div></header>
+<main id="main">
+<p class="eyebrow">ECO 201 · Chapter 20 · Globalization and Protectionism</p>
+<h1>Tariffs: Who Gains and Who Pays?</h1>
+<p class="lead">Explore trade policy with a simplified market. Change a tariff and see what happens to consumers, domestic producers, imports, government revenue, and the economy overall.</p>
+<section class="card" aria-labelledby="chooseheading">
+<h2 id="chooseheading">1. Choose a market</h2>
+<div class="controls-bar"><div><label for="market">Imported product</label><select id="market">
+<option value="makers">Coffee makers</option><option value="bikes">Electric bicycles</option><option value="lights">LED light fixtures</option>
+</select></div></div>
+<p id="scenarioIntro" class="intro-info"></p>
+<p class="field-note">All examples use fictional data. Assume the country is too small to change the world price and the full tariff is passed through while imports continue.</p>
+</section>
+<section class="card" aria-labelledby="simulateheading">
+<h2 id="simulateheading">2. Adjust the tariff</h2>
+<div class="workspace">
+<div class="slider-panel">
+<h3>Tariff per import</h3>
+<output id="tariffOutput" for="tariff">$10</output>
+<span class="slider-unit">per imported unit</span>
+<span class="bound">Maximum: <span id="maxTariff">$35</span></span>
+<input id="tariff" type="range" min="0" max="35" step="1" value="10" aria-label="Tariff per imported unit, dollars" aria-describedby="tariffHelp">
+<span class="bound">Minimum: $0</span>
+<p id="tariffHelp" class="hint">Drag up for higher tariffs. Use arrow keys for $1 steps.</p>
+<button type="button" id="reset" class="secondary">Reset market</button>
+</div>
+<div class="graph-panel">
+<h3>Domestic supply and demand</h3>
+<div class="chart-scroll"><svg id="chart" viewBox="0 0 740 380" role="img" aria-label="Demand and supply curves with world price, domestic market price, and marked quantity supplied and demanded. Exact values appear in the table below."></svg></div>
+<div class="legend" aria-label="Graph line legend">
+<span class="legend-item"><i class="key demand" aria-hidden="true"></i> Demand (solid)</span>
+<span class="legend-item"><i class="key supply" aria-hidden="true"></i> Domestic supply (dashed)</span>
+<span class="legend-item"><i class="key world" aria-hidden="true"></i> World price (dotted)</span>
+<span class="legend-item"><i class="key price" aria-hidden="true"></i> Domestic price (solid)</span>
+</div>
+</div>
+</div>
+<div class="metricgrid" aria-label="Current market values">
+<div class="metric"><strong id="priceMetric">$0</strong><span>U.S. price</span></div>
+<div class="metric"><strong id="supplyMetric">0</strong><span>Domestic production</span></div>
+<div class="metric"><strong id="demandMetric">0</strong><span>Quantity purchased</span></div>
+<div class="metric"><strong id="importsMetric">0</strong><span>Imports</span></div>
+<div class="metric"><strong id="revenueMetric">$0</strong><span>Government tariff revenue</span></div>
+</div>
+<div id="marketMessage" class="status" role="status" aria-live="polite"></div>
+<div class="table-wrap data"><h3>Compare free trade with this tariff</h3><table><caption>Exact numerical outcomes (also describes the graph)</caption><thead><tr><th scope="col">Measure</th><th scope="col">Free trade</th><th scope="col">With selected tariff</th><th scope="col">Change</th></tr></thead><tbody id="comparison"></tbody></table></div>
+<label class="checkrow"><input type="checkbox" id="showWelfare"> Show additional economics: surplus and deadweight loss</label>
+<div id="welfare" class="welfare" hidden>
+<p><strong>Economic surplus:</strong> The tariff redistributes some benefits but also reduces total surplus in this simple model.</p>
+<dl><div><dt>Consumer surplus</dt><dd id="consumerValue"></dd></div><div><dt>Producer surplus</dt><dd id="producerValue"></dd></div><div><dt>Tariff revenue</dt><dd id="welfareRevenue"></dd></div><div><dt>Deadweight loss</dt><dd id="deadweightValue"></dd></div></dl>
+<p id="welfareText"></p>
+</div>
+<details><summary>Show formulas and worked calculations</summary>
+<p><strong>Imports</strong> = Quantity demanded - Quantity supplied domestically</p>
+<p><strong>Government revenue</strong> = Tariff per unit × Imports after tariff</p>
+<p><strong>Domestic price</strong> = World price + Tariff, until the tariff becomes high enough to stop imports; then price cannot exceed the domestic no-trade equilibrium in this model.</p>
+<p id="work" class="math"></p>
+</details>
+</section>
+<section class="card" aria-labelledby="challengeheading">
+<h2 id="challengeheading">3. Check your understanding</h2>
+<p>Use the current slider setting. Round calculations to the nearest whole unit or dollar.</p>
+<div class="challenge-grid">
+<div><label for="answerImports">1. How many units are imported now?</label><input id="answerImports" type="number" min="0" step="1" inputmode="numeric"><p class="field-note">Formula: Demand - domestic supply</p></div>
+<div><label for="answerRevenue">2. How much tariff revenue does the government collect?</label><input id="answerRevenue" type="number" min="0" step="1" inputmode="numeric"><p class="field-note">Formula: Tariff × imports</p></div>
+<div><fieldset style="border:0;padding:0;margin:0"><legend style="font-weight:750">3. When a tariff raises domestic prices, which statement is accurate?</legend><div class="radio-list">
+<label><input type="radio" name="who" value="a"> Domestic producers may gain; consumers pay more</label>
+<label><input type="radio" name="who" value="b"> All domestic buyers benefit</label>
+<label><input type="radio" name="who" value="c"> The government always earns more revenue from higher tariffs</label>
+</div></fieldset></div>
+</div>
+<div class="action-row"><button type="button" id="checkAnswers">Check my answers</button><button type="button" class="secondary" id="clearAnswers">Clear answers</button></div>
+<div id="feedback" class="feedback" role="status" aria-live="polite" hidden></div>
+<h3 style="margin-top:19px">Critical thinking</h3>
+<label for="reflection">A local manufacturer wants a higher tariff because it would increase domestic production. What should policymakers consider before agreeing? Write 2–3 sentences.</label>
+<textarea id="reflection" placeholder="Consider consumers, domestic firms, revenue, and broader economic effects."></textarea>
+</section>
+<section class="card" aria-labelledby="saveheading">
+<h2 id="saveheading">4. Save your work</h2>
+<div class="identity"><div><label for="firstName">First name</label><input id="firstName" type="text" autocomplete="given-name"></div><div><label for="lastName">Last name</label><input id="lastName" type="text" autocomplete="family-name"></div></div>
+<div style="margin-top:11px"><label for="fileName">Suggested PDF filename</label><input id="fileName" type="text" value="ECO201 Chapter 20 Trade Lab" maxlength="100"></div>
+<div class="action-row"><button type="button" id="savePDF">Save work as PDF</button><button type="button" class="secondary" id="copyResults">Copy summary</button><span id="saveMessage" role="status" aria-live="polite"></span></div>
+<p class="field-note">The PDF button opens your browser's print dialog. Select <strong>Save as PDF</strong> and choose your filename. The report includes market figures, answers, and your reflection.</p>
+</section>
+<footer>These scenarios are mathematical teaching examples, not real market forecasts. Small-country, constant-world-price, linear supply-and-demand assumptions apply. Developed with the help of AI.</footer>
+</main>
+<article id="printReport" aria-label="Student lab report"></article>
+<script>
+(function(){
+"use strict";
+var scenarios={
+makers:{title:"Coffee makers",world:40,a:240,b:2,c:-40,d:2,t:10,max:36,context:"Coffee makers are imported into a market that also has domestic manufacturers."},
+bikes:{title:"Electric bicycles",world:30,a:360,b:3,c:-60,d:3,t:15,max:46,context:"Domestic bicycle producers compete with electric bicycles brought in from other countries."},
+lights:{title:"LED light fixtures",world:18,a:300,b:4,c:-20,d:4,t:6,max:28,context:"Foreign and domestic manufacturers both supply LED light fixtures to U.S. buyers."}
+};
+var el=function(id){return document.getElementById(id)}, market=el("market"), slider=el("tariff"), c=scenarios.makers;
+var money=function(n){return "$"+Number(Math.abs(n)<.0000001?0:n).toLocaleString("en-US",{maximumFractionDigits:2})};
+var fmt=function(n){return Number(Math.abs(n)<.0000001?0:n).toLocaleString("en-US",{maximumFractionDigits:2})};
+var escapeHTML=function(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;")};
+function calc(t){
+ var autarky=(c.a-c.c)/(c.b+c.d);
+ var domesticPrice=Math.min(autarky,c.world+t);
+ var qd=Math.max(0,c.a-c.b*domesticPrice), qs=Math.max(0,c.c+c.d*domesticPrice);
+ var imports=Math.max(0,qd-qs);
+ if(imports<.0000001)imports=0;
+ var rev=t*imports, cs=.5*qd*(c.a/c.b-domesticPrice);
+ var floor=-c.c/c.d,ps=.5*qs*(domesticPrice-floor);
+ return {tariff:t,p:domesticPrice,qd:qd,qs:qs,imports:imports,rev:rev,cs:cs,ps:ps,autarky:autarky,total:cs+ps+rev};
+}
+function delta(n){if(Math.abs(n)<.0000001)return "No change";return (n>0?"+":"-")+fmt(Math.abs(n))}
+function deltaMoney(n){if(Math.abs(n)<.0000001)return "No change";return (n>0?"+":"-")+money(Math.abs(n))}
+function load(){
+ c=scenarios[market.value]||scenarios.makers;
+ el("scenarioIntro").textContent=c.context+" World price: "+money(c.world)+".";
+ slider.max=String(c.max);slider.value=String(c.t);
+ el("maxTariff").textContent=money(c.max);
+ el("showWelfare").checked=false;el("welfare").hidden=true;
+ el("answerImports").value="";el("answerRevenue").value="";
+ document.querySelectorAll('input[name="who"]').forEach(function(r){r.checked=false});
+ el("feedback").hidden=true;el("feedback").textContent="";el("reflection").value="";
+ render();
+}
+function draw(f,v){
+ var plot={x:67,y:24,w:575,h:277};
+ var ymax=Math.max(c.a/c.b+8,v.autarky+20);
+ var xmax=Math.max(c.a+15,Math.ceil((c.c+c.d*ymax)*1.04),Math.ceil(f.qd*1.13));
+ var x=function(q){return plot.x+q/xmax*plot.w};
+ var y=function(p){return plot.y+plot.h-p/ymax*plot.h};
+ var s='<rect width="740" height="380" fill="white"/>';
+ for(var i=0;i<=5;i++){
+ var pi=ymax*i/5,qi=xmax*i/5;
+ s+='<line x1="'+plot.x+'" y1="'+y(pi)+'" x2="'+(plot.x+plot.w)+'" y2="'+y(pi)+'" stroke="#e3eaf0"/>';
+ s+='<text x="'+(plot.x-8)+'" y="'+(y(pi)+5)+'" text-anchor="end" font-size="13" fill="#33465a">'+money(pi)+'</text>';
+ s+='<text x="'+x(qi)+'" y="'+(plot.y+plot.h+23)+'" text-anchor="middle" font-size="13" fill="#33465a">'+fmt(qi)+'</text>';
+ }
+ s+='<line x1="'+plot.x+'" y1="'+plot.y+'" x2="'+plot.x+'" y2="'+(plot.y+plot.h)+'" stroke="#283848" stroke-width="2"/>';
+ s+='<line x1="'+plot.x+'" y1="'+(plot.y+plot.h)+'" x2="'+(plot.x+plot.w)+'" y2="'+(plot.y+plot.h)+'" stroke="#283848" stroke-width="2"/>';
+ s+='<line x1="'+x(0)+'" y1="'+y(c.a/c.b)+'" x2="'+x(c.a)+'" y2="'+y(0)+'" stroke="#215575" stroke-width="3"/>';
+ var qSupplyTop=Math.max(0,c.c+c.d*ymax);
+ s+='<line x1="'+x(0)+'" y1="'+y(-c.c/c.d)+'" x2="'+x(qSupplyTop)+'" y2="'+y(ymax)+'" stroke="#99002b" stroke-width="3" stroke-dasharray="10 6"/>';
+ if(el("showWelfare").checked&&v.p>c.world){
+ // Two hatched triangles mark consumption and production distortions.
+ s+='<defs><pattern id="hatch" patternUnits="userSpaceOnUse" width="9" height="9" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="9" stroke="#8a2141" stroke-width="3"/></pattern></defs>';
+ s+='<polygon points="'+x(f.qs)+','+y(c.world)+' '+x(v.qs)+','+y(v.p)+' '+x(v.qs)+','+y(c.world)+'" fill="url(#hatch)" opacity=".65"/>';
+ s+='<polygon points="'+x(f.qd)+','+y(c.world)+' '+x(v.qd)+','+y(v.p)+' '+x(v.qd)+','+y(c.world)+'" fill="url(#hatch)" opacity=".65"/>';
+ }
+ s+='<line x1="'+plot.x+'" y1="'+y(c.world)+'" x2="'+(plot.x+plot.w)+'" y2="'+y(c.world)+'" stroke="#596775" stroke-width="2.5" stroke-dasharray="3 7"/>';
+ s+='<line x1="'+plot.x+'" y1="'+y(v.p)+'" x2="'+(plot.x+plot.w)+'" y2="'+y(v.p)+'" stroke="#171e2b" stroke-width="2.5"/>';
+ s+='<line x1="'+x(v.qs)+'" y1="'+y(v.p)+'" x2="'+x(v.qs)+'" y2="'+(plot.y+plot.h)+'" stroke="#99002b" stroke-dasharray="4 4" stroke-width="2"/>';
+ s+='<line x1="'+x(v.qd)+'" y1="'+y(v.p)+'" x2="'+x(v.qd)+'" y2="'+(plot.y+plot.h)+'" stroke="#215575" stroke-dasharray="4 4" stroke-width="2"/>';
+ s+='<circle cx="'+x(v.qs)+'" cy="'+y(v.p)+'" r="5.5" fill="#fff" stroke="#99002b" stroke-width="3"/>';
+ s+='<rect x="'+(x(v.qd)-5)+'" y="'+(y(v.p)-5)+'" width="10" height="10" fill="#215575" stroke="#fff"/>';
+ s+='<text x="'+(x(v.qs))+'" y="'+(plot.y+plot.h+44)+'" text-anchor="middle" font-size="15" font-weight="750" fill="#810024">Qs '+fmt(v.qs)+'</text>';
+ s+='<text x="'+(x(v.qd))+'" y="'+(plot.y+plot.h+44)+'" text-anchor="middle" font-size="15" font-weight="750" fill="#215575">Qd '+fmt(v.qd)+'</text>';
+ s+='<text x="361" y="377" text-anchor="middle" font-size="15" fill="#243b50">Quantity (units)</text>';
+ s+='<text x="14" y="154" text-anchor="middle" font-size="15" fill="#243b50" transform="rotate(-90 14 154)">Price per unit</text>';
+ s+='<text x="'+x(c.a/2)+'" y="'+(y(c.a/c.b/2)-10)+'" font-size="15" font-weight="800" fill="#215575">D</text>';
+ s+='<text x="'+(x(qSupplyTop*.65))+'" y="'+(y((qSupplyTop*.65-c.c)/c.d)-10)+'" font-size="15" font-weight="800" fill="#99002b">S</text>';
+ el("chart").innerHTML=s;
+ el("chart").setAttribute("aria-label",c.title+". World price "+money(c.world)+", actual domestic price "+money(v.p)+". Domestic supply "+fmt(v.qs)+" and demand "+fmt(v.qd)+"; imports "+fmt(v.imports)+". Domestic supply is dashed, demand solid, world price dotted and domestic price solid. Numeric results are repeated in the comparison table.");
+}
+function render(){
+ var t=Number(slider.value),v=calc(t),f=calc(0);
+ el("tariffOutput").textContent=money(t);
+ el("priceMetric").textContent=money(v.p);
+ el("supplyMetric").textContent=fmt(v.qs);
+ el("demandMetric").textContent=fmt(v.qd);
+ el("importsMetric").textContent=fmt(v.imports);
+ el("revenueMetric").textContent=money(v.rev);
+ el("comparison").innerHTML=[
+ ["U.S. price",money(f.p),money(v.p),deltaMoney(v.p-f.p)],
+ ["Quantity demanded",fmt(f.qd),fmt(v.qd),delta(v.qd-f.qd)],
+ ["Domestic supply",fmt(f.qs),fmt(v.qs),delta(v.qs-f.qs)],
+ ["Imports",fmt(f.imports),fmt(v.imports),delta(v.imports-f.imports)],
+ ["Tariff revenue",money(f.rev),money(v.rev),deltaMoney(v.rev-f.rev)]
+ ].map(function(row){return "<tr><th scope='row'>"+row[0]+"</th><td>"+row[1]+"</td><td>"+row[2]+"</td><td>"+row[3]+"</td></tr>"}).join("");
+ var msg="";
+ if(t===0)msg="Free trade: no tariff. The lower world price allows "+fmt(f.imports)+" imports.";
+ else if(v.imports===0)msg="The tariff is prohibitive: imports fall to zero. The domestic price reaches the no-trade equilibrium of "+money(v.autarky)+". Tariff revenue is $0 because nothing is imported.";
+ else msg="The tariff raises the domestic price by "+money(v.p-f.p)+", increases domestic production by "+fmt(v.qs-f.qs)+" units, and reduces imports by "+fmt(f.imports-v.imports)+" units. Consumers pay more; the government collects "+money(v.rev)+".";
+ el("marketMessage").textContent=msg;
+ var loss=Math.max(0,f.total-v.total);
+ el("consumerValue").textContent=money(v.cs);
+ el("producerValue").textContent=money(v.ps);
+ el("welfareRevenue").textContent=money(v.rev);
+ el("deadweightValue").textContent=money(loss);
+ el("welfareText").textContent="Compared with free trade, consumer surplus changes by "+deltaMoney(v.cs-f.cs)+", producer surplus by "+deltaMoney(v.ps-f.ps)+", and total surplus changes by "+deltaMoney(v.total-f.total)+". Hatched triangles on the graph represent the two types of deadweight loss when a positive tariff distorts trade.";
+ el("work").textContent="Before tariff: "+fmt(f.qd)+" - "+fmt(f.qs)+" = "+fmt(f.imports)+" imports. After tariff: "+fmt(v.qd)+" - "+fmt(v.qs)+" = "+fmt(v.imports)+" imports. Revenue: "+money(t)+" × "+fmt(v.imports)+" = "+money(v.rev)+". Imports change by "+fmt(v.imports-f.imports)+" units.";
+ draw(f,v);
+ el("feedback").hidden=true;
+ return v;
+}
+function clearAnswers(){
+ el("answerImports").value="";el("answerRevenue").value="";
+ document.querySelectorAll('input[name="who"]').forEach(function(r){r.checked=false});
+ el("feedback").hidden=true;
+}
+function getSummary(){
+ var v=calc(Number(slider.value)),f=calc(0),who=document.querySelector('input[name="who"]:checked');
+ return {
+ title:c.title,world:c.world,tariff:v.tariff,price:v.p,qd:v.qd,qs:v.qs,imports:v.imports,revenue:v.rev,freeImports:f.imports,deadweight:Math.max(0,f.total-v.total),
+ student:(el("firstName").value.trim()+" "+el("lastName").value.trim()).trim()||"Name not entered",
+ answerImports:el("answerImports").value.trim()||"Not answered",
+ answerRevenue:el("answerRevenue").value.trim()||"Not answered",
+ answerWho:who?({a:"Domestic producers may gain; consumers pay more",b:"All domestic buyers benefit",c:"Government always earns more with higher tariffs"})[who.value]:"Not answered",
+ reflection:el("reflection").value.trim()||"Not entered"
+ };
+}
+function reportText(){
+ var z=getSummary();return "ECO 201 — Chapter 20 Tariff Lab\nStudent: "+z.student+"\nMarket: "+z.title+"\nWorld price: "+money(z.world)+"\nSelected tariff: "+money(z.tariff)+"\nDomestic price: "+money(z.price)+"\nQuantity demanded: "+fmt(z.qd)+"\nDomestic supply: "+fmt(z.qs)+"\nImports before: "+fmt(z.freeImports)+"\nImports after: "+fmt(z.imports)+"\nTariff revenue: "+money(z.revenue)+"\nDeadweight loss (model): "+money(z.deadweight)+"\n\nStudent question 1 (imports): "+z.answerImports+"\nStudent question 2 (government revenue): "+z.answerRevenue+"\nStudent question 3: "+z.answerWho+"\n\nReflection:\n"+z.reflection;
+}
+function buildPrintReport(){
+ var z=getSummary();
+ el("printReport").innerHTML=
+ "<h1>ECO 201 — Chapter 20 Tariffs and Trade</h1><p class='printmeta'><strong>Student:</strong> "+escapeHTML(z.student)+"</p><p class='printmeta'><strong>Market:</strong> "+escapeHTML(z.title)+"</p>"+
+ "<h2>Results</h2><table><thead><tr><th scope='col'>Measure</th><th scope='col'>Value</th></tr></thead><tbody>"+
+ [["World price",money(z.world)],["Tariff per unit",money(z.tariff)],["Domestic price",money(z.price)],["Quantity demanded",fmt(z.qd)],["Domestic quantity supplied",fmt(z.qs)],["Imports before tariff",fmt(z.freeImports)],["Imports after tariff",fmt(z.imports)],["Tariff revenue",money(z.revenue)],["Deadweight loss (simplified model)",money(z.deadweight)]].map(function(row){return "<tr><th scope='row'>"+row[0]+"</th><td>"+row[1]+"</td></tr>"}).join("")+"</tbody></table>"+
+ "<h2>Student responses</h2><p><strong>1. Imports:</strong> "+escapeHTML(z.answerImports)+"</p><p><strong>2. Revenue:</strong> "+escapeHTML(z.answerRevenue)+"</p><p><strong>3. Who gains and pays:</strong> "+escapeHTML(z.answerWho)+"</p>"+
+ "<h2>Reflection</h2><p>"+escapeHTML(z.reflection).replace(/\n/g,"<br>")+"</p><p class='printsmall'>Assumes a small importing country, linear domestic demand/supply, fixed world price, and full tariff pass-through until imports end.</p>";
+}
+el("market").addEventListener("change",load);
+slider.addEventListener("input",render);
+el("reset").addEventListener("click",load);
+el("showWelfare").addEventListener("change",function(){el("welfare").hidden=!this.checked;render()});
+el("checkAnswers").addEventListener("click",function(){
+ var v=calc(Number(slider.value)),q1=el("answerImports").value,q2=el("answerRevenue").value,who=document.querySelector('input[name="who"]:checked');
+ var fb=el("feedback");fb.hidden=false;
+ if(q1===""||q2===""||!who){fb.textContent="Complete all three answers before checking.";return}
+ var correct1=Math.abs(Number(q1)-Math.round(v.imports))<.51;
+ var correct2=Math.abs(Number(q2)-Math.round(v.rev))<.51;
+ var correct3=who.value==="a";
+ var score=Number(correct1)+Number(correct2)+Number(correct3);
+ fb.textContent=score+" of 3 correct. Imports = "+fmt(v.qd)+" - "+fmt(v.qs)+" = "+fmt(v.imports)+". Tariff revenue = "+money(v.tariff)+" × "+fmt(v.imports)+" = "+money(v.rev)+". When tariffs raise prices, domestic producers may benefit, but consumers pay more. A sufficiently high tariff can eliminate imports and tariff revenue.";
+});
+el("clearAnswers").addEventListener("click",clearAnswers);
+el("savePDF").addEventListener("click",function(){
+ buildPrintReport();
+ var filename=el("fileName").value.trim()||"ECO201 Chapter 20 Trade Lab";
+ var safe=filename.replace(/[\\/:*?"<>|]/g," ").replace(/\s+/g," ").trim();
+ var old=document.title;document.title=safe;
+ el("saveMessage").textContent="Choose Save as PDF in the print dialog.";
+ window.print();
+ window.addEventListener("afterprint",function restore(){document.title=old;window.removeEventListener("afterprint",restore)},{once:true});
+});
+el("copyResults").addEventListener("click",function(){
+ var txt=reportText();
+ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){el("saveMessage").textContent="Summary copied."}).catch(function(){el("saveMessage").textContent="Clipboard not available; use Save as PDF instead."})}
+ else{el("saveMessage").textContent="Clipboard not available; use Save as PDF instead."}
+});
+load();
+})();
+</script>
+</body>
+</html>
