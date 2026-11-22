@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#99002b">
+<meta name="description" content="Trade Policy Showdown: a projector-friendly ECO 201 Chapter 20 classroom game covering tariffs, quotas, jobs, infant industries, safety, and national security.">
+<title>ECO 201 | Chapter 20 Trade Policy Showdown</title>
+<style>
+:root{color-scheme:light;--red:#99002b;--red-d:#740022;--ink:#192b3d;--muted:#405268;--bg:#f3f6f9;--white:#fff;--line:#c3ced9;--pale:#ebf1f6;--green:#145b39;--blue:#174b73}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;font-size:18px;line-height:1.45}
+button,input,select{font:inherit}button{cursor:pointer}
+a{color:#184f85;text-underline-offset:3px}
+:focus-visible{outline:4px solid #1876bf;outline-offset:3px}
+.skip{position:absolute;left:12px;top:-90px;background:white;padding:12px;z-index:20}.skip:focus{top:10px}
+.site{background:white;border-bottom:6px solid var(--red)}.site-inner{max-width:1440px;margin:auto;padding:10px 22px;display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.brand{font-size:.89rem;color:var(--red);font-weight:850}.brand a{font-size:.88rem;color:var(--blue);font-weight:600}
+main{max-width:1440px;margin:auto;padding:19px 20px 40px}
+.heading{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.eyebrow{text-transform:uppercase;color:var(--red);letter-spacing:.1em;font-weight:900;font-size:.72rem}
+h1{font-size:clamp(1.7rem,3vw,2.5rem);line-height:1.15;margin:3px 0}
+h2{font-size:clamp(1.25rem,2vw,1.7rem);line-height:1.2;margin:0 0 9px}
+h3{font-size:1.05rem;margin:0 0 8px}
+p{margin:7px 0 13px}
+.sub{font-size:.86rem;color:var(--muted)}
+.tag{background:var(--pale);border:1px solid #b4c5d4;border-radius:99px;padding:7px 12px;font-size:.85rem;font-weight:850}
+.workspace{display:grid;grid-template-columns:minmax(0,1.9fr) minmax(275px,.8fr);gap:18px;align-items:start}
+.card{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:clamp(16px,2.5vw,29px);box-shadow:0 2px 7px #23364a09}
+.game-card{min-height:470px}
+.prompt{font-weight:730;font-size:clamp(1.05rem,1.55vw,1.28rem);line-height:1.5;max-width:72ch;margin:15px 0}
+.choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:17px 0}
+.choice{border:2px solid #c1ced9;border-radius:11px;padding:15px 13px;min-height:120px;background:#fafcfe;display:flex;align-items:flex-start;gap:10px}
+.choice strong{display:flex;align-items:center;justify-content:center;border:2px solid #42566b;border-radius:50%;height:35px;width:35px;flex:none;font-size:1.05rem;background:#fff}
+.choice span{font-size:.91rem;line-height:1.4}
+.choice.correct{border-color:#15593b;background:#eaf5ee}.choice.correct strong{background:#15593b;color:#fff;border-color:#15593b}
+.task{border-left:5px solid #315e80;background:#eef3f7;padding:12px 15px;border-radius:6px;font-size:.98rem}
+.task strong{display:block;margin-bottom:3px}
+.solution{margin-top:15px;border:2px solid #2a6b50;border-radius:10px;background:#f1f8f3;padding:15px}
+.solution[hidden]{display:none}.solution h3{color:#15593b;font-size:1.17rem}
+.solution p{margin:4px 0 8px;font-size:.95rem}
+.solution .answerline{font-weight:850}
+.pill{padding:5px 10px;border-radius:50px;background:#eef4ef;color:#195037;font-size:.8rem;font-weight:850;border:1px solid #88baa1}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin:17px 0 0}
+button{border:2px solid var(--red);border-radius:9px;padding:10px 15px;min-height:45px;background:var(--red);color:#fff;font-weight:780}
+button:hover:not(:disabled){background:var(--red-d)}button.secondary{color:var(--red-d);background:white}
+button.secondary:hover{background:#fff0f4}
+button:disabled{opacity:.4;cursor:not-allowed}
+.actions .spacer{flex:1}
+.score-card h2{font-size:1.32rem}
+.score-intro{font-size:.82rem;color:var(--muted);margin:0 0 10px}
+.setting{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-bottom:12px}
+.setting label{font-weight:740;font-size:.88rem}.setting select{border:2px solid #8296a8;border-radius:7px;background:#fff;min-height:37px;padding:5px}
+.team{border-top:1px solid var(--line);padding:9px 0;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:9px}
+.team label{font-size:.75rem;font-weight:750;color:var(--muted);display:block}
+.team input{width:100%;min-width:0;padding:6px 7px;border:1px solid #8b9eaf;border-radius:6px;background:white;color:var(--ink);font-size:.87rem}
+.points{text-align:right;min-width:71px}
+.points strong{display:block;font-size:1.24rem;font-variant-numeric:tabular-nums}
+.points small{font-size:.68rem;color:var(--muted)}
+.award{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--pale);padding:10px;border-radius:8px;margin-top:9px}
+.award label{font-size:.84rem;font-weight:700}
+.award input{width:80px;border:2px solid #8b9eaf;border-radius:7px;padding:4px;background:#fff;color:var(--ink);min-height:36px;text-align:center}
+.scorefoot{margin-top:9px;font-size:.74rem;color:var(--muted)}
+.hint{font-size:.85rem;color:var(--muted)}
+.list{padding-left:22px;margin:8px 0 15px}.list li{margin:7px 0}
+.introbox{font-size:.98rem;background:#f0f4f8;padding:13px 16px;border-radius:9px}
+.winner{font-size:clamp(1.25rem,2.1vw,1.7rem);font-weight:800;color:#15593b}
+.endlist{font-size:.95rem}
+footer{font-size:.73rem;color:#526073;margin-top:15px;max-width:100ch}
+@media(max-width:950px){.workspace{grid-template-columns:1fr}.choices{grid-template-columns:1fr}.choice{min-height:0}.score-card{order:2}.game-card{min-height:0}}
+@media(max-width:520px){main{padding:12px 10px 35px}.site-inner{padding:10px}.card{padding:14px}.score-card{padding:15px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+@media print{main{padding:0}.site,.score-card,.actions,.hint,footer{display:none}.workspace{display:block}.card{box-shadow:none;border:none;padding:0}.game-card{min-height:0}.choice{min-height:0;break-inside:avoid}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to game</a>
+<header class="site"><div class="site-inner"><div class="brand">Miami University · Economics Interactive Lab</div><a href="../index.html">ECO 201 labs</a></div></header>
+<main id="main">
+<div class="heading"><div><div class="eyebrow">Chapter 20 · Globalization and Protectionism</div><h1>Trade Policy Showdown</h1></div><div class="tag" id="progress">Ready to start</div></div>
+<div class="workspace">
+<section class="card game-card" id="game" aria-label="Classroom game">
+<div id="screen"></div>
+<div class="actions">
+<button id="back" class="secondary" type="button">Previous</button>
+<button id="reveal" type="button">Reveal answer</button>
+<span class="spacer"></span>
+<button id="next" type="button">Start game</button>
+</div>
+<p class="hint">Instructor controls: arrow keys change rounds; press R to reveal the answer. Record points on the right.</p>
+</section>
+<aside class="card score-card" aria-labelledby="scoreTitle">
+<h2 id="scoreTitle">Team scoreboard</h2>
+<p class="score-intro">Give each team 0–4 points per round. Totals update automatically.</p>
+<div class="setting"><label for="teamCount">Number of teams</label><select id="teamCount"><option>2</option><option>3</option><option selected>4</option><option>5</option><option>6</option></select></div>
+<div id="teams"></div>
+<div class="award"><label for="roundPoints">Award points</label><input id="roundPoints" type="number" min="0" max="4" step="1" value="0" aria-describedby="awardHelp"></div>
+<p id="awardHelp" class="scorefoot">Select a team name, then enter 0–4 points for the current round. The displayed team total includes that score. Scores are kept until you reset the game.</p>
+<div class="actions"><button class="secondary" id="resetScores" type="button">Reset all scores</button></div>
+</aside>
+</div>
+<footer>Teacher-led classroom activity with fictional scenarios. Concepts adapted from OpenStax, Principles of Microeconomics 3e, Chapter 20 (CC BY-NC-SA 4.0). Developed with the help of AI.</footer>
+</main>
+<script>
+(function(){
+"use strict";
+var rounds=[
+{title:"Imported sneakers",case:"Imported sneakers sell for $50 per pair. Similar domestic sneakers sell for $70. Families welcome the less expensive option, while a domestic shoe factory reports losing customers.",
+question:"Which statement best explains the economic effects?",
+choices:["Consumers may gain from lower prices, while competing domestic producers face pressure.","Everyone in the importing country gains equally.","Only foreign producers benefit; domestic consumers are unaffected."],answer:0,
+benefits:"Consumers who buy lower-priced shoes and businesses importing them.",costs:"Domestic shoe firms and affected workers may lose sales and jobs.",why:"The gains from lower prices and variety are real, but they are not distributed evenly. Trade can increase total benefits while some workers and firms experience losses.",
+chapter:"Trade affects consumers and producers differently."},
+{title:"A limit on rice imports",case:"A government allows a maximum of 20,000 bags of rice to be imported each year. It does not specify any tax on imported rice.",
+question:"What type of trade restriction is this?",
+choices:["A tariff","An import quota","A product-safety inspection"],answer:1,
+benefits:"Domestic rice growers who face less import competition.",costs:"Consumers and businesses using rice may pay more or have fewer choices.",why:"An import quota directly limits the quantity imported. Unlike a tariff, it does not automatically create government tariff revenue.",
+chapter:"Tariff = tax; quota = quantity limit; nontariff barrier = a rule or procedure affecting imports."},
+{title:"The toaster tariff",case:"Imported toasters cost $30 each. A $6 tariff raises the domestic price to $36. Before the tariff, buyers purchased 120 and domestic firms supplied 50. Afterward, buyers purchase 105 and domestic firms supply 65.",
+question:"How many toasters are imported AFTER the tariff, and how much tariff revenue is collected?",
+choices:["40 imported; $240 in tariff revenue","55 imported; $330 in tariff revenue","40 imported; $360 in tariff revenue"],answer:0,
+benefits:"Domestic toaster manufacturers may sell more units; the government collects revenue.",costs:"Buyers pay $6 more per toaster; some mutually beneficial trade is lost.",why:"After tariff imports = 105 - 65 = 40. Revenue = $6 × 40 = $240. Before tariff imports = 120 - 50 = 70, so imports fall by 30.",
+chapter:"Imports = quantity demanded - domestic supply; tariff revenue = tariff × imports."},
+{title:"Saving factory jobs",case:"A government imposes a tariff on imported furniture. A local furniture factory expects additional sales. Hotels renovating rooms and families buying furniture now face higher prices.",
+question:"Which conclusion best reflects Chapter 20?",
+choices:["The tariff guarantees an increase in total national employment.","Specific factory jobs may be protected, but other businesses and buyers bear costs.","Tariffs cannot raise prices for domestic buyers."],answer:1,
+benefits:"Domestic furniture firms and some factory workers.",costs:"Consumers, hotels, and other firms purchasing furniture; their spending may decline elsewhere.",why:"Protecting jobs in one industry can shift costs to consumers and other employers. It does not, by itself, prove a net increase in jobs economy-wide.",
+chapter:"Trade and jobs: identify industry-level gains AND economy-wide effects."},
+{title:"A new solar industry",case:"A country wants to give new domestic solar-panel makers five years to gain experience, increase production, and lower unit costs. It considers temporary import protection.",
+question:"Which Chapter 20 argument is being used?",
+choices:["The infant-industry argument","The unsafe-products argument","The antidumping argument"],answer:0,
+benefits:"New domestic solar firms and some workers.",costs:"Buyers may face higher prices; protected firms may become inefficient.",why:"The infant-industry argument supports limited protection while an industry develops. Ask whether learning will occur, whether the benefits outweigh costs, and when protection will end.",
+chapter:"Arguments for restricting imports: infant industries."},
+{title:"A medical-supply emergency",case:"Foreign factories supplying essential hospital gloves have shut down after a natural disaster. Hospitals need access to gloves during the NEXT 60 DAYS.",
+question:"Which response best addresses the immediate supply risk?",
+choices:["Place a large tariff on imported gloves.","Release gloves from an emergency stockpile while finding alternative suppliers.","Ban all imported gloves."],answer:1,
+benefits:"Patients and hospitals that can access supplies during a short disruption.",costs:"Taxpayers fund the reserve, and gloves require storage and replacement.",why:"A stockpile can help during a short interruption without further restricting imports. It cannot solve a prolonged shortage; longer-term supply diversification and domestic capacity may also matter.",
+chapter:"The national-interest argument: the policy must fit the specific risk."},
+{title:"Unsafe imported toys",case:"Laboratory tests find excessive lead in a shipment of imported toys. Domestic toys must meet the same lead-safety standard.",
+question:"Which policy most directly protects buyers without arbitrarily restricting safe imports?",
+choices:["Apply the same evidence-based safety rule to domestic and imported toys.","Limit all imported toys, even those that pass the test.","Raise tariffs until unsafe toys are too expensive."],answer:0,
+benefits:"Children and families protected from harmful products; producers meeting the rule.",costs:"Firms whose products fail the standard face testing, redesign, or removal costs.",why:"Product-safety rules should address actual risks and be applied consistently to domestic and imported products. A general tariff does not guarantee that products are safe.",
+chapter:"Arguments for restrictions: unsafe consumer products and nontariff measures."}
+];
+var names=["Team 1","Team 2","Team 3","Team 4","Team 5","Team 6"];
+var grades=Array.from({length:6},function(){return Array(7).fill(0)});
+var count=4,round=0,visible={},selectedTeam=0;
+var $=function(id){return document.getElementById(id)};
+function safe(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;")}
+function total(i){return grades[i].reduce(function(a,b){return a+b},0)}
+function renderTeams(){
+ var region=$("teams");region.replaceChildren();
+ for(var i=0;i<count;i++){
+ var wrap=document.createElement("div");wrap.className="team";
+ var col=document.createElement("div"),label=document.createElement("label"),input=document.createElement("input");
+ label.htmlFor="name"+i;label.textContent="Team "+(i+1)+" name";
+ input.id="name"+i;input.value=names[i];input.maxLength=24;
+ input.addEventListener("input",(function(k){return function(e){names[k]=e.target.value}})(i));
+ col.append(label,input);
+ var points=document.createElement("div");points.className="points";
+ var strong=document.createElement("strong");strong.id="total"+i;strong.textContent=total(i);
+ var small=document.createElement("small");small.textContent="of 28 points";
+ points.append(strong,small);
+ wrap.append(col,points);
+ wrap.style.cursor="pointer";
+ wrap.setAttribute("data-team",String(i));
+ wrap.addEventListener("click",(function(k){return function(e){if(e.target.tagName==="INPUT")return;selectTeam(k)}})(i));
+ region.append(wrap);
+ }
+ selectTeam(Math.min(selectedTeam,count-1));
+}
+function selectTeam(i){
+ selectedTeam=i;
+ Array.from($("teams").children).forEach(function(node,k){node.style.outline=k===i?"2px solid #174b73":"none";node.style.outlineOffset="1px";node.style.borderRadius="5px"});
+ $("roundPoints").disabled=round<1||round>7;
+ $("roundPoints").value=round>=1&&round<=7?grades[i][round-1]:0;
+ var name=names[i]||"Team "+(i+1);
+ $("awardHelp").textContent="Award 0–4 points to "+name+" for the current round. 1 point each for answer, beneficiary, cost, and explanation.";
+}
+function render(){
+ $("progress").textContent=round===0?"Ready to start":round===8?"Final scoreboard":"Round "+round+" of 7";
+ $("back").disabled=round===0;$("next").disabled=round===8;
+ $("next").textContent=round===0?"Start game":round===7?"See final scores":"Next round";
+ $("reveal").hidden=round===0||round===8;
+ $("reveal").textContent=visible[round]?"Hide answer":"Reveal answer";
+ var area=$("screen");
+ if(round===0){
+ area.innerHTML='<h2>Seven decisions. One question: Who gains, and who pays?</h2><p class="prompt">Your team is the Trade Policy Council. For every scenario, choose A, B, or C—and defend your answer.</p><div class="introbox"><strong>How to earn 4 points each round</strong><ol class="list"><li>Choose the correct answer (1 point).</li><li>Name one person or group who benefits (1 point).</li><li>Name one group facing a cost (1 point).</li><li>Explain the economic reason or tradeoff (1 point).</li></ol></div><p class="sub">Form teams of 3–4. Use the one-page scorecard. The teacher reveals the answer after teams commit.</p>';
+ }else if(round===8){
+ var scores=Array.from({length:count},function(_,i){return {name:names[i]||"Team "+(i+1),score:total(i)}});
+ var top=Math.max.apply(null,scores.map(function(s){return s.score}));
+ var winners=scores.filter(function(s){return s.score===top}).map(function(s){return s.name});
+ area.innerHTML='<h2>Game complete</h2><p class="winner">'+safe(winners.join(" and "))+' — '+top+' of 28 points</p><p>Which trade decision looked good for one group but imposed important costs on someone else?</p><div class="introbox"><strong>Closing question:</strong> When might a government reasonably accept the costs of restricting imports? What evidence would help you decide?</div><p class="sub">Tie-breaker: A policymaker claims “Higher tariffs always bring in more government revenue.” Explain why this is not necessarily true. (A tariff high enough to stop imports produces zero tariff revenue.)</p>';
+ }else{
+ var q=rounds[round-1];
+ area.innerHTML='<div class="eyebrow">Round '+round+' / 7</div><h2>'+safe(q.title)+'</h2><p class="prompt">'+safe(q.case)+'</p><p><strong>'+safe(q.question)+'</strong></p><div class="choices">'+q.choices.map(function(c,i){return '<div class="choice'+(visible[round]&&i===q.answer?' correct':'')+'"><strong>'+String.fromCharCode(65+i)+'</strong><span>'+safe(c)+'</span></div>'}).join("")+'</div><div class="task"><strong>Team challenge</strong> Write A, B, or C. Then identify who benefits, who bears a cost, and explain why.</div>'+
+ (visible[round]?'<div class="solution" role="status"><h3>Answer: '+String.fromCharCode(65+q.answer)+' <span class="pill">Score out of 4</span></h3><p class="answerline">'+safe(q.chapter)+'</p><p><strong>Who benefits:</strong> '+safe(q.benefits)+'</p><p><strong>Who faces a cost:</strong> '+safe(q.costs)+'</p><p><strong>Economic explanation:</strong> '+safe(q.why)+'</p></div>':'');
+ }
+ selectTeam(Math.min(selectedTeam,count-1));
+}
+$("back").addEventListener("click",function(){round=Math.max(0,round-1);render()});
+$("next").addEventListener("click",function(){round=Math.min(8,round+1);render()});
+$("reveal").addEventListener("click",function(){visible[round]=!visible[round];render()});
+$("teamCount").addEventListener("change",function(){count=Number(this.value);renderTeams();render()});
+$("roundPoints").addEventListener("input",function(){
+ if(round<1||round>7)return;
+ var n=Number(this.value);if(!Number.isFinite(n))n=0;
+ n=Math.max(0,Math.min(4,Math.round(n)));grades[selectedTeam][round-1]=n;
+ var totalEl=$("total"+selectedTeam);if(totalEl)totalEl.textContent=total(selectedTeam);
+});
+$("resetScores").addEventListener("click",function(){
+ if(!confirm("Reset all team scores?"))return;
+ grades=Array.from({length:6},function(){return Array(7).fill(0)});
+ renderTeams();render();
+});
+document.addEventListener("keydown",function(e){
+ var tag=e.target.tagName;
+ if(tag==="INPUT"||tag==="SELECT"||tag==="TEXTAREA")return;
+ if(e.key==="ArrowRight"&&round<8){round++;render()}
+ if(e.key==="ArrowLeft"&&round>0){round--;render()}
+ if((e.key==="r"||e.key==="R")&&round>=1&&round<=7){visible[round]=!visible[round];render()}
+});
+renderTeams();render();
+})();
+</script>
+</body>
+</html>
