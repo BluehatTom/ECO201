@@ -69,7 +69,7 @@ footer{font-size:.73rem;color:#526073;margin-top:15px;max-width:100ch}
 @media(max-width:520px){main{padding:12px 10px 35px}.site-inner{padding:10px}.card{padding:14px}.score-card{padding:15px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
 @media print{main{padding:0}.site,.score-card,.actions,.hint,footer{display:none}.workspace{display:block}.card{box-shadow:none;border:none;padding:0}.game-card{min-height:0}.choice{min-height:0;break-inside:avoid}}
-</style>
+.team-select{font-size:.73rem;min-height:29px;padding:3px 7px;margin-top:5px;border-width:1px}.team-select:hover{background:#fff0f4}</style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to game</a>
@@ -153,7 +153,7 @@ function renderTeams(){
  label.htmlFor="name"+i;label.textContent="Team "+(i+1)+" name";
  input.id="name"+i;input.value=names[i];input.maxLength=24;
  input.addEventListener("input",(function(k){return function(e){names[k]=e.target.value}})(i));
- col.append(label,input);
+ var choose=document.createElement("button");choose.type="button";choose.className="secondary team-select";choose.textContent="Score this team";choose.setAttribute("aria-label","Select "+(names[i]||"Team "+(i+1))+" for scoring");choose.addEventListener("click",(function(k){return function(){selectTeam(k)}})(i));col.append(label,input,choose);
  var points=document.createElement("div");points.className="points";
  var strong=document.createElement("strong");strong.id="total"+i;strong.textContent=total(i);
  var small=document.createElement("small");small.textContent="of 28 points";
@@ -161,7 +161,7 @@ function renderTeams(){
  wrap.append(col,points);
  wrap.style.cursor="pointer";
  wrap.setAttribute("data-team",String(i));
- wrap.addEventListener("click",(function(k){return function(e){if(e.target.tagName==="INPUT")return;selectTeam(k)}})(i));
+ wrap.addEventListener("click",(function(k){return function(e){if(e.target.tagName==="INPUT"||e.target.tagName==="BUTTON")return;selectTeam(k)}})(i));
  region.append(wrap);
  }
  selectTeam(Math.min(selectedTeam,count-1));
